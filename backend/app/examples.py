@@ -133,6 +133,7 @@ def examples_for(lang: str) -> list[dict]:
             "id": e["id"],
             "title": e["title"][lang],
             "description": e["description"][lang],
+            "text": e["description"][lang],
             "tags": e["tags"],
             "expected_tier": e["expected_tier"],
         }

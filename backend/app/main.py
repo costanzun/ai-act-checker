@@ -31,8 +31,16 @@ async def lifespan(app: FastAPI):
     else:
         log.info("Corpus loaded (law as of %s)", getattr(store.meta("en"), "consolidated_as_of", "?"))
     if os.getenv("WARM_RETRIEVER", "1") == "1":
+        import asyncio
+
+        def _warm() -> None:
+            r = app.state.pipeline.retriever
+            if r is not None:
+                r.search("high-risk AI system obligations", lang="en", k=1)  # loads embedder + reranker
+                log.info("Retriever warmed up")
+
         try:
-            _ = app.state.pipeline.retriever  # loads embedder/reranker lazily on first use
+            await asyncio.to_thread(_warm)
         except Exception as exc:  # pragma: no cover
             log.warning("retriever warm-up skipped: %s", exc)
     yield

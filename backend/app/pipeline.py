@@ -47,6 +47,51 @@ MAX_QUESTIONS = 3
 
 Event = tuple[str, dict[str, Any]]
 
+# Feature flags that are treated as "not present" when the description gives no indication of them.
+# The LLM is asked to answer them false explicitly; this is the safety net (mainly for small models),
+# and every default is recorded as an explicit assumption in the result.
+NO_EVIDENCE_DEFAULTS: dict[str, dict[str, str]] = {
+    "biometric.uses_biometric_data": {"en": "no biometric data", "it": "nessun dato biometrico"},
+    "biometric.remote_identification": {"en": "no remote biometric identification", "it": "nessuna identificazione biometrica remota"},
+    "biometric.categorisation": {"en": "no biometric categorisation", "it": "nessuna categorizzazione biometrica"},
+    "biometric.emotion_recognition": {"en": "no emotion recognition", "it": "nessun riconoscimento delle emozioni"},
+    "manipulation.subliminal_or_deceptive": {"en": "no subliminal or deceptive techniques", "it": "nessuna tecnica subliminale o ingannevole"},
+    "manipulation.exploits_vulnerabilities": {"en": "no exploitation of vulnerabilities", "it": "nessuno sfruttamento di vulnerabilità"},
+    "social_scoring": {"en": "no social scoring", "it": "nessun social scoring"},
+    "nudify_or_sexual_abuse_material": {"en": "no intimate or abuse imagery", "it": "nessun contenuto intimo o abusivo"},
+    "intimate_content_foreseeable_without_safeguards": {"en": "no foreseeable intimate-content misuse", "it": "nessun uso improprio prevedibile per contenuti intimi"},
+    "law_enforcement.used_by_or_for_law_enforcement": {"en": "no law-enforcement use", "it": "nessun uso da parte delle autorità di contrasto"},
+    "law_enforcement.predictive_policing_profiling_only": {"en": "no predictive policing", "it": "nessuna polizia predittiva"},
+    "law_enforcement.untargeted_facial_scraping": {"en": "no facial scraping", "it": "nessuno scraping di immagini facciali"},
+    "transparency.interacts_with_natural_persons": {"en": "no direct interaction with people", "it": "nessuna interazione diretta con le persone"},
+    "transparency.generates_synthetic_content": {"en": "no synthetic content generation", "it": "nessuna generazione di contenuti sintetici"},
+    "transparency.deepfake": {"en": "no deep fakes", "it": "nessun deep fake"},
+    "transparency.public_interest_text": {"en": "no public-interest text publication", "it": "nessuna pubblicazione di testi di interesse pubblico"},
+    "gpai.is_gpai_model": {"en": "not a general-purpose AI model", "it": "non è un modello di IA per finalità generali"},
+    "gpai.provider_of_model": {"en": "not a GPAI model provider", "it": "non è fornitore di un modello GPAI"},
+    "gpai.integrates_third_party_gpai": {"en": "no third-party GPAI model integrated", "it": "nessun modello GPAI di terzi integrato"},
+    "safety_component": {"en": "not a safety component of a regulated product", "it": "non è un componente di sicurezza di un prodotto regolamentato"},
+}
+
+
+def apply_no_evidence_defaults(facts: FactSheet) -> tuple[FactSheet, list[dict[str, str]]]:
+    """Default unknown feature flags to False and return the assumptions made (bilingual)."""
+    assumed: list[str] = []
+    for path in NO_EVIDENCE_DEFAULTS:
+        if facts.get_path(path) is None:
+            facts = facts.with_answer(path, False)
+            assumed.append(path)
+    if not assumed:
+        return facts, []
+    en = ", ".join(NO_EVIDENCE_DEFAULTS[p]["en"] for p in assumed)
+    it = ", ".join(NO_EVIDENCE_DEFAULTS[p]["it"] for p in assumed)
+    return facts, [
+        {
+            "en": f"Nothing in the description suggests the following, so they were treated as not applicable: {en}. Tell us if any of them applies.",
+            "it": f"Nulla nella descrizione suggerisce quanto segue, quindi è stato considerato non applicabile: {it}. Segnalaci se uno di questi punti si applica.",
+        }
+    ]
+
 STAGES = {
     "extracting": {"en": "Reading your description and extracting the facts", "it": "Lettura della descrizione ed estrazione dei fatti"},
     "classifying": {"en": "Applying the Act's classification rules", "it": "Applicazione delle regole di classificazione"},
@@ -192,9 +237,11 @@ class Pipeline:
         session_id = req.session_id or str(uuid4())
 
         # 1. facts
+        default_assumptions: list[dict[str, str]] = []
         if req.facts is None:
             yield self._stage("extracting")
             facts = await self.extract_facts(req.description, provider, metrics)
+            facts, default_assumptions = apply_no_evidence_defaults(facts)
         else:
             facts = req.facts
         facts = self._apply_answers(facts, req.answers)
@@ -203,6 +250,7 @@ class Pipeline:
         # 2. classify + questions
         yield self._stage("classifying")
         classification = engine.classify(facts)
+        classification.assumptions = list(classification.assumptions) + default_assumptions
         asked = set(req.asked)
         if req.round < MAX_ROUNDS:
             questions: list[Question] = engine.next_questions(facts, max_questions=MAX_QUESTIONS, asked=asked)
@@ -257,12 +305,14 @@ class Pipeline:
         for path in classification.unresolved:
             uncertainties.append({"en": f"Not stated: {path.replace('_', ' ').replace('.', ' → ')}", "it": f"Non indicato: {path.replace('_', ' ').replace('.', ' → ')}"})
         metrics.latency_ms = int((time.perf_counter() - t0) * 1000)
+        decisive = next((f for f in classification.findings if f.decisive), None)
         assessment = Assessment(
             language=lang,
             model=ModelInfo(provider=provider.name, model=provider.model),
             description=req.description,
             facts=facts,
             classification=classification,
+            summary=decisive.title if decisive else None,
             reasoning_md=reasoning,
             obligations=obligations,
             checklist=checklist,

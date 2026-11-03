@@ -33,12 +33,20 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.publicly_accessible_space: true
     biometric.real_time: true
     biometric.remote_identification: true
@@ -46,11 +54,20 @@
     biometric.verification_only: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Remote biometric identification (one-to-many, no active involvement, at a distance; Art. 3(41)) is listed
     in Annex III 1(a); it is not mere 1:1 verification. Art. 5(1)(h) does not apply because the use is by
@@ -88,6 +105,11 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: ['Inferred attribute is data concerning health (GDPR Art. 9(1)), not one of the Art.
         5(1)(g) attributes.']
     art63.detects_patterns_without_replacing_assessment: false
@@ -96,17 +118,28 @@
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: true
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
     biometric.infers_sensitive_attributes: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Biometric categorisation (Art. 3(40)): gait is behavioural/physical biometric data used to assign persons
     to categories. The inferred attribute is health — a sensitive attribute under GDPR Art. 9(1) (recital
@@ -146,21 +179,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Emotion recognition system (Art. 3(39): infers emotions from biometric (voice) data) → Annex III 1(c).
     Not prohibited under Art. 5(1)(f) because the persons whose emotions are inferred are customers, not
@@ -200,21 +250,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III point 2: safety components in the management and operation of the supply of water. The Omnibus
     added Art. 6(1a)-(1b): systems used solely for performance optimisation/efficiency are not safety components,
@@ -253,22 +320,38 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 3(a): determining access or admission to educational institutions. The committee relies substantially
     on the ranking (materially influences), and ranking applicants on personal data is profiling, so Art.
@@ -304,22 +387,38 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 3(b): evaluating learning outcomes, including when used to steer the learning process. The
     mark is effectively the outcome, so none of the Art. 6(3) conditions fit.
@@ -353,21 +452,38 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 3(c): assessing the appropriate level of education an individual will receive or be able to
     access, within a vocational training institution. Output determines access to courses.
@@ -401,21 +517,38 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 3(d): monitoring and detecting prohibited behaviour of students during tests. Human review
     of flags does not trigger Art. 6(3): the flags are the basis of the board's decision. If the tool inferred
@@ -450,22 +583,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 4(a) expressly names analysing and filtering job applications and evaluating candidates. Scoring
     applicants on CV data is profiling (Art. 6(3) last subparagraph), so no derogation. Provider obligations
@@ -502,22 +651,38 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 4(b): allocating tasks based on individual behaviour and monitoring/evaluating performance,
     and decisions on termination (deactivation) of work-related relationships, which include platform work.
@@ -554,22 +719,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 5(a): used by public authorities to evaluate eligibility for essential public assistance benefits
     and to grant, reduce or revoke them. Public body → Art. 27 FRIA and Art. 26(8)/49 registration.
@@ -603,22 +784,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 5(b): evaluating creditworthiness / establishing the credit score of natural persons. Art.
     27(1) expressly requires a FRIA from deployers of Annex III 5(b) and (c) systems. Art. 26(5) and (6)
@@ -653,22 +850,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 5(c): risk assessment and pricing in relation to natural persons for life and health insurance.
     Built and used in-house → provider and deployer; Art. 27 FRIA for 5(c) deployers.
@@ -702,21 +915,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 5(d): evaluating and classifying emergency calls and establishing priority in dispatching
     emergency first response services. Operators' theoretical override does not make the task preparatory
@@ -752,23 +982,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 6(a): used by law-enforcement authorities to assess the risk of a natural person becoming
     the victim of criminal offences. Public body → Art. 27 FRIA.
@@ -785,7 +1030,7 @@
   role: deployer
   expected_tier: high_risk
   expected_overlays: []
-  expected_citations: ['annex:III.6.b', 'art:6.2', 'art:26']
+  expected_citations: ['annex:III.6.b', 'art:6.2', 'art:26', 'art:27']
   should_ask: false
   facts:
     system_summary: Polygraph-like tool inferring deception from physiological and facial signals in police
@@ -803,21 +1048,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: true
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 6(b): polygraphs or similar tools used by law-enforcement authorities. It is also an emotion
     recognition system (infers intentions from biometric data → Annex III 1(c)), but Art. 5(1)(f) does not
@@ -855,21 +1117,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 6(c): evaluating the reliability of evidence in the course of investigation or prosecution
     of criminal offences, by or on behalf of law-enforcement authorities.
@@ -887,7 +1166,7 @@
   role: deployer
   expected_tier: high_risk
   expected_overlays: []
-  expected_citations: ['annex:III.6.d', 'art:5.1.d', 'art:6.2', 'art:26']
+  expected_citations: ['annex:III.6.d', 'art:5.1.d', 'art:6.2', 'art:26', 'art:27']
   should_ask: false
   facts:
     system_summary: Supports officers' re-offending risk assessment based on criminal record and verified
@@ -905,23 +1184,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Not prohibited: Art. 5(1)(d) covers risk assessments 'based solely on the profiling of a natural person
     or on assessing their personality traits', and expressly excludes systems supporting a human assessment
@@ -958,23 +1252,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 6(e): profiling of natural persons (Art. 3(4) Directive 2016/680) in the detection and investigation
     of criminal offences on behalf of law enforcement. Profiling → Art. 6(3) derogation never available.
@@ -994,7 +1303,7 @@
   role: deployer
   expected_tier: high_risk
   expected_overlays: [transparency_art50]
-  expected_citations: ['annex:III.7.a', 'annex:III.1.c', 'art:6.2', 'art:50.3']
+  expected_citations: ['annex:III.7.a', 'annex:III.1.c', 'art:6.2', 'art:50.3', 'art:27']
   should_ask: false
   facts:
     system_summary: Polygraph-like border kiosk inferring deception from biometric signals.
@@ -1011,23 +1320,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: true
     transparency.obvious_to_users_it_is_ai: true
+    transparency.public_interest_text: false
   notes: >-
     Annex III 7(a): polygraphs or similar tools used by competent migration/border authorities; also an
     emotion recognition system (Annex III 1(c)). Conservative: Art. 50(3) disclosure applies because the
@@ -1065,22 +1390,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 7(b): assessing a security risk or risk of irregular migration posed by a person who intends
     to enter a Member State, used by competent public authorities. Profiling → no derogation.
@@ -1114,22 +1455,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 7(c): assisting competent authorities in examining asylum applications, including related
     assessments of the reliability of evidence. The credibility score is an assessment, not a preparatory
@@ -1148,7 +1505,7 @@
   role: deployer
   expected_tier: high_risk
   expected_overlays: []
-  expected_citations: ['annex:III.7.d', 'annex:III.1.a', 'art:6.2', 'art:26']
+  expected_citations: ['annex:III.7.d', 'annex:III.1.a', 'art:6.2', 'art:26', 'art:27']
   should_ask: false
   facts:
     system_summary: Face identification of undocumented persons against databases in border control.
@@ -1165,12 +1522,20 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.publicly_accessible_space: false
     biometric.real_time: false
     biometric.remote_identification: true
@@ -1178,11 +1543,20 @@
     biometric.verification_only: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 7(d): detecting, recognising or identifying natural persons in migration/border control, with
     the exception of verification of travel documents (not the case). The one-to-many search also falls
@@ -1199,8 +1573,8 @@
   source: annex_iii
   role: deployer
   expected_tier: high_risk
-  expected_overlays: []
-  expected_citations: ['annex:III.8.a', 'art:6.2', 'art:26', 'art:27']
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.8.a', 'art:6.2', 'art:26', 'art:27', 'art:50.2']
   should_ask: false
   facts:
     system_summary: Assists judges in researching and interpreting facts and law and drafts reasoning applying
@@ -1218,28 +1592,45 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
     transparency.public_interest_text: false
   notes: >-
     Annex III 8(a): assisting a judicial authority in researching and interpreting facts and law and in
     applying the law to a concrete set of facts. Recital 61 excludes purely ancillary administrative activities
-    (e.g. anonymisation), which is not this case. Draft judgments are generated text, but Art. 50(2) is
-    not added as an expected overlay because the label focuses on the high-risk tier; a correct answer may
-    still mention 50(2). Ambiguity: Art. 50(2) applicability to internal drafting text.
+    (e.g. anonymisation), which is not this case. Draft judgments are synthetic text, so the provider's
+    Art. 50(2) marking duty attaches (overlay); the 'assistive function for standard editing' exception
+    does not fit because the draft reasoning is newly generated. Art. 50(4) second subparagraph does not
+    apply (not published to inform the public; and judges exercise editorial control).
   difficulty: medium
 
 - id: annex3-8b-voter-microtargeting
@@ -1270,23 +1661,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 8(b): AI intended to influence the outcome of an election or voting behaviour; voters are
     directly exposed to the output, so the 'administrative/logistical' carve-out does not apply. Generated
@@ -1305,7 +1711,7 @@
   source: commission_guidelines
   role: deployer
   expected_tier: prohibited
-  expected_overlays: []
+  expected_overlays: [transparency_art50]
   expected_citations: ['art:5.1.f', 'art:3.39']
   should_ask: false
   facts:
@@ -1322,24 +1728,46 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: ['Purpose is general wellbeing, not a medical or safety reason.']
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 5(1)(f): inferring emotions of natural persons in the workplace, except for medical or safety reasons.
     Commission Guidelines on prohibited AI practices (C(2025) 884, §7.2.3 paras 257 and 263; guid:prohibited-practices-2025.7.2.3.p1/p2)
     state that 'this exception does not comprise the use of emotion recognition systems to detect general
     aspects of wellbeing' and that assessing employees' wellbeing does not qualify as a medical reason.
-    Prohibited cases carry no expected overlays (policy: the practice cannot be lawfully placed on the market/used).
+    The transparency_art50 overlay (Art. 50(3)) is kept because overlays are additive (CONTRACTS §5), even
+    though the practice itself may not lawfully be used.
   difficulty: medium
 
 - id: edge-emotion-safety-control-room
@@ -1372,22 +1800,39 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Intended purpose is a safety reason (preventing major industrial accidents).]
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: true
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Workplace emotion recognition, but Art. 5(1)(f) excepts systems intended for medical or safety reasons.
     The Commission Guidelines on prohibited practices (C(2025) 884, §7.2.3 paras 256-263; guid:prohibited-practices-2025.7.2.3.p1/p2)
@@ -1426,19 +1871,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: true
     transparency.obvious_to_users_it_is_ai: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 50(1): AI systems intended to interact directly with natural persons must inform them they are
     interacting with AI; a human persona makes it non-obvious. Information at first interaction (Art. 50(5)).
@@ -1475,19 +1940,39 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: true
     transparency.obvious_to_users_it_is_ai: true
+    transparency.public_interest_text: false
   notes: >-
     Art. 50(1) does not apply where it is obvious to a reasonably well-informed, observant and circumspect
     person that they interact with an AI system. The Commission Guidelines on Art. 50 transparency obligations
@@ -1527,18 +2012,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: true
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
     biometric.infers_sensitive_attributes: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     It is a biometric categorisation system (Art. 3(40)), but gender and age are not 'sensitive or protected'
     attributes in the sense of Annex III 1(b): the draft Commission guidelines on high-risk classification
@@ -1577,18 +2083,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
     biometric.infers_sensitive_attributes: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Clothing colour is not biometric data (Art. 3(34): physical, physiological or behavioural characteristics
     of a person), so this is not a biometric categorisation system; neither Art. 5(1)(g) nor Annex III 1(b)
@@ -1609,7 +2136,7 @@
   source: art5
   role: provider
   expected_tier: prohibited
-  expected_overlays: []
+  expected_overlays: [transparency_art50]
   expected_citations: ['art:5.1.g', 'art:3.40']
   should_ask: false
   facts:
@@ -1626,18 +2153,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: true
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
     biometric.infers_sensitive_attributes: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 5(1)(g): biometric categorisation systems that categorise individual natural persons based on their
     biometric data to deduce or infer their race. Momentary processing does not change the analysis. Caution
@@ -1675,19 +2223,40 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: true
     gpai.provider_of_model: true
     gpai.systemic_risk: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     General-purpose AI model (Art. 3(63)); the Commission GPAI guidelines (C(2025) 5045, §2.1; guid:gpai-obligations-2025.2.1.p2)
     set an indicative criterion of training compute above 10^23 FLOP with language/image generation, which
@@ -1725,19 +2294,40 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: true
     gpai.provider_of_model: true
     gpai.systemic_risk: true
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Training compute > 10^25 FLOPs → presumed high-impact capabilities (Art. 51(2)) → GPAI model with systemic
     risk; notify the Commission within two weeks (Art. 52(1)); Art. 53 plus Art. 55 obligations. Art. 2(1)(a)
@@ -1773,21 +2363,41 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: true
     gpai.is_gpai_model: false
     gpai.provider_of_model: false
     gpai.substantially_modifies_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: true
     transparency.obvious_to_users_it_is_ai: false
+    transparency.public_interest_text: false
   notes: >-
     The company is a downstream provider (Art. 3(68)) of an AI system, not a GPAI model provider — no Art.
     53 obligations (they rest with the model provider), so no gpai overlay. Art. 50(1) (inform users of
@@ -1823,22 +2433,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: true
     art63.preparatory_task_only: true
     art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Within the Annex III 4(a) area (handling job applications) but the Art. 6(3)(a) derogation applies:
     a narrow procedural task. Recital 53 lists exactly 'transforms unstructured data into structured data'
@@ -1877,22 +2503,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: true
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Even if the provider frames it as preparatory (Art. 6(3)(d)), the last subparagraph of Art. 6(3) says
     an Annex III system that performs profiling of natural persons is always high-risk. Inferring personality
@@ -1928,22 +2570,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Same system as annex3-4a-cv-screener-vendor, same tier (Annex III 4(a)), but the user is a deployer:
     Art. 26 obligations (use per instructions, human oversight, input data relevance, logs, information
@@ -1978,17 +2636,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     An AI system (learns from data) with no prohibited practice, no Annex I/III use, and no direct interaction
     or content generation under Art. 50 → minimal_risk (voluntary codes, Art. 95; AI literacy Art. 4). Citations
@@ -2022,17 +2701,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Not an AI system under Art. 3(1): it does not infer how to generate outputs; it executes rules defined
     solely by natural persons. The Commission Guidelines on the definition of an AI system (C(2025) 924,
@@ -2069,17 +2769,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 2(8): the Regulation does not apply to research, testing or development activity prior to placing
     on the market or putting into service; testing in real-world conditions is not covered by that exclusion.
@@ -2114,17 +2835,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 2(3), second subparagraph: the Regulation does not apply to AI systems placed on the market, put
     into service or used exclusively for military, defence or national security purposes, regardless of
@@ -2160,17 +2902,36 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: true
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
     transparency.public_interest_text: false
   notes: >-
@@ -2191,7 +2952,7 @@
   source: art5
   role: provider
   expected_tier: prohibited
-  expected_overlays: []
+  expected_overlays: [transparency_art50]
   expected_citations: ['art:5.1.ba', 'art:5.1a', 'art:113']
   should_ask: false
   facts:
@@ -2209,18 +2970,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: true
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: true
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
     transparency.deepfake: true
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 5(1)(ba) (inserted by Reg. (EU) 2026/1744): prohibits placing on the market, putting into service
     or using an AI system that generates or manipulates realistic images, videos, audio or similar material
@@ -2259,18 +3040,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: true
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Requires third-party (notified body) conformity assessment under the MDR.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 6(1): the AI system is itself a product covered by Annex I legislation (Section A point 11, Regulation
     (EU) 2017/745 on medical devices) and must undergo third-party conformity assessment (class IIa → notified
@@ -2307,18 +3109,39 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: true
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Third-party conformity assessment required under Regulation (EU) 2023/1230.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 6(1): AI safety component of a product covered by Annex I legislation requiring third-party conformity
     assessment. Surprise in the consolidated text: the Omnibus deleted the old Machinery Directive from
@@ -2355,19 +3178,40 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: true
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [The model does not estimate repayment ability or produce a credit score; purpose is
         detecting financial fraud only.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Annex III 5(b) covers creditworthiness/credit scoring 'with the exception of AI systems used for the
     purpose of detecting financial fraud'. The description does not say whether the same model also scores
@@ -2407,10 +3251,22 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: ['Objective is general detection of persons wanted for minor offences, not one of the
         Art. 5(1)(h)(i)-(iii) objectives.']
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.publicly_accessible_space: true
     biometric.real_time: true
     biometric.remote_identification: true
@@ -2418,12 +3274,20 @@
     biometric.verification_only: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 5(1)(h): use of real-time remote biometric identification in publicly accessible spaces for law
     enforcement is prohibited unless strictly necessary for (i) targeted victim/missing-person search, (ii)
@@ -2443,7 +3307,7 @@
   role: deployer
   expected_tier: high_risk
   expected_overlays: []
-  expected_citations: ['annex:III.1.a', 'art:26.10', 'art:6.2']
+  expected_citations: ['annex:III.1.a', 'art:26.10', 'art:6.2', 'art:27']
   should_ask: false
   facts:
     system_summary: Post-remote biometric identification of a robbery suspect from CCTV stills.
@@ -2460,12 +3324,20 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
     art63.narrow_procedural_task: false
     art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.publicly_accessible_space: true
     biometric.real_time: false
     biometric.remote_identification: true
@@ -2473,12 +3345,20 @@
     biometric.verification_only: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Post-remote biometric identification (Art. 3(43)) is not covered by Art. 5(1)(h), which targets only
     real-time use; it is high-risk under Annex III 1(a). Art. 26(10) adds specific deployer conditions:
@@ -2515,19 +3395,38 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: true
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
     law_enforcement.predictive_policing_profiling_only: true
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: true
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Art. 5(1)(d): risk assessments of natural persons to predict the risk of committing a criminal offence
     based solely on profiling or on assessing personality traits and characteristics. No objective, verifiable
@@ -2545,7 +3444,7 @@
   source: edge
   role: provider
   expected_tier: prohibited
-  expected_overlays: []
+  expected_overlays: [transparency_art50]
   expected_citations: ['art:5.1.f', 'annex:III.1.c']
   should_ask: true
   facts:
@@ -2563,19 +3462,40 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Marketed to employers for internal staff meetings and manager feedback; no medical
         or safety purpose.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: true
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Decisive missing fact: whether the persons analysed are workers/students (workplace or education context).
     Ground truth: marketed to employers for internal meetings → Art. 5(1)(f) prohibits placing on the market
@@ -2612,6 +3532,11 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Built in-house by the company's data team and used only internally.]
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
@@ -2619,16 +3544,27 @@
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: true
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Tier is clear (Annex III 4(b): evaluating performance and promotion decisions; profiling → no Art. 6(3)),
     but the role is not: 'usiamo' could mean deployer of a vendor tool or in-house development. Ground truth:
@@ -2664,6 +3600,11 @@
     context_workplace_or_education: true
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [Only flags missing or illegible documents; the committee assesses every applicant.]
     art63.detects_patterns_without_replacing_assessment: false
     art63.improves_prior_human_activity: false
@@ -2671,16 +3612,27 @@
     art63.preparatory_task_only: true
     art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     The description lacks the decisive fact: what the assistant outputs. Ground truth: it only flags missing/illegible
     documents → narrow procedural task under Art. 6(3)(a), no profiling → not high-risk despite the Annex
@@ -2717,18 +3669,39 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: [No EU customers; outputs are not used in the EU.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Decisive missing fact: territorial scope. Art. 2(1)(a)/(c) catch third-country providers only if they
     place the system on the EU market or the output is used in the Union. Ground truth: US-only customers
@@ -2763,6 +3736,11 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: ['Asks knockout questions (experience, availability) and automatically rejects non-matching
         candidates.']
     art63.detects_patterns_without_replacing_assessment: false
@@ -2771,17 +3749,28 @@
     art63.preparatory_task_only: false
     art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: false
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: true
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: true
     transparency.obvious_to_users_it_is_ai: false
+    transparency.public_interest_text: false
   notes: >-
     Decisive missing fact: whether the chatbot filters candidates. Ground truth: it asks knockout questions
     and auto-rejects → 'analyse and filter job applications' (Annex III 4(a)); auto-rejection materially
@@ -2819,19 +3808,40 @@
     context_workplace_or_education: false
     social_scoring: false
     nudify_or_sexual_abuse_material: false
+    annex_i_third_party_assessment: false
+    public_body_or_public_service: false
+    free_open_source_licence: false
+    financial_fraud_detection: false
+    intimate_content_foreseeable_without_safeguards: false
     free_text_notes: ['Developed and used solely for an ethics-approved academic study; not offered to anyone,
         no real-world deployment.']
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
     biometric.categorisation: false
+    biometric.dataset_labelling_or_law_enforcement: false
     biometric.emotion_recognition: false
+    biometric.medical_or_safety_purpose: false
     biometric.remote_identification: false
     biometric.uses_biometric_data: true
     gpai.integrates_third_party_gpai: false
     gpai.is_gpai_model: false
+    law_enforcement.authorised_by_law_for_criminal_offences: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.rbi_strictly_necessary_objective: false
+    law_enforcement.untargeted_facial_scraping: false
     law_enforcement.used_by_or_for_law_enforcement: false
     manipulation.exploits_vulnerabilities: false
     manipulation.subliminal_or_deceptive: false
+    transparency.artistic_creative_satirical: false
+    transparency.assistive_editing_only: false
+    transparency.deepfake: false
     transparency.generates_synthetic_content: false
+    transparency.human_editorial_control: false
     transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
   notes: >-
     Decisive missing fact: whether it is used only for scientific research or already deployed/tested in
     real-world conditions. Ground truth: sole purpose of scientific research → Art. 2(6) (and Art. 2(8)

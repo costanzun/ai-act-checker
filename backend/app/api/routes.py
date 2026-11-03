@@ -44,7 +44,10 @@ async def meta(request: Request) -> MetaResponse:
     except LLMError as exc:
         provider, model = "unavailable", str(exc)
     return MetaResponse(
-        amending_acts=[{k: str(v) for k, v in a.items()} for a in (getattr(m, "amending_acts", None) or [])],
+        amending_acts=[
+            {k: str(v) for k, v in (a.model_dump() if hasattr(a, "model_dump") else dict(a)).items() if v is not None}
+            for a in (getattr(m, "amending_acts", None) or [])
+        ],
         provider=provider,
         model=model,
         timeline=engine.timeline(),
@@ -57,12 +60,18 @@ async def examples(lang: str = Query("en")) -> dict[str, Any]:
 
 
 @router.get("/api/law/search")
-async def law_search(request: Request, q: str = Query(..., min_length=2), lang: str = Query("en"), k: int = Query(8, ge=1, le=30)) -> dict[str, Any]:
+async def law_search(
+    request: Request,
+    q: str = Query(..., min_length=2),
+    lang: str = Query("en"),
+    k: int = Query(8, ge=1, le=30),
+    guidance: bool = Query(False, description="Also search non-binding Commission guidance"),
+) -> dict[str, Any]:
     p = _pipeline(request)
     r = p.retriever
     if r is None:
         raise HTTPException(503, "retrieval index not available")
-    return {"hits": r.search(q, lang=lang, k=k)}
+    return {"hits": r.search(q, lang=lang, k=k, binding=None if guidance else True)}
 
 
 @router.get("/api/law/{pid}")

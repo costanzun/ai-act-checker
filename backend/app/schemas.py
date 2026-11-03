@@ -81,6 +81,7 @@ class Assessment(BaseModel):
     description: str
     facts: FactSheet
     classification: Classification
+    summary: dict[str, str] | None = Field(None, description="One-sentence bilingual summary for the tier hero")
     reasoning_md: str
     obligations: list[Obligation]
     checklist: list[ChecklistItem]

@@ -44,8 +44,8 @@ backend/.venv/bin/python eval/validate_cases.py          # schema + FactSheet + 
 - **Overlays.**
   - `transparency_art50` is added whenever an Art. 50 duty attaches to the system: 50(1)
     interaction, 50(2) marking, 50(3) emotion recognition or biometric categorisation, or 50(4) deep
-    fakes and public-interest text. High-risk cases carry it too.
-  - Prohibited cases carry no overlays, because the practice cannot lawfully take place.
+    fakes and public-interest text. Overlays are additive (CONTRACTS §5), so high-risk and
+    prohibited cases carry it too.
   - `gpai` is only for a provider of a GPAI model (`gpai.is_gpai_model` and
     `gpai.provider_of_model`). It is never set for downstream integrators.
 - **Bare GPAI model → `minimal_risk` + `gpai`.** A model is not classified into a tier, so the
@@ -71,10 +71,15 @@ backend/.venv/bin/python eval/validate_cases.py          # schema + FactSheet + 
   provisions that are ruled out, such as `art:50.1` for a bot that is obviously AI. They are not
   the full list of relevant provisions.
 - **`facts`** use flat dotted FactSheet paths. Every decisive field is set, and negatives are set
-  explicitly as `false` or `none`, so the deterministic engine should not need to ask anything.
-  When a decisive fact has no FactSheet field, the text goes in `free_text_notes`. Examples are the
-  medical/safety purpose in 5(1)(f), the objective in 5(1)(h), third-party conformity assessment
-  under Annex I, and "fraud detection only".
+  explicitly as `false` or `none`, so the deterministic engine asks no residual questions. This
+  includes the exception fields the engine added: `annex_i_third_party_assessment`,
+  `public_body_or_public_service`, `financial_fraud_detection`, `biometric.medical_or_safety_purpose`,
+  `law_enforcement.rbi_strictly_necessary_objective`,
+  `law_enforcement.authorised_by_law_for_criminal_offences`, and the others in `facts.py`.
+  `free_text_notes` keeps the human-readable reason alongside.
+- **Public bodies.** Cases where the deployer is a public authority set
+  `public_body_or_public_service: true`. Where the role is deployer, `art:27` (FRIA) is in
+  `expected_citations`.
 
 ## Composition
 
@@ -96,7 +101,7 @@ By source and tier:
 | deployer | 25 |   | it       | 7  |   | medium     | 28 |
 | both     | 5  |   |          |    |   | hard       | 10 |
 
-- Overlays: none in 44 cases, `transparency_art50` in 10, `gpai` in 2.
+- Overlays: none in 39 cases, `transparency_art50` in 15, `gpai` in 2.
 - `should_ask: true` (7):
   - `edge-fraud-detection-loan-applications`
   - `edge-meeting-emotion-plugin-context-unknown`
@@ -124,10 +129,13 @@ reporting results, give per-tier metrics alongside the overall accuracy.
 4. **Art. 50(3) law-enforcement carve-out.** It is applied to the police polygraph
    (`annex3-6b`, no overlay) but not to the border kiosk (`annex3-7a`, overlay). Border control is
    not primarily criminal investigation.
-5. **Art. 50(2) for internal drafting text.** No overlay is expected for the judicial drafting
-   assistant (`annex3-8a`). A correct answer may still mention 50(2).
-6. **Tier for a bare GPAI model** (`gpai-*`) is `minimal_risk`. This is an engine-policy choice,
-   not something the Act states.
+5. **Art. 50(2) for internal drafting text.** The judicial drafting assistant (`annex3-8a`)
+   expects the 50(2) overlay, because it generates new text.
+6. **Tier for a bare GPAI model** (`gpai-*`) is `minimal_risk` + `gpai`. The facts say the model
+   generates text, and the current engine then applies Art. 50(2) and returns `limited_risk`. The
+   labels keep `minimal_risk`: Art. 50(2) addresses providers of AI *systems* ("including
+   general-purpose AI systems"), and a model offered only via API is not a system (Art. 3(63) vs
+   3(66), recital 97). These are the only engine mismatches.
 7. **Machinery after the Omnibus.** Regulation (EU) 2023/1230 now sits in Annex I **Section B**
    (point 21), and the old Section A point 1 has been deleted. Under the amended Art. 2(2), only
    Art. 6(1), Art. 60a and Arts 102–112 apply to such products. `edge-cobot-safety-machinery` is
@@ -140,12 +148,7 @@ reporting results, give per-tier metrics alongside the overall accuracy.
    answer should mention the date.
 10. **Art. 3 definitions.** Citations to definitions use the corpus format `art:3.<n>` (for
     example `art:3.39`), which resolves as "Art. 3, point (39)".
-11. **FactSheet gaps.** These decisive facts have no FactSheet field and go in `free_text_notes`:
-    - the Art. 5(1)(f) medical/safety purpose
-    - the Art. 5(1)(h)(i)–(iii) objective
-    - "requires third-party conformity assessment" (Art. 6(1)(b))
-    - "fraud detection only" (Annex III 5(b))
-    - the "evidently artistic" case under Art. 50(4)
-    - whether ethnic origin as opposed to race is inferred
-
-    A deterministic engine cannot resolve these cases from structured fields alone.
+11. **FactSheet gaps.** The fields that were missing are now in the FactSheet and set in every
+    case. One gap remains: `infers_sensitive_attributes` mirrors the Art. 5(1)(g) list, so health
+    and ethnic origin (the Annex III 1(b) attributes that are not prohibited) are expressed only
+    through `annex_iii_area` and `free_text_notes`.

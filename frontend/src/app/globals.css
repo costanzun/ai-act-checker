@@ -1,0 +1,162 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+  --font-heading: var(--font-newsreader), Georgia, serif;
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --color-tier-prohibited: var(--tier-prohibited);
+  --color-tier-high: var(--tier-high);
+  --color-tier-limited: var(--tier-limited);
+  --color-tier-minimal: var(--tier-minimal);
+  --color-tier-oos: var(--tier-oos);
+  --color-paper: var(--paper);
+  --color-ink: var(--ink);
+  --color-eu: var(--eu);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+
+:root {
+  --paper: #F7F5F0;
+  --ink: #0F1B2D;
+  --eu: #1E3A8A;
+  --background: #F7F5F0;
+  --foreground: #0F1B2D;
+  --card: #FCFBF8;
+  --card-foreground: #0F1B2D;
+  --popover: #FCFBF8;
+  --popover-foreground: #0F1B2D;
+  --primary: #1E3A8A;
+  --primary-foreground: #FFFFFF;
+  --secondary: #EEEBE3;
+  --secondary-foreground: #0F1B2D;
+  --muted: #EEEBE3;
+  --muted-foreground: #5B6472;
+  --accent: #EEEBE3;
+  --accent-foreground: #0F1B2D;
+  --destructive: #9F1239;
+  --border: #DDD8CB;
+  --input: #D2CCBC;
+  --ring: #1E3A8A;
+  --chart-1: #1E3A8A; --chart-2: #B45309; --chart-3: #15803D; --chart-4: #9F1239; --chart-5: #64748B;
+  --radius: 0.5rem;
+  --sidebar: #F7F5F0; --sidebar-foreground: #0F1B2D; --sidebar-primary: #1E3A8A; --sidebar-primary-foreground: #fff;
+  --sidebar-accent: #EEEBE3; --sidebar-accent-foreground: #0F1B2D; --sidebar-border: #DDD8CB; --sidebar-ring: #1E3A8A;
+  --tier-prohibited: #9F1239;
+  --tier-high: #B45309;
+  --tier-limited: #1D4ED8;
+  --tier-minimal: #15803D;
+  --tier-oos: #64748B;
+}
+
+.dark {
+  --paper: #0B1220;
+  --ink: #E8E4DC;
+  --eu: #93B4F5;
+  --background: #0B1220;
+  --foreground: #E8E4DC;
+  --card: #111A2C;
+  --card-foreground: #E8E4DC;
+  --popover: #111A2C;
+  --popover-foreground: #E8E4DC;
+  --primary: #93B4F5;
+  --primary-foreground: #0B1220;
+  --secondary: #172238;
+  --secondary-foreground: #E8E4DC;
+  --muted: #172238;
+  --muted-foreground: #A39E94;
+  --accent: #172238;
+  --accent-foreground: #E8E4DC;
+  --destructive: #FB7185;
+  --border: #243049;
+  --input: #2E3C58;
+  --ring: #93B4F5;
+  --chart-1: #93B4F5; --chart-2: #F59E0B; --chart-3: #4ADE80; --chart-4: #FB7185; --chart-5: #94A3B8;
+  --sidebar: #0B1220; --sidebar-foreground: #E8E4DC; --sidebar-primary: #93B4F5; --sidebar-primary-foreground: #0B1220;
+  --sidebar-accent: #172238; --sidebar-accent-foreground: #E8E4DC; --sidebar-border: #243049; --sidebar-ring: #93B4F5;
+  --tier-prohibited: #FB7185;
+  --tier-high: #F59E0B;
+  --tier-limited: #7CA6FF;
+  --tier-minimal: #4ADE80;
+  --tier-oos: #94A3B8;
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  body { @apply bg-background text-foreground font-sans antialiased; }
+  html { @apply font-sans; scroll-behavior: smooth; }
+  h1, h2, h3, h4 { font-family: var(--font-heading); letter-spacing: -0.01em; }
+}
+
+/* Legal-document hairline rule */
+.rule { border-top: 1px solid var(--border); }
+.rule-double { border-top: 3px double var(--border); }
+
+/* Shimmer for the current stage */
+@keyframes shimmer { 0% { background-position: -200% 0; } 100% { background-position: 200% 0; } }
+.shimmer-text {
+  background: linear-gradient(90deg, var(--muted-foreground) 30%, var(--foreground) 50%, var(--muted-foreground) 70%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  animation: shimmer 1.8s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) { .shimmer-text { animation: none; color: var(--foreground); background: none; } html { scroll-behavior: auto; } }
+
+/* Markdown reasoning */
+.prose-legal p { margin: 0 0 0.9em; line-height: 1.7; }
+.prose-legal ul { list-style: disc; padding-left: 1.25em; margin: 0 0 0.9em; }
+.prose-legal ol { list-style: decimal; padding-left: 1.25em; margin: 0 0 0.9em; }
+.prose-legal li { margin: 0.25em 0; line-height: 1.65; }
+.prose-legal h2, .prose-legal h3 { font-size: 1.1rem; font-weight: 600; margin: 1.2em 0 0.4em; }
+.prose-legal strong { font-weight: 600; }
+.prose-legal blockquote { border-left: 2px solid var(--border); padding-left: 1em; color: var(--muted-foreground); }
+
+/* Print */
+@media print {
+  header, footer, .no-print, [data-slot="sheet-overlay"] { display: none !important; }
+  body { background: #fff !important; color: #000 !important; }
+  .print-expand [role="tabpanel"] { display: block !important; }
+  [data-slot="card"] { break-inside: avoid; box-shadow: none !important; }
+  a { text-decoration: none; color: inherit; }
+}
