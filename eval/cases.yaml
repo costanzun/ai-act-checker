@@ -2212,7 +2212,7 @@
   facts:
     system_summary: Provider placing a general-purpose LLM on the EU market via API.
     role: provider
-    is_ai_system: true
+    is_ai_system: false  # a bare model is not an AI system (Art. 3(1) vs 3(63), recital 97)
     in_eu_scope: true
     scope_exclusion: none
     sector: software_it
@@ -2283,7 +2283,7 @@
   facts:
     system_summary: Non-EU provider placing a frontier GPAI model with systemic risk on the EU market.
     role: provider
-    is_ai_system: true
+    is_ai_system: false  # a bare model is not an AI system (Art. 3(1) vs 3(63), recital 97)
     in_eu_scope: true
     scope_exclusion: none
     sector: software_it

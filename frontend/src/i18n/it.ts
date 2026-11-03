@@ -148,6 +148,8 @@ export const it: Record<DictKey, string> = {
 
   "cite.open": "Apri il testo di {label}",
   "cite.loading": "Caricamento…",
+  "cite.deletedNote": "Soppresso dal Regolamento (UE) 2026/1744.",
+  "result.related.none": "Nessuna ulteriore disposizione trovata per questo risultato.",
   "cite.error": "Impossibile caricare questa disposizione.",
   "cite.amended": "Modificato dal Reg. (UE) 2026/1744",
   "cite.amended.inserted": "Inserito dal Reg. (UE) 2026/1744",

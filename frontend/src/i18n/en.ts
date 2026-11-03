@@ -146,6 +146,8 @@ export const en = {
 
   "cite.open": "Open source text for {label}",
   "cite.loading": "Loading…",
+  "cite.deletedNote": "Deleted by Regulation (EU) 2026/1744.",
+  "result.related.none": "No further provisions were found for this result.",
   "cite.error": "This provision could not be loaded.",
   "cite.amended": "Amended by Reg. (EU) 2026/1744",
   "cite.amended.inserted": "Inserted by Reg. (EU) 2026/1744",

@@ -166,6 +166,8 @@ export interface AssessRequest {
   facts?: FactSheet | null;
   answers?: Answer[];
   round: number;
+  /** Echo of the `asked` list from the last `questions` event. */
+  asked?: string[];
   provider?: string | null;
   model?: string | null;
 }
@@ -175,7 +177,7 @@ export type Stage = "extracting" | "retrieving" | "classifying" | "drafting" | "
 export type SseEvent =
   | { type: "stage"; stage: Stage; message: LText }
   | { type: "facts"; facts: FactSheet }
-  | { type: "questions"; questions: Question[]; facts: FactSheet; round: number; session_id: string }
+  | { type: "questions"; questions: Question[]; facts: FactSheet; round: number; session_id: string; asked?: string[] }
   | { type: "token"; section: string; text: string }
   | { type: "result"; assessment: Assessment }
   | { type: "done"; status: "complete" | "needs_clarification" }

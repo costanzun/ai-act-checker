@@ -24,9 +24,10 @@ interface Session {
   facts: FactSheet | null;
   answers: Answer[];
   round: number;
+  asked: string[];
 }
 
-const EMPTY: Session = { description: "", sessionId: null, facts: null, answers: [], round: 0 };
+const EMPTY: Session = { description: "", sessionId: null, facts: null, answers: [], round: 0, asked: [] };
 const saveKey = (id: string) => `aiact.assessment.${id}`;
 
 export function AssessFlow() {
@@ -55,13 +56,13 @@ export function AssessFlow() {
     let next = s;
     try {
       for await (const ev of assess({
-        description: s.description, language: lang, session_id: s.sessionId, facts: s.facts, answers: s.answers, round: s.round,
+        description: s.description, language: lang, session_id: s.sessionId, facts: s.facts, answers: s.answers, round: s.round, asked: s.asked,
       }, ctl.signal)) {
         switch (ev.type) {
           case "stage": setStages((p) => (p[p.length - 1] === ev.stage ? p : [...p, ev.stage])); break;
           case "facts": next = { ...next, facts: ev.facts }; break;
           case "questions":
-            next = { ...next, facts: ev.facts, sessionId: ev.session_id, round: ev.round };
+            next = { ...next, facts: ev.facts, sessionId: ev.session_id, round: ev.round, asked: ev.asked ?? next.asked };
             setSession(next);
             setQuestions(ev.questions);
             break;

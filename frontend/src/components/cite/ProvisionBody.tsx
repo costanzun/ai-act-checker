@@ -10,7 +10,8 @@ import Link from "next/link";
 export function ProvisionBody({ data, asPage = false }: { data: LawResponse; asPage?: boolean }) {
   const { t } = useT();
   const p = data.provision;
-  const paragraphs = (data.full_text || p.text).split(/\n{2,}/).filter(Boolean);
+  const deleted = p.amendment?.kind === "deleted";
+  const paragraphs = deleted ? [t("cite.deletedNote")] : (data.full_text || p.text).split(/\n{2,}/).filter(Boolean);
   const amendKey = p.amendment?.kind === "inserted" ? "cite.amended.inserted" : p.amendment?.kind === "deleted" ? "cite.amended.deleted" : "cite.amended";
   return (
     <div className="space-y-4">
