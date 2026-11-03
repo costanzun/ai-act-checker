@@ -37,6 +37,7 @@ def main() -> int:
     ap.add_argument("--lang", default="en")
     ap.add_argument("--index-dir", default=None)
     ap.add_argument("--corpus", default=None, help="corpus JSON used for the store / to skip probes whose target is absent")
+    ap.add_argument("--all-sources", action="store_true", help="also search non-binding guidance (default: binding provisions only)")
     a = ap.parse_args()
     corpus = Path(a.corpus or ROOT / "data" / "corpus" / f"{a.lang}.json")
     view = CorpusView.from_file(corpus, a.lang)
@@ -49,7 +50,7 @@ def main() -> int:
         hits5 = hits1 = 0
         t = time.time()
         for p in probes:
-            res = r.search(p["q"], a.lang, k=5, use_reranker=rr)
+            res = r.search(p["q"], a.lang, k=5, use_reranker=rr, binding=None if a.all_sources else True)
             ids = [h["id"] for h in res]
             pos = next((i for i, x in enumerate(ids) if ok(p["expect"], x)), None)
             hits5 += pos is not None

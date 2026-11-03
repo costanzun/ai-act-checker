@@ -38,12 +38,17 @@ class Retriever:
         self.reranker = reranker
 
     # ------------------------------------------------------------------ core
-    def candidates(self, query: str, lang: str, n: int = 30, types: set[str] | None = None) -> list[dict]:
-        """RRF-fused union of vector and FTS results, de-duplicated by provision id."""
+    def candidates(self, query: str, lang: str, n: int = 30, types: set[str] | None = None,
+                   binding: bool | None = None) -> list[dict]:
+        """RRF-fused union of vector and FTS results, de-duplicated by provision id.
+
+        ``binding=True`` restricts to the Regulation itself (articles, annexes, recitals);
+        ``binding=False`` to Commission guidance; ``None`` searches both.
+        """
         vec = self.embedder.encode_query(query)
-        vrows = self.index.search_vector(lang, vec, n, types)
+        vrows = self.index.search_vector(lang, vec, n, types, binding)
         try:
-            frows = self.index.search_fts(lang, query, n, types)
+            frows = self.index.search_fts(lang, query, n, types, binding)
         except Exception:
             frows = []  # FTS unavailable -> vector only
         fused: dict[str, dict] = {}
@@ -56,10 +61,11 @@ class Retriever:
         return sorted(fused.values(), key=lambda r: r["rrf"], reverse=True)[:n]
 
     def search(self, query: str, lang: str = "en", k: int = 8, candidates: int = 30,
-               types: set[str] | None = None, use_reranker: bool = True) -> list[Hit]:
+               types: set[str] | None = None, use_reranker: bool = True,
+               binding: bool | None = None) -> list[Hit]:
         if not query.strip() or not self.index.has(lang):
             return []
-        cands = self.candidates(query, lang, candidates, types)
+        cands = self.candidates(query, lang, candidates, types, binding)
         if use_reranker and self.reranker is not None and cands:
             ranked = self.reranker.rerank(query, cands, top_k=k)
             score_of = lambda r: r["rerank_score"]  # noqa: E731
@@ -89,12 +95,12 @@ class Retriever:
         return out
 
     # ------------------------------------------------------------ fact-driven
-    def related_for_facts(self, facts: dict, lang: str = "en", k: int = 6) -> list[Hit]:
+    def related_for_facts(self, facts: dict, lang: str = "en", k: int = 6, binding: bool | None = True) -> list[Hit]:
         """Compose 2-4 short queries from a FactSheet-like dict and merge hits."""
         queries = facts_to_queries(facts)
         merged: dict[str, Hit] = {}
         for q in queries:
-            for h in self.search(q, lang, k=k, candidates=20):
+            for h in self.search(q, lang, k=k, candidates=20, binding=binding):
                 if h["id"] not in merged or h["score"] > merged[h["id"]]["score"]:
                     merged[h["id"]] = h
         return sorted(merged.values(), key=lambda h: h["score"], reverse=True)[:k]

@@ -83,15 +83,19 @@ class LanceIndex:
         return {"lang": lang, "rows": tbl.count_rows(), "dim": dim, "fts": fts}
 
     # -- search --------------------------------------------------------------
-    def _where(self, types: set[str] | None) -> str | None:
-        if not types:
-            return None
-        return "type IN (" + ", ".join("'" + t.replace("'", "") + "'" for t in sorted(types)) + ")"
+    def _where(self, types: set[str] | None, binding: bool | None = None) -> str | None:
+        clauses: list[str] = []
+        if types:
+            clauses.append("type IN (" + ", ".join("'" + t.replace("'", "") + "'" for t in sorted(types)) + ")")
+        if binding is not None:
+            clauses.append(f"binding = {'true' if binding else 'false'}")
+        return " AND ".join(clauses) if clauses else None
 
-    def search_vector(self, lang: str, vec: np.ndarray, n: int, types: set[str] | None = None) -> list[dict]:
+    def search_vector(self, lang: str, vec: np.ndarray, n: int, types: set[str] | None = None,
+                      binding: bool | None = None) -> list[dict]:
         tbl = self.db.open_table(table_name(lang))
         q = tbl.search(vec.astype(np.float32), vector_column_name="vector").metric("cosine")
-        w = self._where(types)
+        w = self._where(types, binding)
         if w:
             q = q.where(w, prefilter=True)
         rows = q.limit(n).to_list()
@@ -100,13 +104,14 @@ class LanceIndex:
             r.pop("vector", None)
         return rows
 
-    def search_fts(self, lang: str, query: str, n: int, types: set[str] | None = None) -> list[dict]:
+    def search_fts(self, lang: str, query: str, n: int, types: set[str] | None = None,
+                   binding: bool | None = None) -> list[dict]:
         tbl = self.db.open_table(table_name(lang))
         qs = _fts_query(query)
         if not qs:
             return []
         q = tbl.search(qs, query_type="fts")
-        w = self._where(types)
+        w = self._where(types, binding)
         if w:
             q = q.where(w, prefilter=True)
         rows = q.limit(n).to_list()

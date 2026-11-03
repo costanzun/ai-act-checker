@@ -1,0 +1,2842 @@
+# EU AI Act Checker — labelled evaluation set.
+# Law baseline: Regulation (EU) 2024/1689 consolidated 2026-07-27 (incl. Reg. (EU) 2026/1744).
+# Schema: docs/CONTRACTS.md §9. Facts use FactSheet dotted paths (backend/app/engine/facts.py).
+# Validate: backend/.venv/bin/python eval/validate_cases.py
+
+- id: annex3-1a-stadium-watchlist-rbi
+  title: Face matching against a banned-fans list at stadium gates
+  description: >-
+    We run a football club in Turin and want to install a vendor's camera system at the stadium turnstiles.
+    It scans the faces of everyone walking towards the gates and compares them in real time with our database
+    of fans under a stadium ban, alerting stewards on a match. Supporters do nothing actively; the cameras
+    capture them from a few metres away.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.1.a', 'art:6.2', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Real-time face matching of spectators against a stadium-ban list, operated by a private
+      club.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: biometrics
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 1a_remote_biometric_identification
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.publicly_accessible_space: true
+    biometric.real_time: true
+    biometric.remote_identification: true
+    biometric.uses_biometric_data: true
+    biometric.verification_only: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Remote biometric identification (one-to-many, no active involvement, at a distance; Art. 3(41)) is listed
+    in Annex III 1(a); it is not mere 1:1 verification. Art. 5(1)(h) does not apply because the use is by
+    a private club, not for law-enforcement purposes. Annex III 1 only covers uses 'in so far as permitted
+    under relevant Union or national law' — lawfulness under GDPR Art. 9 is a separate question and is not
+    a reason to downgrade the tier.
+  difficulty: medium
+
+- id: annex3-1b-gym-gait-health-categorisation
+  title: Gym cameras inferring members' health conditions from gait
+  description: >-
+    We are a start-up selling a camera system to fitness-club chains. It analyses each member's gait and
+    posture on the treadmill and infers likely health conditions, such as early mobility or neurological
+    disorders, then sorts members into groups so the club can offer tailored programmes and physiotherapy
+    packages. It is not sold as a medical device and gives no diagnosis.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.1.b', 'art:6.2', 'art:50.3', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Infers health conditions from members' gait (biometric data) and categorises them for
+      targeted offers.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: other
+    decision_impact: no_decision_about_persons
+    annex_iii_area: 1b_biometric_categorisation_sensitive
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: ['Inferred attribute is data concerning health (GDPR Art. 9(1)), not one of the Art.
+        5(1)(g) attributes.']
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: true
+    biometric.emotion_recognition: false
+    biometric.infers_sensitive_attributes: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Biometric categorisation (Art. 3(40)): gait is behavioural/physical biometric data used to assign persons
+    to categories. The inferred attribute is health — a sensitive attribute under GDPR Art. 9(1) (recital
+    54) — so Annex III 1(b) applies. Health is not in the Art. 5(1)(g) list, so not prohibited (FactSheet
+    infers_sensitive_attributes mirrors the 5(1)(g) list and is therefore false). The draft Commission guidelines
+    on high-risk classification (19 May 2026, §IV.3.1.3 paras 169-170; guid:high-risk-classification-2026-draft.annex3.IV.3.1.3.p3)
+    give a near-identical example (gait → health-state categories) as high-risk. Art. 50(3) disclosure applies
+    to the deployer (gyms). Ambiguity: if marketed for detecting disease it could also be medical-device
+    software (Annex I, Art. 6(1)).
+  difficulty: hard
+
+- id: annex3-1c-call-centre-customer-emotions
+  title: Voice analytics detecting callers' frustration
+  description: >-
+    Our insurance company's call centre wants to buy a voice-analytics tool that listens to customers on
+    the phone and detects whether they are angry, anxious or satisfied, so that agitated callers are routed
+    to senior staff. It analyses only the customers' voices, not our agents'.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.1.c', 'art:6.2', 'art:50.3', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Emotion recognition on customers' voices in a call centre for call routing.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: finance_other
+    decision_impact: supports_human_decision
+    human_oversight: fully_automated
+    annex_iii_area: 1c_emotion_recognition
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Emotion recognition system (Art. 3(39): infers emotions from biometric (voice) data) → Annex III 1(c).
+    Not prohibited under Art. 5(1)(f) because the persons whose emotions are inferred are customers, not
+    workers; the Commission Guidelines on prohibited AI practices (C(2025) 884, §7.2.2; guid:prohibited-practices-2025.7.2.2.p2)
+    state that a call centre tracking its customers' emotions such as anger or impatience is not prohibited
+    by Art. 5(1)(f), while tracking its employees' emotions is. Art. 50(3) disclosure applies. FactSheet
+    field context_workplace_or_education is set false because the affected persons are not in a workplace
+    relationship with the deployer.
+  difficulty: hard
+
+- id: annex3-2-water-network-safety
+  title: AI controlling pressure valves in a water network
+  description: >-
+    We develop software for municipal water utilities. Our model predicts pipe-burst and contamination risk
+    from sensor data and automatically closes valves and adjusts chlorine dosing when it detects a dangerous
+    condition. If it fails, a burst or a contamination event could go undetected.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.2', 'art:6.2', 'art:16', 'art:6.1b']
+  should_ask: false
+  facts:
+    system_summary: AI safety component that detects dangerous conditions in a water supply network and
+      actuates valves and dosing.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: critical_infrastructure
+    decision_impact: no_decision_about_persons
+    human_oversight: fully_automated
+    annex_iii_area: 2_critical_infrastructure_safety
+    annex_i_product: none
+    safety_component: true
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III point 2: safety components in the management and operation of the supply of water. The Omnibus
+    added Art. 6(1a)-(1b): systems used solely for performance optimisation/efficiency are not safety components,
+    but systems whose failure would endanger health and safety are. Here failure endangers health (burst/contamination),
+    so it is a safety component. Point 2 has no letters, so the ID is annex:III.2. Note Art. 27 FRIA and
+    Art. 49 deployer registration carve out point 2.
+  difficulty: medium
+
+- id: annex3-3a-university-admission
+  title: Graduatoria di ammissione universitaria
+  description: >-
+    Siamo l'ufficio ammissioni di un'università di Bologna e vogliamo usare un software di un fornitore
+    che analizza i dossier dei candidati ai corsi di laurea magistrale (voti, lettere motivazionali, CV)
+    e produce una graduatoria. La commissione parte da quella graduatoria e di solito ammette i primi in
+    lista.
+  language: it
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.3.a', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Ranks applicants for admission to master's programmes; committee largely follows the
+      ranking.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: education_vocational_training
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 3a_education_admission
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 3(a): determining access or admission to educational institutions. The committee relies substantially
+    on the ranking (materially influences), and ranking applicants on personal data is profiling, so Art.
+    6(3) cannot apply. A public university is a body governed by public law, hence Art. 27 FRIA. Not emotion
+    recognition, so Art. 5(1)(f) is irrelevant despite the education setting.
+  difficulty: easy
+
+- id: annex3-3b-essay-autograding
+  title: Automated essay grading for secondary schools
+  description: >-
+    We are an ed-tech company and sell a tool that automatically grades students' written essays in secondary
+    schools and gives a mark out of ten. Teachers can override the mark, but in practice the mark goes straight
+    into the online register. It also suggests which exercises each student should do next.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.3.b', 'art:6.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Grades students' essays and steers their learning path.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: education_vocational_training
+    decision_impact: determines_outcome
+    human_oversight: human_in_the_loop
+    annex_iii_area: 3b_education_evaluation
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 3(b): evaluating learning outcomes, including when used to steer the learning process. The
+    mark is effectively the outcome, so none of the Art. 6(3) conditions fit.
+  difficulty: easy
+
+- id: annex3-3c-language-level-placement
+  title: Placement test deciding which course level a learner may join
+  description: >-
+    Our vocational training centre uses an adaptive AI placement test. Based on the result, the system assigns
+    each adult learner to a level (A2, B1, B2...) and that level decides which certified courses they are
+    allowed to enrol in. Staff don't usually review the placement.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.3.c', 'art:6.2', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Adaptive test that assigns learners to course levels gating enrolment.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: education_vocational_training
+    decision_impact: determines_outcome
+    human_oversight: fully_automated
+    annex_iii_area: 3c_education_level_assessment
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 3(c): assessing the appropriate level of education an individual will receive or be able to
+    access, within a vocational training institution. Output determines access to courses.
+  difficulty: medium
+
+- id: annex3-3d-online-proctoring
+  title: Online exam proctoring that flags cheating
+  description: >-
+    We provide an online proctoring service to universities. During remote exams our model watches the webcam
+    and screen, and flags suspected cheating — another person in the room, a phone, the student looking
+    away repeatedly — for the exam board to review. We do not try to read emotions.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.3.d', 'art:6.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Monitors students during remote exams and flags suspected prohibited behaviour.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: education_vocational_training
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: 3d_education_proctoring
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 3(d): monitoring and detecting prohibited behaviour of students during tests. Human review
+    of flags does not trigger Art. 6(3): the flags are the basis of the board's decision. If the tool inferred
+    emotions (e.g. 'nervousness') it would fall under the Art. 5(1)(f) prohibition in education.
+  difficulty: easy
+
+- id: annex3-4a-cv-screener-vendor
+  title: CV screening product described by its vendor
+  description: >-
+    We are a Dublin HR-tech start-up. Our product 'TalentSift' reads incoming CVs, scores each applicant
+    against the job description and shows recruiters a ranked shortlist; candidates below a threshold are
+    auto-rejected. We sell it as SaaS to employers across the EU.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.4.a', 'art:6.2', 'art:16', 'art:43']
+  should_ask: false
+  facts:
+    system_summary: Scores and ranks job applicants, auto-rejecting those below a threshold.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: determines_outcome
+    human_oversight: human_in_the_loop
+    annex_iii_area: 4a_recruitment_selection
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 4(a) expressly names analysing and filtering job applications and evaluating candidates. Scoring
+    applicants on CV data is profiling (Art. 6(3) last subparagraph), so no derogation. Provider obligations
+    (Art. 16, conformity assessment Art. 43). Paired with edge-cv-screener-hr-deployer: same tier, different
+    obligations.
+  difficulty: easy
+
+- id: annex3-4b-rider-shift-allocation
+  title: Assegnazione turni ai rider in base alle performance
+  description: >-
+    Gestiamo una piattaforma di consegne a domicilio a Milano e abbiamo sviluppato internamente un algoritmo
+    che assegna i turni e le zone migliori ai rider in base al loro punteggio: velocità, tasso di accettazione,
+    valutazioni dei clienti. I rider con punteggio basso ricevono meno turni e possono essere disattivati.
+  language: it
+  source: annex_iii
+  role: both
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.4.b', 'art:6.2', 'art:26', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: In-house algorithm that allocates shifts to couriers based on behaviour scores and can
+      deactivate them.
+    role: both
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: determines_outcome
+    human_oversight: fully_automated
+    annex_iii_area: 4b_work_decisions_monitoring
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 4(b): allocating tasks based on individual behaviour and monitoring/evaluating performance,
+    and decisions on termination (deactivation) of work-related relationships, which include platform work.
+    Developed in-house and used by the same company → both provider and deployer obligations; Art. 26(7)
+    information to workers.
+  difficulty: easy
+
+- id: annex3-5a-housing-benefit-eligibility
+  title: Municipality scoring eligibility for housing benefits
+  description: >-
+    Our city's social services department wants to use a system that checks applications for housing benefit,
+    estimates whether each household is eligible and how much it should receive, and flags existing recipients
+    whose benefit should be reduced or revoked. Caseworkers sign off the decisions, usually following the
+    recommendation.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.5.a', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Assesses eligibility for, and amount/revocation of, a public housing benefit.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: essential_public_services
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 5a_public_benefits_eligibility
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 5(a): used by public authorities to evaluate eligibility for essential public assistance benefits
+    and to grant, reduce or revoke them. Public body → Art. 27 FRIA and Art. 26(8)/49 registration.
+  difficulty: easy
+
+- id: annex3-5b-bank-milan-credit-scoring
+  title: Bank in Milan scoring loan applicants
+  description: >-
+    We are a bank in Milan and want to use a model, licensed from a fintech, that scores consumer loan applicants
+    on their likelihood of repaying. Our credit officers approve or reject applications mainly on the basis
+    of that score. The score is calculated for private individuals, not companies.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.5.b', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Credit score for consumer loan applicants used by credit officers.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: essential_private_services
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 5b_creditworthiness
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 5(b): evaluating creditworthiness / establishing the credit score of natural persons. Art.
+    27(1) expressly requires a FRIA from deployers of Annex III 5(b) and (c) systems. Art. 26(5) and (6)
+    contain financial-institution simplifications.
+  difficulty: easy
+
+- id: annex3-5c-life-insurance-pricing
+  title: Tariffazione polizze vita con modello di rischio
+  description: >-
+    Siamo una compagnia assicurativa italiana e abbiamo costruito un modello di machine learning che, a
+    partire da questionario sanitario, età e stile di vita, calcola il rischio individuale e il premio delle
+    polizze vita temporanee caso morte. Lo usiamo direttamente per proporre il prezzo ai clienti.
+  language: it
+  source: annex_iii
+  role: both
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.5.c', 'art:6.2', 'art:27', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: In-house model pricing term-life insurance per individual.
+    role: both
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: essential_private_services
+    decision_impact: determines_outcome
+    human_oversight: fully_automated
+    annex_iii_area: 5c_life_health_insurance_pricing
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 5(c): risk assessment and pricing in relation to natural persons for life and health insurance.
+    Built and used in-house → provider and deployer; Art. 27 FRIA for 5(c) deployers.
+  difficulty: easy
+
+- id: annex3-5d-emergency-call-triage
+  title: Emergency-call triage and ambulance dispatch priority
+  description: >-
+    We supply software to a regional 112 emergency centre. It transcribes incoming calls, classifies the
+    emergency and proposes a priority code that decides the order in which ambulances and fire crews are
+    dispatched. Operators can change the code but rarely do under time pressure.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.5.d', 'art:6.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Classifies emergency calls and sets dispatch priority for first responders.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: essential_public_services
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 5d_emergency_dispatch_triage
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 5(d): evaluating and classifying emergency calls and establishing priority in dispatching
+    emergency first response services. Operators' theoretical override does not make the task preparatory
+    or narrow (Art. 6(3)). Speech-to-text alone would be narrow, but the priority code materially influences
+    dispatch.
+  difficulty: medium
+
+- id: annex3-6a-dv-victim-risk
+  title: Police tool assessing risk of repeat domestic-violence victimisation
+  description: >-
+    Our national police force wants to use a risk tool when a domestic-violence complaint is filed: officers
+    fill in a questionnaire and the system estimates the risk that the victim will be attacked again, which
+    sets the level of police protection. We would buy it from a specialised vendor.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.6.a', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Estimates the risk that a domestic-violence complainant becomes a victim again.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 6a_le_victim_risk
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 6(a): used by law-enforcement authorities to assess the risk of a natural person becoming
+    the victim of criminal offences. Public body → Art. 27 FRIA.
+  difficulty: easy
+
+- id: annex3-6b-police-deception-detection
+  title: Deception-detection tool for police interviews
+  description: >-
+    A police department is piloting software that analyses a suspect's voice stress, pulse from a wrist
+    sensor and facial micro-movements during interviews and outputs a 'deception likelihood' for each answer.
+    Investigators use it to decide which statements to challenge. The pilot runs on real cases.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.6.b', 'art:6.2', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Polygraph-like tool inferring deception from physiological and facial signals in police
+      interviews.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 6b_le_polygraph
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 6(b): polygraphs or similar tools used by law-enforcement authorities. It is also an emotion
+    recognition system (infers intentions from biometric data → Annex III 1(c)), but Art. 5(1)(f) does not
+    apply (not workplace/education) and Art. 50(3) excludes emotion recognition 'permitted by law to detect,
+    prevent or investigate criminal offences', hence no transparency overlay. Ambiguity: whether the pilot
+    is lawful under national law ('in so far as permitted'); a pilot on real cases is real-world use, not
+    Art. 2(8) pre-market testing.
+  difficulty: hard
+
+- id: annex3-6c-evidence-reliability
+  title: Prosecutor's tool rating the reliability of digital evidence
+  description: >-
+    We are a forensic-software provider. Our tool helps public prosecutors by assessing whether photos and
+    chat logs seized in criminal investigations have been manipulated and gives each item a reliability
+    score that investigators use when building the case.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.6.c', 'art:6.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Scores the reliability of seized digital evidence for prosecutors.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 6c_le_evidence_reliability
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 6(c): evaluating the reliability of evidence in the course of investigation or prosecution
+    of criminal offences, by or on behalf of law-enforcement authorities.
+  difficulty: medium
+
+- id: annex3-6d-reoffending-objective-facts
+  title: Re-offending risk support based on criminal record and case facts
+  description: >-
+    Our police force uses a tool that supports officers in assessing whether a person arrested for domestic
+    violence is likely to re-offend before the bail hearing. It uses the person's criminal record and objective,
+    verified facts of the current case (weapon used, prior protection orders); it does not use personality
+    profiles or demographics. The officer writes the final assessment.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.6.d', 'art:5.1.d', 'art:6.2', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Supports officers' re-offending risk assessment based on criminal record and verified
+      case facts.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: 6d_le_offending_risk_profiling
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Not prohibited: Art. 5(1)(d) covers risk assessments 'based solely on the profiling of a natural person
+    or on assessing their personality traits', and expressly excludes systems supporting a human assessment
+    already based on objective and verifiable facts directly linked to a criminal activity. It remains high-risk
+    under Annex III 6(d) (risk of offending or re-offending 'not solely on the basis of profiling'; also
+    'past criminal behaviour'). Contrast with edge-predictive-policing-profiling-only.
+  difficulty: medium
+
+- id: annex3-6e-profiling-fraud-network
+  title: Profiling suspects in an organised-fraud investigation
+  description: >-
+    We are building, for a financial police unit, an analytics platform that links bank transactions, phone
+    records and company registers to profile individuals and flag those most likely to be part of a VAT-fraud
+    network under investigation. Investigators then decide whom to look into.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.6.e', 'art:6.2', 'art:6.3', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Profiles individuals to detect members of a fraud network during a criminal investigation.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 6e_le_profiling_investigation
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 6(e): profiling of natural persons (Art. 3(4) Directive 2016/680) in the detection and investigation
+    of criminal offences on behalf of law enforcement. Profiling → Art. 6(3) derogation never available.
+    Not Art. 5(1)(d): it links people to an ongoing investigation of an identified offence rather than predicting
+    future offending from personality traits.
+  difficulty: medium
+
+- id: annex3-7a-border-deception-kiosk
+  title: Border-interview kiosk detecting deception
+  description: >-
+    A national border agency is considering an interview kiosk for travellers arriving from outside the
+    Schengen area. An avatar asks questions while the system analyses facial micro-expressions and voice
+    to estimate whether the traveller is lying; high scores send the traveller to a second-line check by
+    a border guard.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.7.a', 'annex:III.1.c', 'art:6.2', 'art:50.3']
+  should_ask: false
+  facts:
+    system_summary: Polygraph-like border kiosk inferring deception from biometric signals.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: migration_asylum_border
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 7a_migration_polygraph
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: true
+    transparency.obvious_to_users_it_is_ai: true
+  notes: >-
+    Annex III 7(a): polygraphs or similar tools used by competent migration/border authorities; also an
+    emotion recognition system (Annex III 1(c)). Conservative: Art. 50(3) disclosure applies because the
+    border-control purpose is not primarily the detection/investigation of criminal offences (unlike annex3-6b).
+    The avatar's interaction is obvious (Art. 50(1) not triggered). Ambiguity: the 50(3) law-enforcement
+    carve-out could be argued for border agencies.
+  difficulty: hard
+
+- id: annex3-7b-traveller-risk-scoring
+  title: Risk scoring of incoming travellers
+  description: >-
+    We work for a Member State's border police and want to use a model that assigns every passenger on incoming
+    flights a risk score for irregular migration and security threats, based on booking data and travel
+    history. Officers use the score to choose whom to question at arrival.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.7.b', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Assigns arriving passengers a migration/security risk score used to select them for
+      checks.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: migration_asylum_border
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 7b_migration_risk_assessment
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 7(b): assessing a security risk or risk of irregular migration posed by a person who intends
+    to enter a Member State, used by competent public authorities. Profiling → no derogation.
+  difficulty: easy
+
+- id: annex3-7c-asylum-credibility
+  title: Supporto all'esame delle domande di asilo
+  description: >-
+    Lavoriamo per una commissione territoriale per il riconoscimento della protezione internazionale. Vorremmo
+    uno strumento che confronta il racconto del richiedente con le informazioni sui paesi di origine e assegna
+    un punteggio di credibilità alle sue dichiarazioni, che il funzionario usa per la decisione sull'asilo.
+  language: it
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.7.c', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Scores credibility of asylum applicants' statements against country-of-origin information.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: migration_asylum_border
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 7c_migration_application_examination
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 7(c): assisting competent authorities in examining asylum applications, including related
+    assessments of the reliability of evidence. The credibility score is an assessment, not a preparatory
+    task, so Art. 6(3)(d) does not apply. (A tool that only translated or summarised the file could arguably
+    be preparatory.)
+  difficulty: medium
+
+- id: annex3-7d-border-face-identification
+  title: Identifying undocumented persons at the border
+  description: >-
+    Our border guard service wants to identify people found crossing the green border without documents
+    by photographing their faces and searching national and EU databases for a match. This is not about
+    checking passports — the people have none.
+  language: en
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.7.d', 'annex:III.1.a', 'art:6.2', 'art:26']
+  should_ask: false
+  facts:
+    system_summary: Face identification of undocumented persons against databases in border control.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: migration_asylum_border
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: 7d_migration_identification
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.publicly_accessible_space: false
+    biometric.real_time: false
+    biometric.remote_identification: true
+    biometric.uses_biometric_data: true
+    biometric.verification_only: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 7(d): detecting, recognising or identifying natural persons in migration/border control, with
+    the exception of verification of travel documents (not the case). The one-to-many search also falls
+    under Annex III 1(a). Not Art. 5(1)(h) (not real-time in a publicly accessible space for law enforcement).
+  difficulty: medium
+
+- id: annex3-8a-judicial-drafting-assistant
+  title: Assistente per i giudici nella redazione delle sentenze
+  description: >-
+    Un tribunale italiano vuole adottare un sistema che, dato il fascicolo di una causa civile, cerca la
+    giurisprudenza pertinente, ricostruisce i fatti rilevanti e propone ai giudici una bozza di motivazione
+    con l'applicazione delle norme al caso concreto. Il giudice rivede e firma.
+  language: it
+  source: annex_iii
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.8.a', 'art:6.2', 'art:26', 'art:27']
+  should_ask: false
+  facts:
+    system_summary: Assists judges in researching and interpreting facts and law and drafts reasoning applying
+      law to facts.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: justice_democratic_processes
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: 8a_justice_assist_judicial
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
+  notes: >-
+    Annex III 8(a): assisting a judicial authority in researching and interpreting facts and law and in
+    applying the law to a concrete set of facts. Recital 61 excludes purely ancillary administrative activities
+    (e.g. anonymisation), which is not this case. Draft judgments are generated text, but Art. 50(2) is
+    not added as an expected overlay because the label focuses on the high-risk tier; a correct answer may
+    still mention 50(2). Ambiguity: Art. 50(2) applicability to internal drafting text.
+  difficulty: medium
+
+- id: annex3-8b-voter-microtargeting
+  title: Personalised political messaging to swing voters
+  description: >-
+    We are a political consultancy. For the next national election we are building a system that profiles
+    undecided voters from social media and data brokers and automatically generates and sends each of them
+    personalised persuasive messages to make them vote for our client party.
+  language: en
+  source: annex_iii
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.8.b', 'art:6.2', 'art:50.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Profiles voters and generates personalised persuasive political messages.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: justice_democratic_processes
+    decision_impact: no_decision_about_persons
+    human_oversight: fully_automated
+    annex_iii_area: 8b_elections_influence
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 8(b): AI intended to influence the outcome of an election or voting behaviour; voters are
+    directly exposed to the output, so the 'administrative/logistical' carve-out does not apply. Generated
+    text → Art. 50(2) marking by the provider. Art. 5(1)(a) would require subliminal/manipulative or deceptive
+    techniques causing significant harm — not stated, so not labelled prohibited (manipulation facts set
+    false).
+  difficulty: medium
+
+- id: edge-emotion-employees-wellbeing
+  title: Rilevamento emozioni dei dipendenti per il 'benessere'
+  description: >-
+    Siamo un'azienda di logistica con 300 dipendenti. Vogliamo installare telecamere nelle aree di lavoro
+    e un software che riconosce dalle espressioni del viso se i lavoratori sono stressati, tristi o arrabbiati,
+    per migliorare il loro benessere e organizzare iniziative di team building.
+  language: it
+  source: commission_guidelines
+  role: deployer
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.f', 'art:3.39']
+  should_ask: false
+  facts:
+    system_summary: Infers employees' emotions from facial expressions at the workplace for wellbeing initiatives.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: no_decision_about_persons
+    annex_iii_area: 1c_emotion_recognition
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: ['Purpose is general wellbeing, not a medical or safety reason.']
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 5(1)(f): inferring emotions of natural persons in the workplace, except for medical or safety reasons.
+    Commission Guidelines on prohibited AI practices (C(2025) 884, §7.2.3 paras 257 and 263; guid:prohibited-practices-2025.7.2.3.p1/p2)
+    state that 'this exception does not comprise the use of emotion recognition systems to detect general
+    aspects of wellbeing' and that assessing employees' wellbeing does not qualify as a medical reason.
+    Prohibited cases carry no expected overlays (policy: the practice cannot be lawfully placed on the market/used).
+  difficulty: medium
+
+- id: edge-emotion-safety-control-room
+  title: Detecting acute distress of chemical-plant control-room operators
+  description: >-
+    We operate a chemical plant classified under Seveso rules. We want a system that analyses the voices
+    of control-room operators during alarms and detects acute panic or loss of composure, so a second qualified
+    operator is immediately called in to take over the safety-critical controls. The data is not used for
+    performance evaluation.
+  language: en
+  source: commission_guidelines
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['art:5.1.f', 'annex:III.1.c', 'art:6.2', 'art:50.3']
+  should_ask: false
+  facts:
+    system_summary: Detects acute panic in control-room operators' voices during alarms to trigger safety
+      backup.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: manufacturing_industrial
+    decision_impact: no_decision_about_persons
+    human_oversight: human_in_the_loop
+    annex_iii_area: 1c_emotion_recognition
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Intended purpose is a safety reason (preventing major industrial accidents).]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Workplace emotion recognition, but Art. 5(1)(f) excepts systems intended for medical or safety reasons.
+    The Commission Guidelines on prohibited practices (C(2025) 884, §7.2.3 paras 256-263; guid:prohibited-practices-2025.7.2.3.p1/p2)
+    read the exception narrowly (protection of life and health only, strictly necessary, data not reused)
+    and give as allowed example stress detection where it 'would pose a specific danger, for example when
+    ... dealing with dangerous chemicals'. Para. 263: such systems remain Annex III 1(c) high-risk with
+    Art. 50(3). Recital 18: fatigue is a physical state, not an emotion; panic is an emotion. FactSheet
+    has no field for the medical/safety exception (recorded in free_text_notes). If used for general stress
+    monitoring or performance, it flips to prohibited.
+  difficulty: medium
+
+- id: edge-chatbot-customer-service
+  title: Customer-service chatbot on an e-commerce site
+  description: >-
+    We run an online electronics shop and built a chat assistant on our website that answers customers'
+    questions about orders, returns and products in natural language, typing like a human agent named 'Giulia'.
+    It does not take any decisions about customers.
+  language: en
+  source: art50
+  role: provider
+  expected_tier: limited_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['art:50.1', 'art:50.5']
+  should_ask: false
+  facts:
+    system_summary: Natural-language customer-service chatbot presented under a human-like name.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: retail_marketing
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: true
+    transparency.obvious_to_users_it_is_ai: false
+  notes: >-
+    Art. 50(1): AI systems intended to interact directly with natural persons must inform them they are
+    interacting with AI; a human persona makes it non-obvious. Information at first interaction (Art. 50(5)).
+    The generated replies are synthetic text, so Art. 50(2) marking may also apply (same overlay). No Annex
+    III area → limited_risk.
+  difficulty: easy
+
+- id: edge-internal-helpdesk-bot-obviously-ai
+  title: Internal IT-helpdesk bot for trained staff
+  description: >-
+    We are a software company. Our IT department set up an internal 'HelpBot' in Teams, shown with a robot
+    icon, that only our employees use after mandatory AI-tools training. It understands their questions
+    with a language-understanding model and replies by linking the matching knowledge-base article written
+    by our IT staff; it does not write any new text itself.
+  language: en
+  source: commission_guidelines
+  role: both
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['art:50.1', 'art:50.2']
+  should_ask: false
+  facts:
+    system_summary: Internal employee-facing IT-support bot that retrieves human-written articles; staff
+      are AI-literate.
+    role: both
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: software_it
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: true
+    transparency.obvious_to_users_it_is_ai: true
+  notes: >-
+    Art. 50(1) does not apply where it is obvious to a reasonably well-informed, observant and circumspect
+    person that they interact with an AI system. The Commission Guidelines on Art. 50 transparency obligations
+    (C(2026) 5054, §3.2.1, para. 45 ff.; guid:transparency-art50-2026.3.2.1.p4) read the exception restrictively
+    but list 'an internal employee-facing assistant for properly trained staff who is AI literate ... (e.g.
+    ... IT support)' as obvious. Art. 50(2) does not apply because it only retrieves human-written articles
+    (the same guidelines put 'search and retrieval of information without generating or modifying content'
+    outside Art. 50). → minimal_risk. A public-facing bot, or one generating answers, would be limited_risk.
+    Built and used in-house → both. Citations are what a correct answer must discuss to rule the duties
+    out.
+  difficulty: hard
+
+- id: edge-retail-gender-age-categorisation
+  title: In-store analytics inferring shoppers' gender and age
+  description: >-
+    We sell an in-store analytics box to retailers. A camera above the entrance estimates each shopper's
+    gender and age bracket from their face so the store can see who visits which aisle and adapt its displays.
+    We don't identify anyone and we don't infer ethnicity, religion or health.
+  language: en
+  source: commission_guidelines
+  role: provider
+  expected_tier: limited_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['art:50.3', 'annex:III.1.b', 'art:5.1.g']
+  should_ask: false
+  facts:
+    system_summary: Camera system categorising shoppers by inferred gender and age bracket from facial images.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: retail_marketing
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: true
+    biometric.emotion_recognition: false
+    biometric.infers_sensitive_attributes: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    It is a biometric categorisation system (Art. 3(40)), but gender and age are not 'sensitive or protected'
+    attributes in the sense of Annex III 1(b): the draft Commission guidelines on high-risk classification
+    (19 May 2026, §IV.3.1.3 paras 169-170; guid:high-risk-classification-2026-draft.annex3.IV.3.1.3.p3/p4)
+    tie the notion to GDPR Art. 9(1) and list gender-based customer categorisation and age estimation as
+    outside 1(b). Not Art. 5(1)(g) either. Art. 50(3) still applies to deployers of any biometric categorisation
+    system → limited_risk with transparency overlay. Hard: before the draft guidelines, many readers treated
+    sex/age as 'protected' characteristics (non-discrimination law), which would make it high-risk; the
+    guidelines are not final.
+  difficulty: hard
+
+- id: edge-categorisation-clothing-colour
+  title: Footfall analytics by clothing colour
+  description: >-
+    We are a fashion retailer. Our cameras count shoppers and classify the colours and types of clothing
+    they are wearing so that our buyers can see which colours are trending in each store. We don't look
+    at faces, body shape or anything about the person themselves.
+  language: en
+  source: commission_guidelines
+  role: deployer
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['art:5.1.g', 'annex:III.1.b']
+  should_ask: false
+  facts:
+    system_summary: Counts shoppers and classifies the colour/type of their clothing for trend analysis.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: retail_marketing
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.infers_sensitive_attributes: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Clothing colour is not biometric data (Art. 3(34): physical, physiological or behavioural characteristics
+    of a person), so this is not a biometric categorisation system; neither Art. 5(1)(g) nor Annex III 1(b)
+    applies. Even categorisation by genuinely biometric but non-sensitive features is not prohibited: the
+    Commission Guidelines on prohibited AI practices (C(2025) 884, §8.2.3; guid:prohibited-practices-2025.8.2.3)
+    contrast deducing race (prohibited) with categorising 'according to skin or eye colour' (not prohibited).
+    Contrast with edge-categorisation-race-ethnicity. If clothing were used to infer religion (e.g. religious
+    dress), the analysis would change.
+  difficulty: medium
+
+- id: edge-categorisation-race-ethnicity
+  title: Digital billboard inferring viewers' race
+  description: >-
+    Our ad-tech company sells smart billboards for shopping centres. A built-in camera analyses each passer-by's
+    face to infer their race (Black, White, East Asian, South Asian and so on) and shows ads tailored to
+    that group. Images are deleted after a second.
+  language: en
+  source: art5
+  role: provider
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.g', 'art:3.40']
+  should_ask: false
+  facts:
+    system_summary: Billboard that infers passers-by's race/ethnic origin from their face to target ads.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: retail_marketing
+    decision_impact: no_decision_about_persons
+    annex_iii_area: 1b_biometric_categorisation_sensitive
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: true
+    biometric.emotion_recognition: false
+    biometric.infers_sensitive_attributes: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 5(1)(g): biometric categorisation systems that categorise individual natural persons based on their
+    biometric data to deduce or infer their race. Momentary processing does not change the analysis. Caution
+    on wording: Art. 5(1)(g) says 'race', while GDPR Art. 9(1) says 'racial or ethnic origin'; the draft
+    Art. 6 guidelines (§IV.3.1.3 para 169) treat 'ethnic origin' as a remaining Annex III 1(b) high-risk
+    attribute. A description saying only 'ethnicity' is therefore ambiguous; this case uses explicit racial
+    categories so the prohibition clearly applies. The labelling/filtering-of-datasets and law-enforcement
+    carve-outs do not apply.
+  difficulty: easy
+
+- id: gpai-model-provider
+  title: European lab releasing a general-purpose language model
+  description: >-
+    We are a Paris-based AI lab. We trained a 30-billion-parameter general-purpose language model (about
+    3×10^24 FLOPs of training compute) that can write, summarise, translate and code, and we offer it to
+    other companies through a paid API so they can build their own products. We don't sell an end-user app.
+  language: en
+  source: gpai
+  role: provider
+  expected_tier: minimal_risk
+  expected_overlays: [gpai]
+  expected_citations: ['art:53', 'art:51.2']
+  should_ask: false
+  facts:
+    system_summary: Provider placing a general-purpose LLM on the EU market via API.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: software_it
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: true
+    gpai.provider_of_model: true
+    gpai.systemic_risk: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    General-purpose AI model (Art. 3(63)); the Commission GPAI guidelines (C(2025) 5045, §2.1; guid:gpai-obligations-2025.2.1.p2)
+    set an indicative criterion of training compute above 10^23 FLOP with language/image generation, which
+    3×10^24 FLOP meets. Placed on the market → Art. 53 obligations (technical documentation, downstream
+    information, copyright policy, training-content summary); applicable since 2 Aug 2025. Below the 10^25
+    FLOP presumption of Art. 51(2), so no systemic-risk duties (Art. 55). GPAI is an overlay, not a tier;
+    with no AI-system use case the tier is minimal_risk. Not open source, so the Art. 53(2) exemption does
+    not apply. Ambiguity: whether the tier for a bare model should be minimal_risk (policy chosen here).
+  difficulty: medium
+
+- id: gpai-systemic-risk-frontier
+  title: Frontier model trained above 10^25 FLOPs
+  description: >-
+    We are a US company about to make our newest foundation model available to EU businesses and consumers
+    through our API. Its training run used roughly 5×10^25 floating-point operations, and it handles text,
+    images and code.
+  language: en
+  source: gpai
+  role: provider
+  expected_tier: minimal_risk
+  expected_overlays: [gpai]
+  expected_citations: ['art:51.2', 'art:52.1', 'art:53', 'art:55']
+  should_ask: false
+  facts:
+    system_summary: Non-EU provider placing a frontier GPAI model with systemic risk on the EU market.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: software_it
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: true
+    gpai.provider_of_model: true
+    gpai.systemic_risk: true
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Training compute > 10^25 FLOPs → presumed high-impact capabilities (Art. 51(2)) → GPAI model with systemic
+    risk; notify the Commission within two weeks (Art. 52(1)); Art. 53 plus Art. 55 obligations. Art. 2(1)(a)
+    applies irrespective of establishment; Art. 54 authorised representative also relevant. Tier policy
+    as in gpai-model-provider.
+  difficulty: medium
+
+- id: edge-gpai-integrator-support-bot
+  title: Support-desk product built on a third-party LLM
+  description: >-
+    We are a SaaS company in Lisbon. We built a customer-support assistant for small businesses: it calls
+    a third-party large language model through its API, adds our prompts and retrieval over the client's
+    help-centre articles, and chats with the client's customers on their website. We did not train or fine-tune
+    the underlying model.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: limited_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['art:50.1', 'art:50.2', 'art:3.68']
+  should_ask: false
+  facts:
+    system_summary: Customer-support chatbot product built on a third-party GPAI model via API.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: software_it
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: true
+    gpai.is_gpai_model: false
+    gpai.provider_of_model: false
+    gpai.substantially_modifies_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: true
+    transparency.obvious_to_users_it_is_ai: false
+  notes: >-
+    The company is a downstream provider (Art. 3(68)) of an AI system, not a GPAI model provider — no Art.
+    53 obligations (they rest with the model provider), so no gpai overlay. Art. 50(1) (inform users of
+    AI interaction) and Art. 50(2) (machine-readable marking of generated text, which the Act expressly
+    extends to systems built on GPAI). No Annex III use → limited_risk.
+  difficulty: medium
+
+- id: edge-cv-dedupe-formatting
+  title: CV tool that only de-duplicates and reformats applications
+  description: >-
+    Our applicant-tracking add-on takes CVs in any format, extracts the fields (name, contact, education,
+    work history) into a standard template and removes duplicate applications from the same person. It does
+    not score, rank, filter or recommend candidates; recruiters read every application themselves.
+  language: en
+  source: commission_guidelines
+  role: provider
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['art:6.3', 'art:6.3.a', 'art:6.4', 'annex:III.4.a']
+  should_ask: false
+  facts:
+    system_summary: Parses CVs into a standard template and removes duplicates; no scoring or ranking.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: no_decision_about_persons
+    human_oversight: human_reviews_all
+    annex_iii_area: 4a_recruitment_selection
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: true
+    art63.preparatory_task_only: true
+    art63.profiling_of_natural_persons: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Within the Annex III 4(a) area (handling job applications) but the Art. 6(3)(a) derogation applies:
+    a narrow procedural task. Recital 53 lists exactly 'transforms unstructured data into structured data'
+    and 'detect duplicates among a large number of applications'; the draft Commission guidelines on high-risk
+    classification (19 May 2026, §IV.2.7.1 paras 91-92; guid:high-risk-classification-2026-draft.annex3.IV.2.7.1.p2)
+    repeat them and extend the condition to changing the format, structure or presentation of data. No profiling.
+    The provider must document the assessment (Art. 6(4)) and register under Art. 49(2). Tier minimal_risk.
+  difficulty: medium
+
+- id: edge-cv-ranking-personality-profiling
+  title: '''Preparatory'' CV ranking that profiles personality'
+  description: >-
+    Our tool reads each applicant's CV and LinkedIn profile, infers personality traits such as conscientiousness
+    and leadership potential, and ranks candidates by predicted job fit. We see it as purely preparatory:
+    it just prepares a shortlist and the recruiter makes the final call.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.4.a', 'art:6.3', 'art:6.2', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Infers personality traits from CVs and online profiles and ranks candidates by predicted
+      fit.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 4a_recruitment_selection
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: true
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Even if the provider frames it as preparatory (Art. 6(3)(d)), the last subparagraph of Art. 6(3) says
+    an Annex III system that performs profiling of natural persons is always high-risk. Inferring personality
+    and predicting job fit is profiling (GDPR Art. 4(4)). A shortlist also materially influences selection.
+    → high_risk under Annex III 4(a).
+  difficulty: medium
+
+- id: edge-cv-screener-hr-deployer
+  title: The same CV screener described by the HR department
+  description: >-
+    I'm the HR manager of a manufacturing company in Lyon. We've subscribed to 'TalentSift', a SaaS tool
+    that scores and ranks the applications we receive and automatically rejects those under a threshold.
+    We configure the job criteria and our recruiters review the shortlist.
+  language: en
+  source: edge
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.4.a', 'art:6.2', 'art:26', 'art:26.7']
+  should_ask: false
+  facts:
+    system_summary: Employer using a third-party CV scoring and auto-rejection tool.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: determines_outcome
+    human_oversight: human_in_the_loop
+    annex_iii_area: 4a_recruitment_selection
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Same system as annex3-4a-cv-screener-vendor, same tier (Annex III 4(a)), but the user is a deployer:
+    Art. 26 obligations (use per instructions, human oversight, input data relevance, logs, information
+    of workers' representatives under 26(7) where used at the workplace, information of affected persons
+    under 26(11)) instead of provider obligations (Art. 16). Configuring criteria does not make them a provider
+    unless they substantially modify it or change its purpose (Art. 25(1)).
+  difficulty: easy
+
+- id: edge-spam-filter
+  title: Email spam filter
+  description: >-
+    We are an internet service provider and use a machine-learning spam filter on our customers' mailboxes.
+    It moves suspected spam and phishing emails to a junk folder; users can mark mistakes.
+  language: en
+  source: edge
+  role: deployer
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['art:6.2', 'art:50.1']
+  should_ask: false
+  facts:
+    system_summary: ML spam/phishing filter for email.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: software_it
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    An AI system (learns from data) with no prohibited practice, no Annex I/III use, and no direct interaction
+    or content generation under Art. 50 → minimal_risk (voluntary codes, Art. 95; AI literacy Art. 4). Citations
+    reflect what the answer should check and rule out.
+  difficulty: easy
+
+- id: edge-payroll-rule-based
+  title: Rule-based payroll calculator
+  description: >-
+    Our accounting firm uses payroll software that calculates salaries, tax withholdings and social contributions
+    using the formulas and tables set by law and by collective agreements, which our staff configure. It
+    has no machine learning or statistical model; the same inputs always give the same result.
+  language: en
+  source: commission_guidelines
+  role: deployer
+  expected_tier: out_of_scope
+  expected_overlays: []
+  expected_citations: ['art:3.1', 'art:2.1']
+  should_ask: false
+  facts:
+    system_summary: Deterministic payroll software executing human-defined rules.
+    role: deployer
+    is_ai_system: false
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: finance_other
+    decision_impact: determines_outcome
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Not an AI system under Art. 3(1): it does not infer how to generate outputs; it executes rules defined
+    solely by natural persons. The Commission Guidelines on the definition of an AI system (C(2025) 924,
+    §5.2; guid:ai-system-definition-2025.5.2.p1) repeat recital 12: the definition does not cover 'systems
+    that are based on the rules defined solely by natural persons to automatically execute operations'.
+    → out_of_scope.
+  difficulty: easy
+
+- id: edge-pre-market-prototype
+  title: Internal prototype of a credit model never placed on the market
+  description: >-
+    We are a fintech start-up developing a credit-scoring model. Right now it only exists in our lab: we
+    train and test it on historical, anonymised data and synthetic applicants, and no real customer has
+    ever been scored by it. We have not decided whether to launch it, and we are not running any real-world
+    pilot.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: out_of_scope
+  expected_overlays: []
+  expected_citations: ['art:2.8', 'annex:III.5.b']
+  should_ask: false
+  facts:
+    system_summary: Credit-scoring model in pre-market development, tested only offline.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: pre_market_research_testing
+    sector: essential_private_services
+    decision_impact: no_decision_about_persons
+    annex_iii_area: 5b_creditworthiness
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 2(8): the Regulation does not apply to research, testing or development activity prior to placing
+    on the market or putting into service; testing in real-world conditions is not covered by that exclusion.
+    Once launched it would be high-risk (Annex III 5(b)) — a good answer flags this. Art. 2(6) (sole purpose
+    of scientific research) does not fit a commercial start-up.
+  difficulty: medium
+
+- id: edge-military-targeting
+  title: Target-recognition system for armed forces
+  description: >-
+    We are a defence contractor developing an AI system that detects and classifies military vehicles in
+    drone imagery and proposes targets to operators. It is built exclusively for the armed forces of an
+    EU Member State and will not be sold for civilian use.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: out_of_scope
+  expected_overlays: []
+  expected_citations: ['art:2.3']
+  should_ask: false
+  facts:
+    system_summary: Military target-recognition system for armed forces only.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: military_defence_national_security
+    sector: other
+    decision_impact: materially_influences
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 2(3), second subparagraph: the Regulation does not apply to AI systems placed on the market, put
+    into service or used exclusively for military, defence or national security purposes, regardless of
+    the entity. If later used for civilian or law-enforcement purposes (dual use) it would fall in scope.
+    Only one citation is essential here.
+  difficulty: easy
+
+- id: edge-deepfake-marketing-video
+  title: Generating deepfake videos of a celebrity for advertising
+  description: >-
+    Our marketing agency built a tool that generates realistic videos of a famous footballer (with his paid
+    consent) speaking in many languages to promote our clients' products. The videos look authentic and
+    will run on social media and TV.
+  language: en
+  source: art50
+  role: both
+  expected_tier: limited_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['art:50.2', 'art:50.4', 'art:3.60']
+  should_ask: false
+  facts:
+    system_summary: Agency tool generating realistic synthetic videos of a real person for ads, used by
+      the agency itself.
+    role: both
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: media_entertainment
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: true
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+    transparency.public_interest_text: false
+  notes: >-
+    Deep fake (Art. 3(60)): AI-generated video resembling an existing person that would falsely appear authentic.
+    As provider of the generating system the agency must mark outputs in a machine-readable, detectable
+    way (Art. 50(2)); as deployer publishing deep fakes it must disclose that the content is artificially
+    generated (Art. 50(4)). Advertising is not an 'evidently artistic, creative, satirical or fictional'
+    work, so the lighter disclosure regime does not apply. Not Art. 5(1)(ba): no intimate or sexual content.
+  difficulty: medium
+
+- id: edge-nudify-app
+  title: '''Nudify'' app that undresses photos of real people'
+  description: >-
+    We are launching a mobile app where users upload a photo of any person and the app generates a realistic
+    image of that person naked. We don't check whether the person in the photo has agreed; users just accept
+    our terms of service.
+  language: en
+  source: art5
+  role: provider
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.ba', 'art:5.1a', 'art:113']
+  should_ask: false
+  facts:
+    system_summary: App generating realistic nude images of identifiable people from uploaded photos without
+      their consent.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: media_entertainment
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.deepfake: true
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 5(1)(ba) (inserted by Reg. (EU) 2026/1744): prohibits placing on the market, putting into service
+    or using an AI system that generates or manipulates realistic images, videos, audio or similar material
+    of an identifiable natural person's intimate parts or of an identifiable person engaged in sexually
+    explicit activities without that person's freely-given, specific, informed, unambiguous and explicit
+    consent. Art. 5(1a)(a)(i): placing on the market is prohibited where that generation is the intended
+    purpose — it is here. User acceptance of ToS is not the depicted person's consent. Art. 113(a): points
+    (ba)/(bb) and (1a)/(1b) apply from 2 December 2026 (one month after the eval date of 3 Nov 2026) — a
+    good answer mentions this date. If minors are depicted, 5(1)(bb) also applies.
+  difficulty: medium
+
+- id: edge-medical-device-skin-cancer
+  title: Skin-lesion classifier certified as a medical device
+  description: >-
+    We are a medtech company. Our smartphone app analyses photos of moles and tells users and their dermatologists
+    whether a lesion is likely melanoma. It is CE-marked as a class IIa medical device under the MDR, so
+    a notified body assessed it.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['art:6.1', 'annex:I.A.11', 'art:16']
+  should_ask: false
+  facts:
+    system_summary: Medical-device software classifying skin lesions for melanoma risk.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: healthcare
+    decision_impact: materially_influences
+    annex_iii_area: none
+    annex_i_product: medical_devices
+    safety_component: true
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Requires third-party (notified body) conformity assessment under the MDR.]
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 6(1): the AI system is itself a product covered by Annex I legislation (Section A point 11, Regulation
+    (EU) 2017/745 on medical devices) and must undergo third-party conformity assessment (class IIa → notified
+    body). High-risk; Chapter III obligations apply from 2 Aug 2028 (Art. 113(c)(ii) as amended). Art. 2(13)
+    (Omnibus) may allow some requirements to be limited by delegated act where the MDR offers equivalent
+    protection. FactSheet has no field for 'third-party conformity assessment required' (in free_text_notes).
+  difficulty: medium
+
+- id: edge-cobot-safety-machinery
+  title: Collaborative-robot vision system that stops the arm near people
+  description: >-
+    We manufacture collaborative robots for factories. A machine-learning vision module detects when a worker's
+    hand or body comes too close and slows or stops the robot arm. It is the robot's main protective function,
+    and as a self-learning safety component it needs a notified-body assessment under the new Machinery
+    Regulation.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['art:6.1', 'annex:I.B.21', 'art:2.2']
+  should_ask: false
+  facts:
+    system_summary: ML-based safety function of a collaborative robot (machinery).
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: manufacturing_industrial
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: machinery
+    safety_component: true
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Third-party conformity assessment required under Regulation (EU) 2023/1230.]
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 6(1): AI safety component of a product covered by Annex I legislation requiring third-party conformity
+    assessment. Surprise in the consolidated text: the Omnibus deleted the old Machinery Directive from
+    Annex I Section A and added Regulation (EU) 2023/1230 to Section B (point 21). Under the amended Art.
+    2(2), for Section-B products only Art. 6(1), Art. 60a and Arts 102-112 apply, so the AI Act requirements
+    reach the product through the Machinery Regulation rather than directly. Still classified high-risk
+    under 6(1). context_workplace_or_education is true but irrelevant (no emotion recognition).
+  difficulty: hard
+
+- id: edge-fraud-detection-loan-applications
+  title: Fraud detection on loan applications
+  description: >-
+    We are a consumer-credit lender. We want a model that screens incoming loan applications to spot fraud
+    — stolen identities, forged payslips, synthetic identities — and blocks suspicious ones for manual investigation.
+  language: en
+  source: commission_guidelines
+  role: deployer
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.5.b', 'art:6.2']
+  should_ask: true
+  facts:
+    system_summary: Detects fraudulent loan applications (identity/document fraud); does not assess creditworthiness.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: essential_private_services
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [The model does not estimate repayment ability or produce a credit score; purpose is
+        detecting financial fraud only.]
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Annex III 5(b) covers creditworthiness/credit scoring 'with the exception of AI systems used for the
+    purpose of detecting financial fraud'. The description does not say whether the same model also scores
+    creditworthiness — that fact is decisive (should_ask). Ground truth: fraud detection only → not Annex
+    III → minimal_risk. The draft Commission guidelines on high-risk classification (Art. 6, 19 May 2026,
+    §IV.3.5.3 paras 306-308; guid:high-risk-classification-2026-draft.annex3.IV.3.5.3.p5) give forged ID/income-document
+    detection in credit applications as the typical example and require fraud detection to be the main intended
+    purpose. Recital 58 refers to fraud detection 'provided for by Union law', but the Annex wording has
+    no such qualifier; the operative text is followed. If the model also produced a credit score, the tier
+    would flip to high_risk.
+  difficulty: medium
+
+- id: edge-police-realtime-frs-square
+  title: Live facial recognition by police in a city square
+  description: >-
+    The city police want to connect the CCTV cameras in the main square to a facial-recognition system that
+    compares every passer-by in real time with a watchlist of people wanted for shoplifting, pickpocketing
+    and unpaid fines, so officers can stop them on the spot.
+  language: en
+  source: art5
+  role: deployer
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.h', 'art:5.2', 'annex:II']
+  should_ask: false
+  facts:
+    system_summary: Real-time remote biometric identification in a public square by police for minor offences.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    annex_iii_area: 1a_remote_biometric_identification
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: ['Objective is general detection of persons wanted for minor offences, not one of the
+        Art. 5(1)(h)(i)-(iii) objectives.']
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.publicly_accessible_space: true
+    biometric.real_time: true
+    biometric.remote_identification: true
+    biometric.uses_biometric_data: true
+    biometric.verification_only: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 5(1)(h): use of real-time remote biometric identification in publicly accessible spaces for law
+    enforcement is prohibited unless strictly necessary for (i) targeted victim/missing-person search, (ii)
+    imminent threat/terrorism, or (iii) suspects of Annex II offences punishable by ≥4 years. Shoplifting/fines
+    are not Annex II offences, and blanket watchlist screening is not targeted; Art. 5(2)-(3) authorisation
+    conditions are not met. → prohibited.
+  difficulty: easy
+
+- id: edge-police-post-rbi
+  title: Police searching CCTV footage after a robbery
+  description: >-
+    After an armed robbery, our police investigators want to run stills from the shop's CCTV footage through
+    a facial-recognition system that searches our database of custody photos to identify the suspect. This
+    happens days after the event, within that specific investigation.
+  language: en
+  source: edge
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.1.a', 'art:26.10', 'art:6.2']
+  should_ask: false
+  facts:
+    system_summary: Post-remote biometric identification of a robbery suspect from CCTV stills.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    human_oversight: human_reviews_all
+    annex_iii_area: 1a_remote_biometric_identification
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.publicly_accessible_space: true
+    biometric.real_time: false
+    biometric.remote_identification: true
+    biometric.uses_biometric_data: true
+    biometric.verification_only: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: false
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Post-remote biometric identification (Art. 3(43)) is not covered by Art. 5(1)(h), which targets only
+    real-time use; it is high-risk under Annex III 1(a). Art. 26(10) adds specific deployer conditions:
+    ex-ante (or within 48 h) judicial/administrative authorisation unless used for the initial identification
+    of a potential suspect based on objective facts linked to the offence, no untargeted use, documentation
+    in the police file, annual reports.
+  difficulty: medium
+
+- id: edge-predictive-policing-profiling-only
+  title: Predicting who will commit crimes from personal profiles
+  description: >-
+    We are pitching a system to a city police department that gives every resident of certain neighbourhoods
+    a 'future offender' score based on age, family background, school results, social media activity and
+    personality indicators, so patrols can watch the highest-scoring people. No specific crime or suspicion
+    is involved.
+  language: en
+  source: art5
+  role: provider
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.d', 'annex:III.6.d']
+  should_ask: false
+  facts:
+    system_summary: Scores individuals' risk of future offending solely from profiling and personality traits.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: law_enforcement
+    decision_impact: materially_influences
+    annex_iii_area: 6d_le_offending_risk_profiling
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.predictive_policing_profiling_only: true
+    law_enforcement.used_by_or_for_law_enforcement: true
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Art. 5(1)(d): risk assessments of natural persons to predict the risk of committing a criminal offence
+    based solely on profiling or on assessing personality traits and characteristics. No objective, verifiable
+    facts linked to a criminal activity → the carve-out does not apply. The provider placing it on the market
+    for this purpose is covered. Contrast with annex3-6d-reoffending-objective-facts. (Place-based hot-spot
+    prediction would not be caught by 5(1)(d).)
+  difficulty: easy
+
+- id: edge-meeting-emotion-plugin-context-unknown
+  title: Emotion-detection plugin for video calls
+  description: >-
+    We sell a plugin for video-conferencing software that analyses participants' facial expressions and
+    tone of voice and shows an 'engagement and mood' dashboard after each meeting.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: prohibited
+  expected_overlays: []
+  expected_citations: ['art:5.1.f', 'annex:III.1.c']
+  should_ask: true
+  facts:
+    system_summary: Plugin inferring meeting participants' emotions from face and voice; marketed for internal
+      team meetings.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: supports_human_decision
+    annex_iii_area: 1c_emotion_recognition
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Marketed to employers for internal staff meetings and manager feedback; no medical
+        or safety purpose.]
+    biometric.categorisation: false
+    biometric.emotion_recognition: true
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Decisive missing fact: whether the persons analysed are workers/students (workplace or education context).
+    Ground truth: marketed to employers for internal meetings → Art. 5(1)(f) prohibits placing on the market
+    for this specific purpose. The Commission Guidelines on prohibited practices (§7.2.2; guid:prohibited-practices-2025.7.2.2.p2)
+    list 'AI systems monitoring the emotional tone in hybrid work teams' among prohibited workplace uses.
+    If it were used only on customers in sales calls, it would instead be high-risk (Annex III 1(c)) with
+    Art. 50(3).
+  difficulty: medium
+
+- id: edge-performance-promotion-role-unknown
+  title: Valutazione delle performance e promozioni
+  description: >-
+    Usiamo un sistema di intelligenza artificiale che valuta le performance dei dipendenti a partire da
+    obiettivi, feedback e dati di produttività, e suggerisce chi promuovere nel ciclo annuale.
+  language: it
+  source: edge
+  role: both
+  expected_tier: high_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.4.b', 'art:6.2', 'art:16', 'art:26']
+  should_ask: true
+  facts:
+    system_summary: Evaluates employee performance and recommends promotions; developed and used in-house.
+    role: both
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: materially_influences
+    human_oversight: human_in_the_loop
+    annex_iii_area: 4b_work_decisions_monitoring
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Built in-house by the company's data team and used only internally.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: true
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Tier is clear (Annex III 4(b): evaluating performance and promotion decisions; profiling → no Art. 6(3)),
+    but the role is not: 'usiamo' could mean deployer of a vendor tool or in-house development. Ground truth:
+    built in-house → both (Art. 16 + Art. 26, incl. 26(7) information to workers). The should_ask tests
+    whether the system asks about role because obligations depend on it.
+  difficulty: medium
+
+- id: edge-admissions-completeness-check
+  title: Admissions helper — checks completeness or ranks?
+  description: >-
+    A private business school wants an AI assistant for its admissions office that goes through each application
+    file and its attachments before the committee meets.
+  language: en
+  source: edge
+  role: deployer
+  expected_tier: minimal_risk
+  expected_overlays: []
+  expected_citations: ['annex:III.3.a', 'art:6.3', 'art:6.3.a']
+  should_ask: true
+  facts:
+    system_summary: Checks admission files for completeness and missing documents; does not assess or rank
+      applicants.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: education_vocational_training
+    decision_impact: no_decision_about_persons
+    human_oversight: human_reviews_all
+    annex_iii_area: 3a_education_admission
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: true
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [Only flags missing or illegible documents; the committee assesses every applicant.]
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: true
+    art63.preparatory_task_only: true
+    art63.profiling_of_natural_persons: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    The description lacks the decisive fact: what the assistant outputs. Ground truth: it only flags missing/illegible
+    documents → narrow procedural task under Art. 6(3)(a), no profiling → not high-risk despite the Annex
+    III 3(a) area (the provider documents the assessment, Art. 6(4)). If it scored or ranked applicants
+    it would be high-risk. Hard because a model that guesses will often label it high-risk. The draft Art.
+    6 guidelines (§IV.2.7.1 para 92) give sorting admission applications into predefined categories, without
+    evaluating suitability, as a narrow procedural task. Para. 90 warns the filter fails if the tool is
+    part of a larger system that materially influences the decision.
+  difficulty: hard
+
+- id: edge-us-credit-api-scope-unknown
+  title: US start-up offering a credit-scoring API
+  description: >-
+    We are a start-up in Austin, Texas, offering a credit-scoring API to lenders. The model predicts the
+    probability that an individual borrower defaults.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: out_of_scope
+  expected_overlays: []
+  expected_citations: ['art:2.1', 'annex:III.5.b']
+  should_ask: true
+  facts:
+    system_summary: US credit-scoring API offered only to US lenders for US borrowers.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: false
+    scope_exclusion: none
+    sector: essential_private_services
+    decision_impact: materially_influences
+    annex_iii_area: 5b_creditworthiness
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: [No EU customers; outputs are not used in the EU.]
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Decisive missing fact: territorial scope. Art. 2(1)(a)/(c) catch third-country providers only if they
+    place the system on the EU market or the output is used in the Union. Ground truth: US-only customers
+    and borrowers → out of scope. With EU customers it would be high-risk under Annex III 5(b).
+  difficulty: medium
+
+- id: edge-careers-chatbot-screening-unknown
+  title: Careers-page chatbot — does it pre-screen?
+  description: >-
+    We want to put a chatbot on our careers page that talks to job seekers, answers their questions about
+    open positions and collects their applications.
+  language: en
+  source: edge
+  role: deployer
+  expected_tier: high_risk
+  expected_overlays: [transparency_art50]
+  expected_citations: ['annex:III.4.a', 'art:50.1', 'art:6.3', 'art:26']
+  should_ask: true
+  facts:
+    system_summary: Careers chatbot that also asks knockout questions and automatically rejects candidates
+      who fail them.
+    role: deployer
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: none
+    sector: employment_workers_management
+    decision_impact: determines_outcome
+    human_oversight: fully_automated
+    annex_iii_area: 4a_recruitment_selection
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: ['Asks knockout questions (experience, availability) and automatically rejects non-matching
+        candidates.']
+    art63.detects_patterns_without_replacing_assessment: false
+    art63.improves_prior_human_activity: false
+    art63.narrow_procedural_task: false
+    art63.preparatory_task_only: false
+    art63.profiling_of_natural_persons: false
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: false
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: true
+    transparency.interacts_with_natural_persons: true
+    transparency.obvious_to_users_it_is_ai: false
+  notes: >-
+    Decisive missing fact: whether the chatbot filters candidates. Ground truth: it asks knockout questions
+    and auto-rejects → 'analyse and filter job applications' (Annex III 4(a)); auto-rejection materially
+    influences/determines the outcome, so Art. 6(3) does not apply even without profiling. Plus Art. 50(1)
+    (human-like chat). If it only answered FAQs and forwarded applications, it would be limited_risk. The
+    draft Art. 6 guidelines (§IV.3.4.2; guid:high-risk-classification-2026-draft.annex3.IV.3.4.2.p7/p8)
+    treat shortlisting/screening on pre-defined criteria (experience, qualifications) as Annex III 4(a)
+    with no Art. 6(3) exception. Hard because the decisive fact is missing from the description.
+  difficulty: hard
+
+- id: edge-university-research-depression-voice
+  title: University research model detecting depression from voice
+  description: >-
+    Our university lab is developing a model that detects signs of depression from speech recordings. We
+    might spin it out as a product at some point.
+  language: en
+  source: edge
+  role: provider
+  expected_tier: out_of_scope
+  expected_overlays: []
+  expected_citations: ['art:2.6', 'art:2.8']
+  should_ask: true
+  facts:
+    system_summary: Academic research model detecting depression markers from speech; used only within an
+      ethics-approved study.
+    role: provider
+    is_ai_system: true
+    in_eu_scope: true
+    scope_exclusion: scientific_research_only
+    sector: healthcare
+    decision_impact: no_decision_about_persons
+    annex_iii_area: none
+    annex_i_product: none
+    safety_component: false
+    context_workplace_or_education: false
+    social_scoring: false
+    nudify_or_sexual_abuse_material: false
+    free_text_notes: ['Developed and used solely for an ethics-approved academic study; not offered to anyone,
+        no real-world deployment.']
+    biometric.categorisation: false
+    biometric.emotion_recognition: false
+    biometric.remote_identification: false
+    biometric.uses_biometric_data: true
+    gpai.integrates_third_party_gpai: false
+    gpai.is_gpai_model: false
+    law_enforcement.used_by_or_for_law_enforcement: false
+    manipulation.exploits_vulnerabilities: false
+    manipulation.subliminal_or_deceptive: false
+    transparency.generates_synthetic_content: false
+    transparency.interacts_with_natural_persons: false
+  notes: >-
+    Decisive missing fact: whether it is used only for scientific research or already deployed/tested in
+    real-world conditions. Ground truth: sole purpose of scientific research → Art. 2(6) (and Art. 2(8)
+    for pre-market development) → out_of_scope. A spin-out product would likely be a medical device (Annex
+    I, Art. 6(1)) — a good answer flags this. Depression detection is treated as a health state, not emotion
+    recognition (conservative but debatable; recital 18).
+  difficulty: hard
+

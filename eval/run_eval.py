@@ -71,6 +71,9 @@ def load_cases(limit: int | None = None, ids: list[str] | None = None) -> list[d
 
 
 def nested_get(d: dict[str, Any], path: str) -> Any:
+    """Facts in cases.yaml may be flat ("art63.profiling_of_natural_persons": true) or nested."""
+    if path in d:
+        return d[path]
     node: Any = d
     for part in path.split("."):
         if not isinstance(node, dict) or part not in node:
