@@ -1,0 +1,23 @@
+# Retrieval probes: query -> provision id that should appear in the top-5.
+# A hit counts if a returned id equals `expect` or is a descendant of it
+# (e.g. expect art:51 is satisfied by art:51.1). Run: scripts/probe_retrieval.py
+- {q: "chatbot must tell users they are talking to an AI", expect: "art:50.1"}
+- {q: "credit scoring of consumers", expect: "annex:III.5.b"}
+- {q: "AI literacy of staff", expect: "art:4"}
+- {q: "post-market monitoring", expect: "art:72"}
+- {q: "fundamental rights impact assessment", expect: "art:27"}
+- {q: "deepfake labelling", expect: "art:50.4"}
+- {q: "serious incident reporting", expect: "art:73"}
+- {q: "real-time remote biometric identification by police", expect: "art:5.1.h"}
+- {q: "technical documentation content", expect: "annex:IV"}
+- {q: "GPAI systemic risk threshold", expect: "art:51"}
+- {q: "emotion recognition at the workplace", expect: "art:5.1.f"}
+- {q: "screening CVs of job applicants", expect: "annex:III.4.a"}
+- {q: "when is an Annex III system not considered high-risk, narrow procedural task", expect: "art:6.3"}
+- {q: "employer must inform workers representatives before using AI at work", expect: "art:26.7"}
+- {q: "social scoring of citizens based on behaviour", expect: "art:5.1.c"}
+- {q: "marking AI generated text and images in machine-readable format", expect: "art:50.2"}
+- {q: "AI systems listed in Annex III are high-risk", expect: "art:6.2"}
+- {q: "why recruitment AI is classified as high-risk, impact on career prospects", expect: "rec:57"}
+- {q: "emotion recognition systems classified as high-risk biometrics", expect: "annex:III.1.c"}
+- {q: "AI used to monitor and evaluate employee performance and allocate tasks", expect: "annex:III.4.b"}

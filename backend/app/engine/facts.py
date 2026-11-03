@@ -122,6 +122,14 @@ class BiometricFacts(BaseModel):
     )
     emotion_recognition: bool | None = Field(None, description="Infers emotions or intentions from biometric data")
     verification_only: bool | None = Field(None, description="One-to-one verification of a claimed identity only")
+    # --- added by the rule engine (additive) ---
+    medical_or_safety_purpose: bool | None = Field(
+        None, description="Emotion inference is put in place for medical or safety reasons (Art. 5(1)(f) exception)"
+    )
+    dataset_labelling_or_law_enforcement: bool | None = Field(
+        None,
+        description="Only labels/filters lawfully acquired biometric datasets, or categorises biometric data in the area of law enforcement (Art. 5(1)(g) exception)",
+    )
 
 
 class ManipulationFacts(BaseModel):
@@ -154,6 +162,16 @@ class TransparencyFacts(BaseModel):
     generates_synthetic_content: bool | None = Field(None, description="Audio, image, video or text output")
     deepfake: bool | None = Field(None, description="Resembles real persons, places, events and may appear authentic")
     public_interest_text: bool | None = Field(None, description="Text published to inform the public on matters of public interest")
+    # --- added by the rule engine (additive) ---
+    assistive_editing_only: bool | None = Field(
+        None, description="Performs an assistive function for standard editing or does not substantially alter the input (Art. 50(2) exception)"
+    )
+    human_editorial_control: bool | None = Field(
+        None, description="AI-generated public-interest text undergoes human review/editorial control with editorial responsibility (Art. 50(4) exception)"
+    )
+    artistic_creative_satirical: bool | None = Field(
+        None, description="Deep fake is part of an evidently artistic, creative, satirical or fictional work (Art. 50(4) limited disclosure)"
+    )
 
 
 class LawEnforcementFacts(BaseModel):
@@ -162,6 +180,14 @@ class LawEnforcementFacts(BaseModel):
         None, description="Predicts criminal offences based solely on profiling/personality traits"
     )
     untargeted_facial_scraping: bool | None = None
+    # --- added by the rule engine (additive) ---
+    rbi_strictly_necessary_objective: bool | None = Field(
+        None,
+        description="Real-time RBI use is strictly necessary for a listed objective: victims/missing persons, imminent threat/terrorism, suspects of Annex II offences (Art. 5(1)(h)(i)-(iii))",
+    )
+    authorised_by_law_for_criminal_offences: bool | None = Field(
+        None, description="Use is authorised by law to detect, prevent, investigate or prosecute criminal offences (Art. 50 exceptions)"
+    )
 
 
 class FactSheet(BaseModel):
@@ -186,6 +212,24 @@ class FactSheet(BaseModel):
     social_scoring: bool | None = Field(None, description="Evaluates/classifies persons over time on social behaviour or personal traits leading to detrimental treatment")
     nudify_or_sexual_abuse_material: bool | None = Field(
         None, description="Generates non-consensual intimate imagery or child sexual abuse material (Art. 5(1)(ba)/(bb) as amended)"
+    )
+    # --- added by the rule engine (additive) ---
+    annex_i_third_party_assessment: bool | None = Field(
+        None,
+        description="The product must undergo third-party conformity assessment under the Annex I legislation for health/safety reasons (Art. 6(1)(b), 6(1c))",
+    )
+    public_body_or_public_service: bool | None = Field(
+        None, description="The deployer is a body governed by public law or a private entity providing public services (Art. 27(1), 49(3))"
+    )
+    free_open_source_licence: bool | None = Field(
+        None, description="Released under a free and open-source licence (Art. 2(12); for GPAI models with public weights, Art. 53(2))"
+    )
+    financial_fraud_detection: bool | None = Field(
+        None, description="The credit-related system is used for the purpose of detecting financial fraud (Annex III, point 5(b) exception)"
+    )
+    intimate_content_foreseeable_without_safeguards: bool | None = Field(
+        None,
+        description="Generating non-consensual intimate material or CSAM is a reasonably foreseeable, reproducible outcome and there are no adequate safeguards (Art. 5(1a)(a)(ii))",
     )
     biometric: BiometricFacts = Field(default_factory=BiometricFacts)
     manipulation: ManipulationFacts = Field(default_factory=ManipulationFacts)

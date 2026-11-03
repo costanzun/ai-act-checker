@@ -1,0 +1,111 @@
+{
+ "meta": {
+  "slug": "ai-omnibus-faq-2026",
+  "type": "guidance",
+  "title": "AI Act Service Desk FAQ - Digital Omnibus category (describes the November 2025 proposal)",
+  "binding": false,
+  "status": "final",
+  "date": "2025-11-19",
+  "reference": "Service Desk FAQ (proposal stage; undated page)",
+  "source_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+  "retrieved_at": "2026-11-03",
+  "language": "en",
+  "counts": {
+   "provisions": 4
+  }
+ },
+ "provisions": [
+  {
+   "id": "guid:ai-omnibus-faq-2026.1",
+   "type": "guidance",
+   "label": "AI Act Service Desk FAQ on the Digital Omnibus, §1",
+   "parent_id": null,
+   "children": [],
+   "title": "Why is the European Commission proposing to amend the AI Act?",
+   "text": "Digital Omnibus The AI Act entered into force on 1 August 2024. It follows a staggered entry into application, with some parts already applicable such as certain prohibitions, AI literacy, and rules for general-purpose AI models. Other parts of the Act are set to apply on 2 August 2026 and 2 August 2027. This progressive roll-out allows us to build on the experience gathered in applying the first part of the rules. The Commission is committed to continuously learn and stepping up its efforts. This is particularly important in the context of a fast-evolving technology like AI. Stakeholder consultations throughout 2025 revealed implementation challenges that need to be addressed so that the AI Act can be successfully rolled-out. This proposal puts forwards legislative amendments to that effect and complements ongoing efforts to facilitate compliance with the AI Act, like the launch of an AI Act Service Desk.",
+   "order": 1,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "file_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "date": "2025-11-19",
+    "retrieved_at": "2026-11-03",
+    "document": "AI Act Service Desk FAQ - Digital Omnibus category (describes the November 2025 proposal)",
+    "reference": "Service Desk FAQ (proposal stage; undated page)",
+    "language": "en",
+    "section": "1",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-faq-2026.2",
+   "type": "guidance",
+   "label": "AI Act Service Desk FAQ on the Digital Omnibus, §2",
+   "parent_id": null,
+   "children": [],
+   "title": "What are the main changes proposed to the AI Act?",
+   "text": "Digital Omnibus The Commission is committed to a clear, simple and innovation friendly implementation of the AI Act, as set out in the AI Continent Action Plan and the Apply AI Strategy. Commission’s proposal brings the AI Act in line with this approach by: Linking when rules apply to the availability of support Linking the application of the rules for high-risk AI to the availability of support tools like standards. The Commission is adjusting the timeline for the application of high-risk rules to a maximum of 16 months. Introducing simplification: Extending certain simplified modalities of fulfilling the legal obligations from SMEs to small mid cap companies (SMCs), such as simplified technical documentation; Requiring the Commission and Member States to foster AI literacy, and ensure continuous support to companies by building on existing efforts (such as the AI Office’s repository of AI literacy practices ) instead of enforcing unspecified obligations on operators, while keeping training obligations for high-risk deployers in place remain. Removing the prescription of a harmonised post-market monitoring plan, giving businesses more flexibility; Reducing the registration burden for AI systems used in high-risk areas for tasks that are not considered high-risk. Improving the effectiveness of the AI Act’s governance: Centralising the oversight of AI systems built on general-purpose AI models with the AI Office, to reduce governance fragmentation for developers of these models and systems; Concentrating the oversight of AI embedded in very large online platforms and search engines at Commission level by assigning this oversight to the AI Office. Extending measures in support compliance: Allowing providers and deployers to process special categories of personal data for ensuring bias detection and correction, subject to appropriate safeguards; Broadening the use of AI regulatory sandboxes and real-world testing so more innovators can benefit from these tools. This includes setting up an EU-level regulatory sandbox from 2028 to support real-world testing. Improving the AI Act’s procedures and operation: Clarifying the interplay between the AI Act and other EU laws. Simplifying procedures to foster the timely availability of conformity assessment bodies.",
+   "order": 2,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "file_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "date": "2025-11-19",
+    "retrieved_at": "2026-11-03",
+    "document": "AI Act Service Desk FAQ - Digital Omnibus category (describes the November 2025 proposal)",
+    "reference": "Service Desk FAQ (proposal stage; undated page)",
+    "language": "en",
+    "section": "2",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-faq-2026.3",
+   "type": "guidance",
+   "label": "AI Act Service Desk FAQ on the Digital Omnibus, §3",
+   "parent_id": null,
+   "children": [],
+   "title": "How will these changes benefit to businesses?",
+   "text": "Digital Omnibus According to the Commission’s first estimations, the proposed measures on AI are expected to reduce compliance costs for businesses throughout the EU. At the same time, by extending benefits granted to SMEs to include SMCs, the Commission is making implementation easier for an additional 8,250 companies in Europe. Overall, the proposals presented by the Commission will help businesses meet their obligations. They also open up more opportunities to innovate in the EU, further facilitating the roll-out of the regulatory framework that is designed to create a single market for trustworthy AI.",
+   "order": 3,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "file_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "date": "2025-11-19",
+    "retrieved_at": "2026-11-03",
+    "document": "AI Act Service Desk FAQ - Digital Omnibus category (describes the November 2025 proposal)",
+    "reference": "Service Desk FAQ (proposal stage; undated page)",
+    "language": "en",
+    "section": "3",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-faq-2026.4",
+   "type": "guidance",
+   "label": "AI Act Service Desk FAQ on the Digital Omnibus, §4",
+   "parent_id": null,
+   "children": [],
+   "title": "What are the new timelines proposed?",
+   "text": "Digital Omnibus The proposal acknowledges the challenge that the delay of standards and other support tools cause for the implementation of the AI Act. The timeline for the high-risk AI rules is aligned to the availability of standards and other support tools. Once the Commission confirms these are sufficiently available, the rules will start to apply after a transition period. This flexibility has an end date: the rules for high-risk AI in sensitive areas like employment and law enforcement (Annex III) will in any case apply maximum 16 months later than originally envisaged, the rules for high-risk AI embedded in products like medical devices (Annex I) will apply a maximum 12 months later. The proposal also suggests a transition period of 6 months for providers who need to retroactively include technical solutions into their generative AI systems to make them detectable.",
+   "order": 4,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "file_url": "https://ai-act-service-desk.ec.europa.eu/en/faq?combine=&faq_category_id=99",
+    "date": "2025-11-19",
+    "retrieved_at": "2026-11-03",
+    "document": "AI Act Service Desk FAQ - Digital Omnibus category (describes the November 2025 proposal)",
+    "reference": "Service Desk FAQ (proposal stage; undated page)",
+    "language": "en",
+    "section": "4",
+    "paragraphs": null
+   }
+  }
+ ]
+}

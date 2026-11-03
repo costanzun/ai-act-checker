@@ -36,6 +36,7 @@ dev = [
 
 [tool.pytest.ini_options]
 asyncio_mode = "auto"
+markers = ["live: hits a real LLM backend; needs LIVE_LLM=1"]
 testpaths = ["tests"]
 
 [tool.ruff]

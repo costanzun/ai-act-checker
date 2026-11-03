@@ -1,0 +1,157 @@
+{
+ "meta": {
+  "slug": "ai-omnibus-2026",
+  "type": "guidance",
+  "title": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+  "binding": false,
+  "status": "final",
+  "date": "2026-07-27",
+  "reference": "Regulation (EU) 2026/1744",
+  "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+  "retrieved_at": "2026-11-03",
+  "language": "en",
+  "counts": {
+   "provisions": 6
+  }
+ },
+ "provisions": [
+  {
+   "id": "guid:ai-omnibus-2026.1",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §1",
+   "parent_id": null,
+   "children": [],
+   "title": "Innovation support",
+   "text": "Support for growing companies : Some measures previously reserved for SMEs are extended to small mid-cap companies (SMCs), helping more businesses benefit from a proportionate approach Testing and experimentation : Expands access to regulatory sandboxes and introduces an EU-level regulatory sandbox, giving companies more space to develop and test AI systems under regulatory supervision",
+   "order": 1,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "1",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-2026.2",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §2",
+   "parent_id": null,
+   "children": [],
+   "title": "Extended timelines",
+   "text": "High-risk AI systems in Annex III : Rules apply starting 2 December 2027 High-risk AI embedded in physical products (machinery, toys, lifts, etc.) in Annex I : Rules apply starting 2 August 2028",
+   "order": 2,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "2",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-2026.3",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §3",
+   "parent_id": null,
+   "children": [],
+   "title": "Reduced administrative burdens",
+   "text": "Simplification for SMCs : Extends simplified legal obligations for SMEs to small and mid-cap companies AI literacy : Previous AI literacy requirement for companies is simplified, with the Commission and the Member States taking a stronger role in promoting AI literacy EU database registration : Simplifies obligation to register exempted AI systems in the EU central database",
+   "order": 3,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "3",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-2026.4",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §4",
+   "parent_id": null,
+   "children": [],
+   "title": "Safety and fundamental rights",
+   "text": "Ban on nudification apps : Prohibits AI systems that generate non-consensual sexually explicit and intimate content or child sexual abuse material Bias detection : Allows for the processing of special categories of personal data to detect and correct bias",
+   "order": 4,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "4",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-2026.5",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §5",
+   "parent_id": null,
+   "children": [],
+   "title": "AI governance alignment",
+   "text": "Extended enforcement powers : The AI Office will have extended oversight of certain AI systems, including those built on general-purpose models and embedded in large online platforms and search engines Legal and procedural clarity : Clarifies interplay between the AI Act and other EU laws and simplifies procedures for conformity assessment bodies",
+   "order": 5,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "5",
+    "paragraphs": null
+   }
+  },
+  {
+   "id": "guid:ai-omnibus-2026.6",
+   "type": "guidance",
+   "label": "Commission AI Omnibus news item (2026), §6",
+   "parent_id": null,
+   "children": [],
+   "title": "Resources",
+   "text": "Access the full legislative text View the implementation timeline of the EU AI Act Jump to the FAQs for further information",
+   "order": 6,
+   "meta": {
+    "binding": false,
+    "status": "final",
+    "source_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "file_url": "https://digital-strategy.ec.europa.eu/en/news/ai-omnibus-enters-force",
+    "date": "2026-07-27",
+    "retrieved_at": "2026-11-03",
+    "document": "Commission web pages on the Digital Omnibus on AI (Regulation (EU) 2026/1744)",
+    "reference": "Regulation (EU) 2026/1744",
+    "language": "en",
+    "section": "6",
+    "paragraphs": null
+   }
+  }
+ ]
+}
