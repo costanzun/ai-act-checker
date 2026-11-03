@@ -1,0 +1,31 @@
+# env
+.env
+.env.local
+
+# python
+backend/.venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.ruff_cache/
+
+# node
+frontend/node_modules/
+frontend/.next/
+frontend/out/
+frontend/test-results/
+frontend/playwright-report/
+node_modules/
+
+# data that is rebuilt
+data/index/
+data/cache/
+data/models/
+eval/results/**/raw/
+
+# os / editors
+.DS_Store
+*.log
+logs/
+.claude-cli-cwd/
