@@ -221,7 +221,7 @@ class Pipeline:
                 RelatedProvision(
                     id=h["id"],
                     label=h["label"],
-                    why={"en": "Retrieved as relevant to the facts you described", "it": "Individuata come pertinente ai fatti descritti"},
+                    why={"en": _snippet(self.store.full_text(h["id"], "en")), "it": _snippet(self.store.full_text(h["id"], "it"))},
                 )
             )
             if len(out) >= 5:
@@ -301,7 +301,8 @@ class Pipeline:
 
         # 5. assemble
         yield self._stage("finalising")
-        uncertainties = list(classification.assumptions)
+        # assumptions are shown from classification.assumptions; uncertainties hold only the open facts
+        uncertainties: list[dict[str, str]] = []
         for path in classification.unresolved:
             uncertainties.append({"en": f"Not stated: {path.replace('_', ' ').replace('.', ' → ')}", "it": f"Non indicato: {path.replace('_', ' ').replace('.', ' → ')}"})
         metrics.latency_ms = int((time.perf_counter() - t0) * 1000)
@@ -413,6 +414,11 @@ def _coerce_nulls(data: dict[str, Any]) -> dict[str, Any]:
             if out.get(k) is None:
                 out[k] = {}
     return out
+
+
+def _snippet(text: str, n: int = 180) -> str:
+    t = " ".join((text or "").split())
+    return t if len(t) <= n else t[: n - 1].rsplit(" ", 1)[0] + "…"
 
 
 def _fallback_narrative(c: Classification, lang: str) -> str:

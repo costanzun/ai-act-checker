@@ -10,9 +10,12 @@ export function RelatedProvisions({ items }: { items: RelatedProvision[] }) {
     <section aria-labelledby="related-heading">
       <h2 id="related-heading" className="font-heading text-2xl font-medium">{t("result.related")}</h2>
       <p className="mt-1 text-sm text-muted-foreground">{items.length ? t("result.related.lede") : t("result.related.none")}</p>
-      <ul className="mt-3 space-y-2">
+      <ul className="mt-3 space-y-3">
         {items.map((r) => (
-          <li key={r.id} className="flex flex-wrap items-baseline gap-2 text-sm"><Cite id={r.id} /><span className="text-muted-foreground">{l(r.why)}</span></li>
+          <li key={r.id} className="grid grid-cols-[auto_1fr] items-start gap-x-3 text-sm">
+            <span className="pt-px"><Cite id={r.id} /></span>
+            <span className="line-clamp-2 text-muted-foreground">{l(r.why)}</span>
+          </li>
         ))}
       </ul>
     </section>

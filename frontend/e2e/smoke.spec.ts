@@ -80,7 +80,12 @@ test("timeline shows all milestones and highlights relevant ones; print view is 
   await page.goto("/assess?example=customer-chatbot");
   await expect(page.getByTestId("result-view")).toBeVisible({ timeout: 20_000 });
   const items = page.getByTestId("timeline").locator("li");
-  await expect(items).toHaveCount(6);
+  await expect(items).toHaveCount(11);
+  await expect(items.locator("visible=true")).toHaveCount(1);
+  await page.getByTestId("timeline-toggle").click();
+  await expect(items.locator("visible=true")).toHaveCount(11);
+  await page.getByTestId("timeline-toggle").click();
+  await expect(page.getByTestId("obligations-count")).toContainText("2 obligations");
   await expect(page.getByTestId("timeline").locator('li[data-relevant="true"]')).toHaveCount(1);
   // chatbot result has no uncertainties -> callout hidden
   await expect(page.getByText("Assumptions and open points")).toHaveCount(0);

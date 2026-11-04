@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CiteList, RichText } from "@/components/cite/RichText";
 import { useT } from "@/i18n";
-import type { Obligation } from "@/lib/types";
+import type { Obligation, Role } from "@/lib/types";
 
 function ObligationItem({ o }: { o: Obligation }) {
   const { t, l, formatDate } = useT();
@@ -36,8 +36,17 @@ function group<K extends string>(items: Obligation[], key: (o: Obligation) => K)
   return [...m.entries()];
 }
 
-export function ObligationsTabs({ obligations }: { obligations: Obligation[] }) {
+function roleHeading(group: Obligation["role"], userRole: Role, t: ReturnType<typeof useT>["t"]): string {
+  if (group === "both") return t("obl.role.shared");
+  const noun = t(group === "provider" ? "obl.role.provider" : "obl.role.deployer");
+  const mine = userRole === group || userRole === "both";
+  return mine ? t("obl.role.you", { role: noun }) : t("obl.role.other", { role: noun });
+}
+
+export function ObligationsTabs({ obligations, role }: { obligations: Obligation[]; role: Role }) {
   const { t } = useT();
+  const must = obligations.filter((o) => o.priority === "must").length;
+  const mineFirst = (g: Obligation["role"]) => (g === role || role === "both" ? 0 : g === "both" ? 2 : 1);
   const catLabel = (c: string) => c.charAt(0).toUpperCase() + c.slice(1);
   return (
     <section aria-labelledby="obligations-heading">
@@ -46,6 +55,9 @@ export function ObligationsTabs({ obligations }: { obligations: Obligation[] }) 
         <p className="mt-3 text-sm text-muted-foreground">{t("result.obligations.empty")}</p>
       ) : (
         <>
+          <p className="mt-2 text-sm text-muted-foreground" data-testid="obligations-count">
+            {t(obligations.length === 1 ? "result.obligations.count.one" : "result.obligations.count", { n: obligations.length, must, should: obligations.length - must })}
+          </p>
           <Tabs defaultValue="category" className="mt-4 print:hidden">
             <TabsList>
               <TabsTrigger value="category">{t("result.obligations.byCategory")}</TabsTrigger>
@@ -55,7 +67,7 @@ export function ObligationsTabs({ obligations }: { obligations: Obligation[] }) 
               {group(obligations, (o) => o.category).map(([c, items]) => <Group key={c} title={catLabel(c)} items={items} />)}
             </TabsContent>
             <TabsContent value="role" className="rounded-lg border border-border bg-card p-4 sm:p-5">
-              {group(obligations, (o) => o.role).map(([r, items]) => <Group key={r} title={t(`role.${r}` as const)} items={items} />)}
+              {group(obligations, (o) => o.role).sort((a, b) => mineFirst(a[0]) - mineFirst(b[0])).map(([r, items]) => <Group key={r} title={roleHeading(r, role, t)} items={items} />)}
             </TabsContent>
           </Tabs>
           <div className="mt-4 hidden print:block">

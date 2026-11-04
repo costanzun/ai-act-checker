@@ -10,12 +10,17 @@ export const DISCLAIMER: LText = t(
 );
 
 export const TIMELINE: Milestone[] = [
+  { id: "m-2024-08-01", date: "2024-08-01", what: t("The AI Act enters into force.", "Il regolamento sull'IA entra in vigore."), citations: ["art:113"], status: "in_force" },
   { id: "m-2025-02-02", date: "2025-02-02", what: t("Definitions and prohibited practices (Chapters I and II) apply.", "Si applicano definizioni e pratiche vietate (capi I e II)."), citations: ["art:5", "art:113"], status: "in_force" },
   { id: "m-2025-08-02", date: "2025-08-02", what: t("Rules on general-purpose AI models and governance apply.", "Si applicano le norme sui modelli di IA per finalità generali e sulla governance."), citations: ["art:113"], status: "in_force" },
+  { id: "m-2026-07-27", date: "2026-07-27", what: t("Digital Omnibus on AI (Reg. (EU) 2026/1744) enters into force.", "Entra in vigore il Digital Omnibus sull'IA (Reg. (UE) 2026/1744)."), citations: ["art:113"], status: "in_force" },
   { id: "m-2026-08-02", date: "2026-08-02", what: t("General date of application, including transparency obligations (Art. 50).", "Data generale di applicazione, compresi gli obblighi di trasparenza (art. 50)."), citations: ["art:50", "art:113"], status: "in_force" },
   { id: "m-2026-12-02", date: "2026-12-02", what: t("New prohibitions added by the Digital Omnibus apply.", "Si applicano i nuovi divieti introdotti dal Digital Omnibus."), citations: ["art:5", "art:113"], status: "upcoming" },
+  { id: "m-2027-08-02", date: "2027-08-02", what: t("General-purpose models placed on the market before 2 August 2025 must comply.", "I modelli per finalità generali immessi sul mercato prima del 2 agosto 2025 devono conformarsi."), citations: ["art:113"], status: "upcoming" },
   { id: "m-2027-12-02", date: "2027-12-02", what: t("High-risk obligations for Annex III systems apply.", "Si applicano gli obblighi per i sistemi ad alto rischio dell'Allegato III."), citations: ["annex:III", "art:113"], status: "upcoming" },
   { id: "m-2028-08-02", date: "2028-08-02", what: t("High-risk obligations for Annex I product systems apply.", "Si applicano gli obblighi per i sistemi ad alto rischio dell'Allegato I (prodotti)."), citations: ["art:113"], status: "upcoming" },
+  { id: "m-2029-08-02", date: "2029-08-02", what: t("Commission evaluation and review of the Regulation.", "Valutazione e riesame del regolamento da parte della Commissione."), citations: ["art:113"], status: "upcoming" },
+  { id: "m-2030-12-31", date: "2030-12-31", what: t("AI components of certain large-scale EU IT systems must comply.", "I componenti di IA di alcuni sistemi informatici UE su larga scala devono conformarsi."), citations: ["art:113"], status: "upcoming" },
 ];
 
 const ms = (...ids: string[]) => TIMELINE.filter((m) => ids.includes(m.id));
@@ -101,7 +106,7 @@ function cvAssessment(lang: Lang, description: string, answers: Record<string, u
   ];
   return build("cv-screening", lang, description, classification, reasoning, obligations, checklist,
     [{ id: "rec:57", why: t("Explains why employment systems are high-risk.", "Spiega perché i sistemi per l'occupazione sono ad alto rischio.") }, { id: "art:6.3", why: t("The derogation you may want to test.", "La deroga che potresti voler verificare.") }],
-    unknown ? [t("We could not confirm whether the ranking decides who is interviewed; the result assumes it does.", "Non abbiamo potuto confermare se la classifica decide chi viene convocato; il risultato presuppone di sì.")] : [],
+    unknown ? [t("Not stated: whether the ranking decides who is interviewed.", "Non indicato: se la classifica decide chi viene convocato.")] : [],
     { role, sector: "employment", decision_impact: (answers.decision_impact ?? null) as FactValue });
 }
 
@@ -197,7 +202,7 @@ function build(
     model: { provider: "mock", model: "fixture-v1" },
     description, facts, classification, reasoning_md, obligations, checklist,
     related_provisions: related, uncertainties, disclaimer: DISCLAIMER,
-    metrics: { latency_ms: 4200, llm_calls: 2, input_tokens: 2100, output_tokens: 640, cost_usd: 0, cached: false },
+    metrics: { latency_ms: 4200, llm_calls: 2, input_tokens: 2100, output_tokens: 640, cost_usd: key === "cv-screening" ? 0.054 : 0, cached: false },
   };
 }
 

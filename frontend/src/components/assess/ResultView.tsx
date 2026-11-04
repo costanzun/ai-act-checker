@@ -26,7 +26,7 @@ export function ResultView({ assessment, canAskAgain, onAskAgain }: { assessment
       <ReasoningPanel markdown={assessment.reasoning_md} />
       <Separator />
       <FindingsList findings={c.findings} />
-      <ObligationsTabs obligations={assessment.obligations} />
+      <ObligationsTabs obligations={assessment.obligations} role={c.role} />
       <Checklist assessmentId={assessment.id} items={assessment.checklist} />
       <TimelineStrip relevant={c.applies_from} />
       <RelatedProvisions items={assessment.related_provisions} />
@@ -36,7 +36,8 @@ export function ResultView({ assessment, canAskAgain, onAskAgain }: { assessment
         <AlertDescription>{l(assessment.disclaimer)}</AlertDescription>
       </Alert>
       <p className="font-mono text-xs text-muted-foreground">
-        {t("result.metrics", { model: assessment.model.model, ms: assessment.metrics.latency_ms })}
+        {t("result.metrics", { model: `${assessment.model.provider} / ${assessment.model.model}`, secs: (assessment.metrics.latency_ms / 1000).toFixed(1) })}
+        {assessment.metrics.cost_usd > 0 && ` · ${t("result.metrics.cost", { cost: assessment.metrics.cost_usd.toFixed(3) })}`}
       </p>
     </div>
   );
