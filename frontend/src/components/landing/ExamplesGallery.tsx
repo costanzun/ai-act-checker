@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { ArrowUpRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { OverlayBadge } from "@/components/tier/OverlayBadge";
 import { TierBadge } from "@/components/tier/TierBadge";
 import { useT } from "@/i18n";
 import { getExamples } from "@/lib/api";
@@ -35,7 +36,7 @@ export function ExamplesGallery() {
               <li key={ex.id}>
                 <Card style={{ "--tc": TIER_VAR[ex.expected_tier] } as CSSProperties} className="relative h-full border border-border shadow-none ring-0 transition-all hover:-translate-y-0.5 hover:border-[var(--tc)] hover:bg-accent/40 focus-within:border-[var(--tc)]">
                   <CardContent className="flex h-full flex-col gap-3">
-                    <TierBadge tier={ex.expected_tier} className="self-start" />
+                    <div className="flex flex-wrap gap-1.5 self-start"><TierBadge tier={ex.expected_tier} />{ex.expected_overlays?.includes("gpai") && <OverlayBadge overlay="gpai" />}</div>
                     <h3 className="font-heading text-lg font-medium leading-snug">{ex.title}</h3>
                     <p className="flex-1 text-sm leading-relaxed text-muted-foreground">{ex.description}</p>
                     <Link

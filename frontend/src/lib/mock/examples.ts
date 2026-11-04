@@ -1,6 +1,6 @@
 import type { ExampleItem, Lang, Tier } from "../types";
 
-interface Ex { id: string; tier: Tier; tags: string[]; en: [string, string, string]; it: [string, string, string] }
+interface Ex { id: string; tier: Tier; tags: string[]; overlays?: string[]; en: [string, string, string]; it: [string, string, string] }
 
 // [title, one-line description, full description sent to the assessment]
 const EX: Ex[] = [
@@ -34,7 +34,7 @@ const EX: Ex[] = [
   { id: "social-scoring", tier: "prohibited", tags: ["art5"],
     en: ["Citizen social scoring", "Scores people on social behaviour.", "A city wants to score residents based on their social behaviour and give or deny access to public services accordingly."],
     it: ["Punteggio sociale dei cittadini", "Assegna punteggi in base al comportamento sociale.", "Un comune vuole assegnare ai residenti un punteggio in base al comportamento sociale e concedere o negare servizi pubblici di conseguenza."] },
-  { id: "gpai-model", tier: "limited_risk", tags: ["gpai"],
+  { id: "gpai-model", tier: "limited_risk", tags: ["gpai"], overlays: ["gpai"],
     en: ["General-purpose language model", "Trains and releases a foundation model.", "We train a large language model and make it available to developers through an API."],
     it: ["Modello linguistico generale", "Addestra e distribuisce un modello di base.", "Addestriamo un grande modello linguistico e lo mettiamo a disposizione degli sviluppatori tramite API."] },
   { id: "research-only", tier: "out_of_scope", tags: ["scope"],
@@ -43,7 +43,7 @@ const EX: Ex[] = [
 ];
 
 export function mockExamples(lang: Lang): ExampleItem[] {
-  return EX.map((e) => ({ id: e.id, title: e[lang][0], description: e[lang][1], tags: e.tags, expected_tier: e.tier, text: e[lang][2] }));
+  return EX.map((e) => ({ id: e.id, title: e[lang][0], description: e[lang][1], tags: e.tags, expected_tier: e.tier, text: e[lang][2], ...(e.overlays ? { expected_overlays: e.overlays } : {}) }));
 }
 
 export function mockExampleText(id: string, lang: Lang): string | null {

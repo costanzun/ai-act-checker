@@ -28,6 +28,7 @@ interface Session {
 }
 
 const EMPTY: Session = { description: "", sessionId: null, facts: null, answers: [], round: 0, asked: [] };
+const norm = (s: string) => s.replace(/\[\[[^\]]*\]\]/g, "").replace(/\s+/g, " ").trim();
 const saveKey = (id: string) => `aiact.assessment.${id}`;
 
 export function AssessFlow() {
@@ -43,6 +44,8 @@ export function AssessFlow() {
   const abortRef = useRef<AbortController | null>(null);
   const bootedRef = useRef(false);
   const [notFound, setNotFound] = useState(false);
+  const [regenerated, setRegenerated] = useState(false);
+  const streamedRef = useRef("");
 
   const run = useCallback(async (s: Session) => {
     abortRef.current?.abort();
@@ -52,6 +55,8 @@ export function AssessFlow() {
     setPhase("running");
     setStages([]);
     setStreamed("");
+    streamedRef.current = "";
+    setRegenerated(false);
     setError(null);
     let next = s;
     try {
@@ -66,9 +71,11 @@ export function AssessFlow() {
             setSession(next);
             setQuestions(ev.questions);
             break;
-          case "token": if (ev.section === "reasoning") setStreamed((p) => p + ev.text); break;
+          case "token": if (ev.section === "reasoning") { streamedRef.current += ev.text; setStreamed((p) => p + ev.text); } break;
           case "result":
             setAssessment(ev.assessment);
+            // Server may substitute a fallback after a streaming error; compare ignoring citation tokens/whitespace.
+            setRegenerated(streamedRef.current.trim() !== "" && norm(streamedRef.current) !== norm(ev.assessment.reasoning_md));
             try { window.localStorage.setItem(saveKey(ev.assessment.id), JSON.stringify(ev.assessment)); } catch { /* ignore */ }
             break;
           case "error": setError({ code: ev.code, message: ev.message[lang] ?? ev.message.en }); setPhase("error"); return;
@@ -133,6 +140,7 @@ export function AssessFlow() {
     setQuestions([]);
     setStreamed("");
     setPhase("describe");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const step: StepId = phase === "result" ? "result" : phase === "clarify" ? "clarify"
@@ -185,7 +193,7 @@ export function AssessFlow() {
               <p className="line-clamp-2 max-w-xl text-sm text-muted-foreground">{assessment.description}</p>
               <Button variant="ghost" size="sm" onClick={() => restart(false)}>{t("assess.restart")}</Button>
             </div>
-            <ResultView assessment={assessment} canAskAgain={resultCanAsk} onAskAgain={() => restart(true)} />
+            <ResultView assessment={assessment} canAskAgain={resultCanAsk} onAskAgain={() => restart(true)} regenerated={regenerated} />
           </div>
         )}
       </div>

@@ -5,10 +5,11 @@ import { Copy, Download, FileText, Printer } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { useT } from "@/i18n";
+import { cn } from "@/lib/utils";
 import { downloadBlob, exportMarkdown, exportPdf } from "@/lib/api";
 import type { Assessment } from "@/lib/types";
 
-export function ExportBar({ assessment }: { assessment: Assessment }) {
+export function ExportBar({ assessment, className }: { assessment: Assessment; className?: string }) {
   const { t } = useT();
   const [busy, setBusy] = useState<"md" | "pdf" | null>(null);
 
@@ -42,12 +43,14 @@ export function ExportBar({ assessment }: { assessment: Assessment }) {
     }
   };
 
+  const btn = "max-sm:px-2.5";
+  const lbl = "hidden sm:inline";
   return (
-    <div className="no-print flex flex-wrap gap-2" role="group" aria-label="Export">
-      <Button variant="outline" onClick={() => run("md")} disabled={busy !== null}><FileText aria-hidden /> {t("export.markdown")}</Button>
-      <Button variant="outline" onClick={() => run("pdf")} disabled={busy !== null}><Download aria-hidden /> {t("export.pdf")}</Button>
-      <Button variant="outline" onClick={() => window.print()}><Printer aria-hidden /> {t("export.print")}</Button>
-      <Button variant="outline" onClick={copy}><Copy aria-hidden /> {t("export.link")}</Button>
+    <div className={cn("no-print flex flex-nowrap gap-2", className)} role="group" aria-label={t("export.label")}>
+      <Button variant="outline" className={btn} title={t("export.markdown")} aria-label={t("export.markdown")} onClick={() => run("md")} disabled={busy !== null}><FileText aria-hidden /><span className={lbl}>{t("export.markdown")}</span></Button>
+      <Button variant="outline" className={btn} title={t("export.pdf")} aria-label={t("export.pdf")} onClick={() => run("pdf")} disabled={busy !== null}><Download aria-hidden /><span className={lbl}>{t("export.pdf")}</span></Button>
+      <Button variant="outline" className={btn} title={t("export.print")} aria-label={t("export.print")} onClick={() => window.print()}><Printer aria-hidden /><span className={lbl}>{t("export.print")}</span></Button>
+      <Button variant="outline" className={btn} title={t("export.link")} aria-label={t("export.link")} onClick={copy}><Copy aria-hidden /><span className={lbl}>{t("export.link")}</span></Button>
     </div>
   );
 }

@@ -21,11 +21,23 @@ function ObligationItem({ o }: { o: Obligation }) {
   );
 }
 
+const CONDITIONAL = /^\s*(only if|required if|solo se|obbligatoria se)/i;
+const isConditional = (o: Obligation) => o.priority === "should" && (CONDITIONAL.test(o.summary.en ?? "") || CONDITIONAL.test(o.summary.it ?? ""));
+
 function Group({ title, items }: { title: string; items: Obligation[] }) {
+  const { t } = useT();
+  const firm = items.filter((o) => !isConditional(o));
+  const cond = items.filter(isConditional);
   return (
     <div>
       <h3 className="mt-5 border-b border-border pb-1 text-xs font-medium uppercase tracking-[0.12em] text-muted-foreground first:mt-0">{title}</h3>
-      <ul className="divide-y divide-border">{items.map((o) => <ObligationItem key={o.id} o={o} />)}</ul>
+      {firm.length > 0 && <ul className="divide-y divide-border">{firm.map((o) => <ObligationItem key={o.id} o={o} />)}</ul>}
+      {cond.length > 0 && (
+        <div className="mt-2 rounded-md border border-dashed border-border bg-background/50 px-3 opacity-80" data-testid="conditional-group">
+          <p className="pt-2 text-xs font-medium text-muted-foreground">{t("obl.conditional")}</p>
+          <ul className="divide-y divide-border">{cond.map((o) => <ObligationItem key={o.id} o={o} />)}</ul>
+        </div>
+      )}
     </div>
   );
 }

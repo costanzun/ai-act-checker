@@ -15,15 +15,17 @@ import { TimelineStrip } from "./TimelineStrip";
 import { UncertaintiesCallout } from "./UncertaintiesCallout";
 import { Info } from "lucide-react";
 
-export function ResultView({ assessment, canAskAgain, onAskAgain }: { assessment: Assessment; canAskAgain: boolean; onAskAgain: () => void }) {
+export function ResultView({ assessment, canAskAgain, onAskAgain, regenerated = false }: { assessment: Assessment; canAskAgain: boolean; onAskAgain: () => void; regenerated?: boolean }) {
   const { t, l } = useT();
   const c = assessment.classification;
   return (
-    <div className="print-expand space-y-10" data-testid="result-view">
+    <div className="print-expand flex flex-col gap-10" data-testid="result-view">
+      {/* Mobile order: hero, reasoning, export, then the rest. Desktop: hero, export, ... */}
       <TierHero assessment={assessment} />
-      <ExportBar assessment={assessment} />
-      <UncertaintiesCallout assessment={assessment} canAskAgain={canAskAgain} onAskAgain={onAskAgain} />
-      <ReasoningPanel markdown={assessment.reasoning_md} />
+      <ExportBar assessment={assessment} className="max-sm:order-2" />
+      <div className="max-sm:order-3"><UncertaintiesCallout assessment={assessment} canAskAgain={canAskAgain} onAskAgain={onAskAgain} /></div>
+      <div className="max-sm:order-1"><ReasoningPanel markdown={assessment.reasoning_md} note={regenerated ? t("reasoning.regenerated") : undefined} /></div>
+      <div className="flex flex-col gap-10 max-sm:order-4">
       <Separator />
       <FindingsList findings={c.findings} />
       <ObligationsTabs obligations={assessment.obligations} role={c.role} />
@@ -39,6 +41,7 @@ export function ResultView({ assessment, canAskAgain, onAskAgain }: { assessment
         {t("result.metrics", { model: `${assessment.model.provider} / ${assessment.model.model}`, secs: (assessment.metrics.latency_ms / 1000).toFixed(1) })}
         {assessment.metrics.cost_usd > 0 && ` · ${t("result.metrics.cost", { cost: assessment.metrics.cost_usd.toFixed(3) })}`}
       </p>
+      </div>
     </div>
   );
 }

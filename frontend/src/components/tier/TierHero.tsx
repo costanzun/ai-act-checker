@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { useT } from "@/i18n";
 import type { Assessment } from "@/lib/types";
 import { RichText } from "@/components/cite/RichText";
+import { OverlayBadge } from "./OverlayBadge";
 import { TIER_BLURB_KEY, TIER_KEY, TIER_VAR } from "./tier";
 
 function firstSentence(s: string): string {
@@ -42,6 +43,7 @@ export function TierHero({ assessment }: { assessment: Assessment }) {
           {t(`conf.${c.confidence}` as const)}
         </Badge>
         <Badge variant="secondary" className="px-2.5 py-3">{t(`role.${c.role}` as const)}</Badge>
+        {(["gpai", "transparency_art50"] as const).filter((k) => (c.overlays[k] ?? []).length > 0).map((k) => <OverlayBadge key={k} overlay={k} />)}
       </div>
     </section>
   );

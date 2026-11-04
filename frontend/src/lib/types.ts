@@ -131,6 +131,8 @@ export interface ExampleItem {
   expected_tier: Tier;
   /** Additive (proposed): full plain-language prompt to run. Falls back to `description`. */
   text?: string;
+  /** Optional: additive overlays such as "gpai". */
+  expected_overlays?: string[];
 }
 
 export interface Amendment { marker: string; kind: "replaced" | "inserted" | "deleted"; by: string }

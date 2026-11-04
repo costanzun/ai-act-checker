@@ -79,6 +79,12 @@ flowchart TB
 
 A labelled test set (`eval/cases.yaml`) and a reproducible runner compare the hybrid pipeline with a pure "LLM + retrieved provisions" baseline, so the value of the rule engine is measured rather than asserted.
 
+Two kinds of numbers are reported, and they mean different things:
+
+- **Tier accuracy and under-classification** are measured end to end: the LLM extracts facts from the description, the rule engine decides the tier, and when the engine asks a clarifying question the runner answers it from the labelled ground-truth facts (an "oracle user"). These figures therefore measure fact extraction plus question selection, not unaided accuracy. Runs that fail for infrastructure reasons count as wrong answers and are also reported separately as errors.
+- **Citation validity is 100% for the hybrid pipeline by construction**: engine citations come from a hand-checked list, and narrative citation tokens outside the allow-list are stripped before scoring. It is shown only to contrast with the baseline, where the model writes citations freely and the metric measures how many resolve to a real provision. For the hybrid pipeline the informative figures are *citation recall* against the labelled key provisions and the number of *stripped citations* and *unverified references* (how often the model tried to cite something not allowed). Validity means "the ID exists and was allowed", not "the provision supports the sentence".
+- A separate deterministic check (`eval/validate_cases.py` plus the engine run on the labelled facts) gives 56/56. That check is circular — the same project authored both the labels and the rules — and is reported only as a consistency test, not as accuracy.
+
 **Test set:** 56 cases: 25 Annex III (one per point or letter), 4 Art. 5, 8 taken from Commission guidance, 15 edge cases, 2 GPAI, 2 Art. 50. Seven are in Italian and seven require a clarifying question. Labels follow the consolidated text of 27 July 2026; ambiguous cases take the stricter reading and say so in their notes. Details and known ambiguities: `eval/README.md`.
 
 | Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency | Cost / assessment |

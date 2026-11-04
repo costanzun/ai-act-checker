@@ -89,7 +89,7 @@ function cvAssessment(lang: Lang, description: string, answers: Record<string, u
     { id: "ob-logs", role: "deployer", category: "monitoring", priority: "must", applies_from: "2027-12-02", citations: ["art:26"],
       title: t("Keep system logs", "Conservare i log del sistema"), summary: t("Keep automatically generated logs for at least six months ([[art:26]]).", "Conservare i log generati automaticamente per almeno sei mesi ([[art:26]]).") },
     { id: "ob-fria", role: "deployer", category: "governance", priority: "should", applies_from: "2027-12-02", citations: ["art:27"],
-      title: t("Fundamental rights impact assessment", "Valutazione d'impatto sui diritti fondamentali"), summary: t("Certain deployers must assess the impact on fundamental rights before first use ([[art:27]]).", "Alcuni deployer devono valutare l'impatto sui diritti fondamentali prima del primo utilizzo ([[art:27]]).") },
+      title: t("Fundamental rights impact assessment", "Valutazione d'impatto sui diritti fondamentali"), summary: t("Only if you are a public body or provide public services: certain deployers must assess the impact on fundamental rights before first use ([[art:27]]).", "Solo se siete un ente pubblico o fornite servizi pubblici: alcuni deployer devono valutare l'impatto sui diritti fondamentali prima del primo utilizzo ([[art:27]]).") },
     { id: "ob-literacy", role: "both", category: "literacy", priority: "must", applies_from: "2025-02-02", citations: ["art:4"],
       title: t("AI literacy of staff", "Alfabetizzazione del personale in materia di IA"), summary: t("Ensure a sufficient level of AI literacy among people operating the system ([[art:4]]).", "Garantire un livello sufficiente di alfabetizzazione in materia di IA tra chi gestisce il sistema ([[art:4]]).") },
     { id: "ob-inform", role: "deployer", category: "transparency", priority: "must", applies_from: "2027-12-02", citations: ["art:86"],
@@ -120,7 +120,7 @@ function chatbotAssessment(lang: Lang, description: string): Assessment {
       rationale: t("A chatbot intended to interact with natural persons must tell them they are talking to an AI system ([[art:50.1]]).", "Un chatbot destinato a interagire con persone fisiche deve informarle che stanno interagendo con un sistema di IA ([[art:50.1]]).") ,
       citations: ["art:50.1"], facts_used: ["interacts_with_people"],
     }],
-    overlays: { transparency_art50: ["art:50.1"] }, applies_from: ms("m-2026-08-02"), unresolved: [], assumptions: [],
+    overlays: { transparency_art50: ["art:50.1"], ...(/language model|modello linguistico|llm/i.test(description) ? { gpai: ["art:53"] } : {}) }, applies_from: ms("m-2026-08-02"), unresolved: [], assumptions: [],
   };
   const reasoning = lang === "it"
     ? `## Perché questo livello di rischio\n\nIl chatbot **dialoga direttamente con i clienti**. Non rientra in nessun caso d'uso ad alto rischio, ma l'[[art:50.1]] impone di informare le persone che stanno interagendo con un sistema di IA, salvo che sia ovvio.\n\nIl [[rec:132]] chiarisce che l'obbligo serve a prevenire inganno e impersonificazione.\n\n## Cosa fare\n\nMostra un avviso chiaro all'inizio della conversazione. Gli obblighi di trasparenza si applicano dal **2 agosto 2026**, quindi sono già in vigore.`
@@ -176,7 +176,7 @@ function minimalAssessment(lang: Lang, description: string): Assessment {
       rationale: t("Nothing in the description matches [[art:5]], [[annex:III]] or [[art:50]].", "Nulla nella descrizione corrisponde all'[[art:5]], all'[[annex:III]] o all'[[art:50]]."),
       citations: ["art:5", "annex:III", "art:50"], facts_used: [],
     }],
-    overlays: {}, applies_from: ms("m-2025-02-02"), unresolved: [], assumptions: [t("We assumed the system does not affect people's rights or safety.", "Abbiamo ipotizzato che il sistema non incida su diritti o sicurezza delle persone.")],
+    overlays: {}, applies_from: ms("m-2025-02-02"), unresolved: [], assumptions: [t("Nothing in the description suggests that the system affects people's rights or safety, so we assumed it does not.", "Nulla nella descrizione suggerisce che il sistema incida su diritti o sicurezza delle persone, quindi abbiamo ipotizzato di no.")],
   };
   const reasoning = lang === "it"
     ? `## Perché questo livello di rischio\n\nIl sistema descritto non rientra tra le pratiche vietate ([[art:5]]), non è elencato nell'[[annex:III]] e non attiva obblighi di trasparenza ([[art:50]]). Resta l'obbligo generale di alfabetizzazione ([[art:4]]).`

@@ -116,3 +116,47 @@ test("'/' focuses the landing textarea", async ({ page }) => {
   await page.keyboard.press("/");
   await expect(page.locator("#hero-description")).toBeFocused();
 });
+
+test("overlay badges: GPAI in gallery and hero, Art. 50 in hero", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator('[data-testid="examples-gallery"] [data-overlay="gpai"]')).toHaveCount(1);
+  await page.goto("/assess?example=customer-chatbot");
+  await expect(page.getByTestId("tier-hero")).toBeVisible({ timeout: 20_000 });
+  await expect(page.locator('[data-testid="tier-hero"] [data-overlay="transparency_art50"]')).toBeVisible();
+  await page.goto("/assess?example=gpai-model");
+  await expect(page.locator('[data-testid="tier-hero"] [data-overlay="gpai"]')).toBeVisible({ timeout: 20_000 });
+});
+
+test("conditional obligations are grouped separately", async ({ page }) => {
+  await page.goto("/assess?example=cv-screening");
+  const form = page.getByTestId("question-form");
+  await expect(form).toBeVisible({ timeout: 15_000 });
+  await form.getByText("We use a system from a vendor").click();
+  await form.getByText("Yes", { exact: true }).click();
+  await page.getByTestId("clarify-continue").click();
+  const cond = page.getByTestId("conditional-group").first();
+  await expect(cond).toContainText("Conditional — check whether this applies to you");
+  await expect(cond).toContainText("Fundamental rights impact assessment");
+});
+
+test("'Correct this' reopens the Describe step prefilled", async ({ page }) => {
+  await page.goto("/assess?example=spam-filter");
+  await expect(page.getByTestId("result-view")).toBeVisible({ timeout: 20_000 });
+  await page.getByRole("button", { name: "Correct this" }).click();
+  await expect(page.locator("#describe")).toHaveValue(/spam folder/);
+});
+
+test("mobile: hero first, reasoning before the export row", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 800 });
+  await page.goto("/assess?example=customer-chatbot");
+  await expect(page.getByTestId("result-view")).toBeVisible({ timeout: 20_000 });
+  const y = async (sel: string) => (await page.locator(sel).first().boundingBox())!.y;
+  const hero = await y('[data-testid="tier-hero"]');
+  const reasoning = await y('[data-testid="reasoning-panel"]');
+  const exportRow = await y('[role="group"][aria-label="Export"]');
+  expect(hero).toBeLessThan(reasoning);
+  expect(reasoning).toBeLessThan(exportRow);
+  // citation chips on touch-less emulation still open the panel
+  await page.locator("[data-cite]").first().click();
+  await expect(page.getByTestId("citation-panel")).toBeVisible();
+});
