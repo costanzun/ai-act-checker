@@ -185,7 +185,7 @@ def test_derogation_unknown_facts_stay_high_risk_with_low_confidence():
     c = classify(sheet(annex_iii_area="3b_education_evaluation", decision_impact=None))
     assert c.tier == "high_risk"
     assert c.confidence == "low"
-    assert "art63.profiling_of_natural_persons" in c.unresolved
+    assert "decision_impact" in c.unresolved
 
 
 def test_credit_fraud_detection_exception():

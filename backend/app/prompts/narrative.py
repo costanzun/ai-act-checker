@@ -3,8 +3,9 @@
 The engine has already decided the tier and the citations. The model's job is
 to explain that decision clearly to a compliance manager in the chosen
 language, citing only provision IDs from an allow-list. The server validates
-every ``[[id]]`` token afterwards and removes unknown ones, so a hallucinated
-citation can never reach the UI.
+every ``[[id]]`` token afterwards and removes those outside the allow-list, so a
+citation chip always points at a real, allowed provision (it does not verify
+that the provision supports the sentence).
 """
 
 from __future__ import annotations

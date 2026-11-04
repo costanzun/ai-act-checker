@@ -35,6 +35,7 @@ class Entry:
     options: list[dict[str, Any]] = field(default_factory=lambda: list(YES_NO))
     after: list[str] = field(default_factory=list)  # all must be set and truthy
     after_any: list[str] = field(default_factory=list)  # at least one truthy
+    when_values: dict[str, tuple[Any, ...]] = field(default_factory=dict)  # path -> allowed current values
 
     @property
     def qtype(self) -> str:
@@ -507,6 +508,13 @@ REGISTRY: list[Entry] = [
     ),
 ]
 
+# The Art. 6(3) derogation can only help when the output does not materially influence decisions
+# about people, so its four conditions (and the profiling question) are asked only after that is known.
+_ART63_GATE: dict[str, tuple[Any, ...]] = {"decision_impact": ("supports_human_decision", "no_decision_about_persons")}
+for _e in REGISTRY:
+    if _e.path.startswith("art63."):
+        _e.when_values = dict(_ART63_GATE)
+
 _BY_PATH: dict[str, Entry] = {e.path: e for e in REGISTRY}
 _BY_PATH["role"] = ROLE_ENTRY
 _PRIORITY: dict[str, int] = {e.path: i for i, e in enumerate(REGISTRY)}
@@ -521,6 +529,9 @@ def _gate_open(f: FactSheet, e: Entry) -> bool:
         return False
     if e.after_any and not any(_truthy(f.get_path(p)) for p in e.after_any):
         return False
+    for path, values in e.when_values.items():
+        if f.get_path(path) not in values:
+            return False
     return True
 
 

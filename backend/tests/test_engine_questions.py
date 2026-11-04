@@ -54,10 +54,18 @@ def test_asked_paths_are_skipped():
 
 
 def test_derogation_questions_for_annex_iii():
+    # decision_impact gates the Art. 6(3) cluster: it is asked first, alone
     f = sheet(annex_iii_area="4a_recruitment_selection", decision_impact=None)
     ps = paths(next_questions(f))
-    assert "art63.profiling_of_natural_persons" in ps
     assert "decision_impact" in ps
+    assert not any(p.startswith("art63.") for p in ps)
+    # once the output is said not to drive decisions, the derogation conditions become askable
+    g = f.with_answer("decision_impact", "no_decision_about_persons")
+    ps2 = paths(next_questions(g))
+    assert any(p.startswith("art63.") for p in ps2)
+    # and when the output materially influences decisions, the derogation is moot: nothing to ask
+    h = f.with_answer("decision_impact", "materially_influences")
+    assert not any(p.startswith("art63.") for p in paths(next_questions(h)))
 
 
 def test_annex_i_chain_question_detected_through_completion():

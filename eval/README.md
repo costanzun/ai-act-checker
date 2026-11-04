@@ -131,11 +131,12 @@ reporting results, give per-tier metrics alongside the overall accuracy.
    not primarily criminal investigation.
 5. **Art. 50(2) for internal drafting text.** The judicial drafting assistant (`annex3-8a`)
    expects the 50(2) overlay, because it generates new text.
-6. **Tier for a bare GPAI model** (`gpai-*`) is `minimal_risk` + `gpai`. The facts say the model
-   generates text, and the current engine then applies Art. 50(2) and returns `limited_risk`. The
-   labels keep `minimal_risk`: Art. 50(2) addresses providers of AI *systems* ("including
-   general-purpose AI systems"), and a model offered only via API is not a system (Art. 3(63) vs
-   3(66), recital 97). These are the only engine mismatches.
+6. **Tier for a bare GPAI model** (`gpai-*`) is `minimal_risk` + `gpai`. Art. 50(2) addresses
+   providers of AI *systems* ("including general-purpose AI systems"); a model offered only via
+   API or weights is not a system (Art. 3(63) vs 3(1), recital 97). The cases therefore set
+   `is_ai_system: false` for a bare model, and the engine suppresses the Art. 50 overlays in that
+   case. A provider that also ships an end-user application built on its model is a provider of
+   a GPAI *system* and gets the Art. 50 duties.
 7. **Machinery after the Omnibus.** Regulation (EU) 2023/1230 now sits in Annex I **Section B**
    (point 21), and the old Section A point 1 has been deleted. Under the amended Art. 2(2), only
    Art. 6(1), Art. 60a and Arts 102–112 apply to such products. `edge-cobot-safety-machinery` is

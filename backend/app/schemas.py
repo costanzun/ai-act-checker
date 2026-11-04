@@ -63,6 +63,7 @@ class Metrics(BaseModel):
     cost_usd: float = 0.0
     cached: bool = False
     stripped_citations: int = Field(0, description="Citation tokens produced by the LLM that were not allowed and were removed")
+    unverified_references: int = Field(0, description="Prose mentions of articles that could not be matched to an allowed provision")
 
 
 class RelatedProvision(BaseModel):

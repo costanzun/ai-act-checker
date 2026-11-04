@@ -42,6 +42,8 @@ from app.schemas import (
 log = logging.getLogger("ai_act.pipeline")
 
 CITE_RE = re.compile(r"\[\[([a-z]+:[A-Za-z0-9.\-]+)\]\]")
+# prose mentions such as "Article 6(3)(a)", "Art. 50(2)", "Articolo 5, paragrafo 1" are only converted when they resolve
+PROSE_ART_RE = re.compile(r"\bArt(?:icle|icolo|\.)\s*(\d+[a-z]?)(?:\((\d+[a-z]?)\))?(?:\(([a-z]{1,3})\))?(?![\]\w(])(?!\s*\[\[)")
 MAX_ROUNDS = 2
 MAX_QUESTIONS = 3
 
@@ -74,11 +76,22 @@ NO_EVIDENCE_DEFAULTS: dict[str, dict[str, str]] = {
 }
 
 
+def _default_allowed(facts: FactSheet, path: str) -> bool:
+    """Some flags must stay open (and be asked) when the context makes them decisive."""
+    if path == "safety_component":
+        # Art. 6(1): only safe to assume "not a safety component" when no Annex I product is involved
+        return facts.annex_i_product == "none"
+    if path in ("intimate_content_foreseeable_without_safeguards", "nudify_or_sexual_abuse_material"):
+        # Art. 5(1a): generators of image/video/audio content must be asked, not defaulted
+        return facts.transparency.generates_synthetic_content is not True
+    return True
+
+
 def apply_no_evidence_defaults(facts: FactSheet) -> tuple[FactSheet, list[dict[str, str]]]:
     """Default unknown feature flags to False and return the assumptions made (bilingual)."""
     assumed: list[str] = []
     for path in NO_EVIDENCE_DEFAULTS:
-        if facts.get_path(path) is None:
+        if facts.get_path(path) is None and _default_allowed(facts, path):
             facts = facts.with_answer(path, False)
             assumed.append(path)
     if not assumed:
@@ -194,6 +207,9 @@ class Pipeline:
         return out
 
     def sanitize_citations(self, text: str, allowed: set[str], metrics: Metrics) -> str:
+        """Keep only allowed [[id]] tokens; turn prose "Article 6(3)(a)" mentions into tokens when
+        they resolve to an allowed provision, and count the ones that do not (unverified references)."""
+
         def repl(m: re.Match[str]) -> str:
             pid = m.group(1)
             if pid in allowed:
@@ -202,6 +218,20 @@ class Pipeline:
             return ""
 
         cleaned = CITE_RE.sub(repl, text)
+
+        def prose(m: re.Match[str]) -> str:
+            art, para, point = m.group(1), m.group(2), m.group(3)
+            pid = f"art:{art}" + (f".{para}" if para else "") + (f".{point}" if para and point else "")
+            if pid in allowed:
+                return f"{m.group(0)} [[{pid}]]"
+            if f"art:{art}" in allowed and para:
+                return f"{m.group(0)} [[art:{art}]]"
+            metrics.unverified_references += 1
+            return m.group(0)
+
+        cleaned = PROSE_ART_RE.sub(prose, cleaned)
+        # avoid duplicate tokens like "Article 6(2) [[art:6.2]] [[art:6.2]]"
+        cleaned = re.sub(r"(\[\[[a-z]+:[A-Za-z0-9.\-]+\]\])(\s*\1)+", r"\1", cleaned)
         return re.sub(r"[ \t]{2,}", " ", cleaned).replace(" .", ".").replace(" ,", ",").strip()
 
     def related_provisions(self, facts: FactSheet, lang: str, exclude: set[str]) -> list[RelatedProvision]:

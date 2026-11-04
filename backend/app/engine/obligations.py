@@ -447,19 +447,24 @@ def obligations_for(c: Classification, facts: FactSheet) -> list[Obligation]:
             for s in HR_DEPLOYER:
                 sid = s.id
                 if sid == "hr-d-art26.7":
+                    # Art. 26(7) binds employers; students in an education setting are not workers
                     area = facts.annex_iii_area or ""
-                    if area.startswith("4") or facts.context_workplace_or_education is True:
+                    at_work = facts.sector == "employment_workers_management"
+                    if area.startswith("4") or (at_work and facts.context_workplace_or_education is True):
                         add(s, hr_date)
-                    elif facts.context_workplace_or_education is None:
+                    elif at_work and facts.context_workplace_or_education is None:
                         add(s, hr_date, priority="should")
                 elif sid == "hr-d-art49.3":
-                    if hr_iii and not point2:
-                        if facts.public_body_or_public_service is True:
-                            add(s, hr_date)
-                        elif facts.public_body_or_public_service is None:
-                            add(s, hr_date, priority="should")
+                    # Art. 49(3) binds public authorities, agencies and bodies (and those acting for them),
+                    # not private entities providing public services; the fact sheet does not separate the two,
+                    # so this stays a conditional ("should") item with the condition in the summary.
+                    if hr_iii and not point2 and facts.public_body_or_public_service is not False:
+                        add(s, hr_date, priority="should", summary=B(
+                            "Only if you are a public authority, agency or body (or act on its behalf): register yourself, select the system and register its use in the EU database before use; do not use an unregistered system.",
+                            "Solo se siete un'autorità, agenzia o organismo pubblico (o agite per suo conto): registratevi, selezionate il sistema e registratene l'uso nella banca dati dell'UE prima dell'uso; non usate sistemi non registrati."))
                 elif sid == "hr-d-art26.10":
-                    if point == "annex:III.1.a" and facts.law_enforcement.used_by_or_for_law_enforcement is True:
+                    # post-remote identification only (real-time use is governed by Art. 5(1)(h) and 5(2)-(7))
+                    if point == "annex:III.1.a" and facts.law_enforcement.used_by_or_for_law_enforcement is True and facts.biometric.real_time is not True:
                         add(s, hr_date)
                 elif sid in ("hr-d-art26.11", "hr-d-art86"):
                     if hr_iii and not (sid == "hr-d-art86" and point2) and facts.decision_impact != "no_decision_about_persons":
@@ -489,6 +494,14 @@ def obligations_for(c: Classification, facts: FactSheet) -> list[Obligation]:
         spec = TRANSPARENCY.get(prov)
         if spec:
             add(spec)
+    if "deployer" in roles and "provider" not in roles and "art:50.1" in c.overlays.get("transparency_art50", []):
+        out.append(Spec(
+            "tr-d-art50.1-check", "deployer", "transparency",
+            B("Check the provider's AI-interaction disclosure", "Verificare l'informativa del fornitore sull'interazione con l'IA"),
+            B("The duty to tell people they are interacting with an AI system sits with the provider (Art. 50(1)); as deployer, confirm the disclosure is implemented and not removed in your deployment.",
+              "L'obbligo di informare le persone che interagiscono con un sistema di IA grava sul fornitore (art. 50, par. 1); come deployer, verificate che l'informativa sia implementata e non rimossa nella vostra configurazione."),
+            ["art:50.1"], priority="should",
+        ).build(tl.GENERAL))
 
     # GPAI -------------------------------------------------------------------------
     gp = c.overlays.get("gpai", [])

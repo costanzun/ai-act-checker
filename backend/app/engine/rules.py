@@ -326,7 +326,7 @@ SCOPE_RULES: list[Rule] = [
         when=All(
             [
                 C("scope_exclusion", ("personal_non_professional",)),
-                C("role", ("deployer",), none_ok=True),
+                C("role", ("deployer",)),
             ]
         ),
         title=B("Excluded: purely personal, non-professional use", "Escluso: uso personale non professionale"),
@@ -1087,7 +1087,7 @@ def evaluate(f: FactSheet) -> Eval:
     else:
         tier = "minimal_risk"
 
-    if tier == "minimal_risk" and f.free_open_source_licence is True:
+    if tier == "minimal_risk" and f.free_open_source_licence is True and f.is_ai_system is not False:
         findings.append(
             Finding(
                 rule_id="art2.12-open-source",

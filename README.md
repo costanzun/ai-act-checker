@@ -26,7 +26,7 @@ Every company that builds or deploys AI in the EU has to know which tier its sys
 |---|---|
 | ![Landing](docs/screenshots/landing.png) | ![Result](docs/screenshots/result.png) |
 
-| Clarifying question (dark mode) | Citation panel with the provision text | Mobile |
+| Clarifying question | Citation panel with the provision text | Mobile |
 |---|---|---|
 | ![Clarify](docs/screenshots/clarify.png) | ![Citation panel](docs/screenshots/citation-panel.png) | ![Mobile](docs/screenshots/result-mobile.png) |
 
@@ -37,9 +37,9 @@ Screenshots are produced by `frontend/scripts/capture_screenshots.mjs` and the G
 The design is neuro-symbolic: the language model reads and writes, but a deterministic rule engine decides.
 
 - **The LLM extracts facts.** A schema-guided prompt turns the description into a `FactSheet` (`backend/app/engine/facts.py`). Unknown stays unknown; the engine tolerates partial sheets.
-- **A rule engine decides the tier.** The rules are authored by hand from the text of the Act, in the order Art. 2 scope, Art. 5, Art. 6 with Annex I and III, the Art. 6(3) derogation, Art. 50, GPAI. Every rule carries its citations, so a citation cannot be invented by the model.
+- **A rule engine decides the tier.** The rules are authored by hand from the text of the Act, in the order Art. 2 scope, Art. 5, Art. 6 with Annex I and III, the Art. 6(3) derogation, Art. 50, GPAI. Every rule carries its citations, so the provisions behind a tier decision come from a hand-checked list, not from the model.
 - **Questions come from sensitivity analysis.** For each unknown fact the engine checks whether the tier, or the set of obligations, changes across its possible values. Only facts that change the outcome are asked, ordered by how much uncertainty they remove.
-- **The narrative is constrained.** A second LLM call writes the explanation, but it may cite only provision IDs from an allow-list (the engine's findings plus retrieved passages). The server strips every other citation token and counts how many it stripped.
+- **The narrative is constrained.** A second LLM call writes the explanation, but it may cite only provision IDs from an allow-list (the engine's findings, the obligations and retrieved passages). The server checks every citation token against that list and strips the rest; prose mentions such as "Article 6(3)" are turned into verified links when they resolve to an allowed provision and counted as unverified references when they do not. The guard checks that a cited provision exists and is allowed; it does not prove that the provision supports the sentence it is attached to.
 - **Retrieval** (BGE-M3 vectors plus full-text search in LanceDB, then a bge-reranker-v2-m3 cross-encoder) supplies related provisions. The binding Regulation and the non-binding guidance are searched separately, because guidance chunks otherwise crowd out the law.
 
 ```mermaid

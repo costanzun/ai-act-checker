@@ -139,7 +139,7 @@ async def run_hybrid(pipeline: Pipeline, case: dict[str, Any], provider: str, mo
         "error": err,
     }
     if assessment is None:
-        row.update({"tier": None, "overlays": [], "correct": False, "under": False, "asked": bool(trace.get("questions"))})
+        row.update({"tier": None, "overlays": [], "correct": False, "under": None, "asked": bool(trace.get("questions"))})
         return row
     a = assessment.model_dump()
     overlays = sorted(k for k, v in a["classification"]["overlays"].items() if v)
@@ -155,6 +155,7 @@ async def run_hybrid(pipeline: Pipeline, case: dict[str, Any], provider: str, mo
             "asked": bool(trace.get("questions")),
             "citations": citation_metrics(assessment_citations(a), case.get("expected_citations") or [], store),
             "stripped_citations": a["metrics"]["stripped_citations"],
+            "unverified_references": a["metrics"].get("unverified_references", 0),
             "llm_calls": a["metrics"]["llm_calls"],
             "input_tokens": a["metrics"]["input_tokens"],
             "output_tokens": a["metrics"]["output_tokens"],
@@ -212,7 +213,7 @@ async def run_baseline(pipeline: Pipeline, case: dict[str, Any], provider_name: 
             }
         )
     except Exception as exc:
-        row.update({"tier": None, "overlays": [], "correct": False, "under": True, "asked": False, "error": str(exc)[:300]})
+        row.update({"tier": None, "overlays": [], "correct": False, "under": None, "asked": False, "error": str(exc)[:300]})
     row["latency_ms"] = int((time.perf_counter() - t0) * 1000)
     return row
 
@@ -220,8 +221,8 @@ async def run_baseline(pipeline: Pipeline, case: dict[str, Any], provider_name: 
 def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
     n = len(rows)
     ok = [r for r in rows if r.get("error") is None and r.get("tier")]
-    acc = sum(1 for r in rows if r.get("correct")) / n if n else 0
-    under = sum(1 for r in rows if r.get("under")) / n if n else 0
+    acc = sum(1 for r in rows if r.get("correct")) / n if n else 0  # errors count as wrong answers
+    under = (sum(1 for r in ok if r.get("under")) / len(ok)) if ok else None  # rate over completed runs
     overlays_acc = (sum(1 for r in ok if r.get("overlays_correct")) / len(ok)) if ok else None
     ask_rows = [r for r in rows if r["should_ask"]]
     noask_rows = [r for r in rows if not r["should_ask"]]
@@ -229,8 +230,8 @@ def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
     silent_when_complete = (sum(1 for r in noask_rows if not r.get("asked")) / len(noask_rows)) if noask_rows else None
     validity = [r["citations"]["validity"] for r in ok if r.get("citations") and r["citations"]["validity"] is not None]
     recall = [r["citations"]["recall"] for r in ok if r.get("citations") and r["citations"]["recall"] is not None]
-    lat = [r["latency_ms"] for r in rows if r.get("latency_ms") is not None]
-    lat_uncached = [r["latency_ms"] for r in rows if r.get("latency_ms") is not None and not r.get("cached")]
+    lat = [r["latency_ms"] for r in ok if r.get("latency_ms") is not None]
+    lat_uncached = [r["latency_ms"] for r in ok if r.get("latency_ms") is not None and not r.get("cached")]
     cost = [r.get("cost_usd") or 0.0 for r in ok]
     toks_in = [r.get("input_tokens") or 0 for r in ok]
     toks_out = [r.get("output_tokens") or 0 for r in ok]
@@ -247,6 +248,7 @@ def summarise(rows: list[dict[str, Any]]) -> dict[str, Any]:
         "citation_validity": statistics.mean(validity) if validity else None,
         "citation_recall": statistics.mean(recall) if recall else None,
         "stripped_citations_total": sum(r.get("stripped_citations") or 0 for r in rows),
+        "unverified_references_total": sum(r.get("unverified_references") or 0 for r in rows),
         "latency_p50_ms": statistics.median(lat) if lat else None,
         "latency_p95_ms": (sorted(lat)[max(0, int(0.95 * len(lat)) - 1)] if lat else None),
         "latency_uncached_p50_ms": statistics.median(lat_uncached) if lat_uncached else None,
@@ -300,7 +302,7 @@ async def run_config(config: str, cases: list[dict[str, Any]], concurrency: int,
     path.write_text(json.dumps(out, ensure_ascii=False, indent=1), encoding="utf-8")
     s = summary
     print(
-        f"--- {config}: tier acc {s['tier_correct']}/{s['n']} ({s['tier_accuracy']:.0%}), under-class {s['under_classification_rate']:.0%}, "
+        f"--- {config}: tier acc {s['tier_correct']}/{s['n']} ({s['tier_accuracy']:.0%}), under-class {fmt_pct(s['under_classification_rate'])}, "
         f"cit. validity {s['citation_validity'] if s['citation_validity'] is None else f'{s['citation_validity']:.0%}'}, "
         f"cit. recall {s['citation_recall'] if s['citation_recall'] is None else f'{s['citation_recall']:.0%}'}, p50 {s['latency_p50_ms']} ms, "
         f"mean cost ${(s['mean_cost_usd'] or 0):.4f}, errors {s['n_errors']}",

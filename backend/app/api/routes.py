@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import logging
+import os
 from typing import Any
 
 from fastapi import APIRouter, HTTPException, Query, Request
@@ -101,6 +102,9 @@ async def law(request: Request, pid: str, lang: str = Query("en")) -> dict[str, 
 @router.post("/api/assess")
 async def assess(request: Request, body: AssessRequest) -> EventSourceResponse:
     p = _pipeline(request)
+    if os.getenv("ALLOW_CLIENT_MODEL", "0") != "1":
+        body.provider = None  # the server decides which model pays for the call
+        body.model = None
 
     async def gen():
         try:
@@ -117,8 +121,8 @@ async def assess(request: Request, body: AssessRequest) -> EventSourceResponse:
                     {
                         "code": "llm_unavailable",
                         "message": {
-                            "en": f"The language model is not available right now ({str(exc)[:160]}). Check the provider settings in .env and try again.",
-                            "it": f"Il modello linguistico non è disponibile al momento ({str(exc)[:160]}). Controlla la configurazione del provider in .env e riprova.",
+                            "en": "The language model is not available right now (rate limit, network or configuration). Please try again in a moment.",
+                            "it": "Il modello linguistico non è disponibile al momento (limite di utilizzo, rete o configurazione). Riprova tra poco.",
                         },
                     },
                     ensure_ascii=False,
