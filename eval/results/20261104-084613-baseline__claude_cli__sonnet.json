@@ -1,0 +1,2523 @@
+{
+ "config": "baseline:claude_cli:sonnet",
+ "mode": "baseline",
+ "provider": "claude_cli",
+ "model": "sonnet",
+ "run_at": "2026-11-04T07:53:53+00:00",
+ "hardware": "Claude Code CLI (subscription)",
+ "summary": {
+  "n": 56,
+  "n_errors": 0,
+  "tier_accuracy": 0.9464285714285714,
+  "tier_correct": 53,
+  "under_classification_rate": 0.017857142857142856,
+  "overlay_accuracy": 0.9285714285714286,
+  "asked_when_should": 0.0,
+  "silent_when_complete": 1.0,
+  "citation_validity": 1.0,
+  "citation_recall": 0.49375,
+  "stripped_citations_total": 0,
+  "latency_p50_ms": 7703.5,
+  "latency_p95_ms": 12861,
+  "latency_uncached_p50_ms": 7703.5,
+  "mean_cost_usd": 0.010627321428571429,
+  "total_cost_usd": 0.59513,
+  "mean_input_tokens": 1657.6964285714287,
+  "mean_output_tokens": 400.05357142857144,
+  "hard_accuracy": 0.8,
+  "wall_time_s": 460.0
+ },
+ "rows": [
+  {
+   "id": "annex3-1a-stadium-watchlist-rbi",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:17"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:17",
+     "annex:III.1.a",
+     "art:6.2",
+     "art:5.1.h"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:26"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1403,
+   "output_tokens": 792,
+   "cost_usd": 0.013528,
+   "cached": false,
+   "reasoning_md": "The system scans faces of people approaching the turnstiles without their active involvement and compares them with a reference database of banned fans. That is identification, not one-to-one verification or authentication, so it is a remote biometric identification system as described in rec:17. Remote biometric identification systems are listed in Annex III point 1(a), which makes this high-risk under art:6.2. The Article 5(1)(h) prohibition covers real-time remote biometric identification in publicly accessible spaces only for law enforcement purposes. A private football club enforcing its own stadium bans is not law enforcement, so the prohibition does not apply on these facts. The club is the deployer and the vendor is the provider. No Article 50 overlay is added, because that article covers emotion recognition and biometric categorisation, not identification. Classification would change to prohibited if police or other authorities used or directed the system for law enforcement, for example if the bans were public-authority measures run through the club.",
+   "error": null,
+   "latency_ms": 23790,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-1b-gym-gait-health-categorisation",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "art:62.1.a",
+    "art:62.1.b"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.1.b",
+     "art:50.3",
+     "art:3.40"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1389,
+   "output_tokens": 903,
+   "cost_usd": 0.014582000000000001,
+   "cached": false,
+   "reasoning_md": "The retrieved provisions (art:62.1.a, art:62.1.b) only cover SME and start-up support measures and do not decide the classification, so this relies on provisions outside the retrieved set. The system uses gait and posture, which are biometric data, to infer health conditions and sort members into groups, which fits biometric categorisation under art:3.40. Annex III point 1(b) lists biometric categorisation by sensitive or protected attributes, and health status is a special-category attribute, so the system is high-risk under art:6.2. It likely falls outside the Article 5(1)(g) prohibition because that covers only specific attributes such as race, political opinions, religion and sexual orientation, not health. Not being marketed as a medical device does not remove it from Annex III. The start-up supplies the system under its own name, so it is the provider. Deployer clubs must also inform exposed members under art:50.3. The main uncertainty is whether health inference counts as a 'sensitive or protected attribute' under Annex III.",
+   "error": null,
+   "latency_ms": 8887,
+   "difficulty": "hard",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-1c-call-centre-customer-emotions",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:18"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:18",
+     "art:3.39",
+     "annex:III.1.c",
+     "art:6.2",
+     "art:50.3",
+     "art:5.1.f"
+    ],
+    "n_cited": 6,
+    "n_valid": 6,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:26"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1426,
+   "output_tokens": 876,
+   "cost_usd": 0.01446,
+   "cached": false,
+   "reasoning_md": "The tool infers emotions such as anger, anxiety and satisfaction from customers' voices, which are biometric data. This makes it an emotion recognition system under art:3.39 and rec:18, which names anger and satisfaction as covered emotions. The ban in art:5.1.f applies only to workplace and education settings, and the tool analyses customers only, not agents, so it is not prohibited. Emotion recognition systems are listed in annex:III.1.c, so the tool is high-risk under art:6.2. The insurer is buying and using the tool, which makes it a deployer. As a deployer it must also inform the customers on calls that the system is operating (art:50.3). If agents' voices were analysed, the art:5.1.f prohibition would be engaged.",
+   "error": null,
+   "latency_ms": 11320,
+   "difficulty": "hard",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-2-water-network-safety",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:55",
+    "art:12.1",
+    "rec:111",
+    "rec:102",
+    "rec:110"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.2",
+     "art:6.2",
+     "rec:55",
+     "art:12.1"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:16",
+     "art:6.1b"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 2189,
+   "output_tokens": 309,
+   "cost_usd": 0.011842,
+   "cached": false,
+   "reasoning_md": "The system predicts pipe-burst and contamination risk and automatically actuates valves and chlorine dosing in municipal water supply, so it functions as a safety component in the management and operation of critical infrastructure (supply of water). Annex III point 2 lists such safety components, and Article 6(2) classifies them as high-risk. Recital 55 explains that failure of such components may endanger life and health at large scale, which matches the described failure scenario of undetected bursts or contamination. The user develops the software, so they are the provider and must meet high-risk requirements such as automatic logging under Article 12(1). No Article 5 prohibition or Article 50 transparency trigger applies, and the system is not a general-purpose AI model.",
+   "error": null,
+   "latency_ms": 8776,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-3a-university-admission",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:56",
+    "art:92.1.a",
+    "annex:III.4.a",
+    "annex:IV.1.b",
+    "rec:53",
+    "annex:XII.1.d",
+    "art:62.1.a",
+    "art:58.1.a",
+    "rec:131",
+    "annex:III.3.a"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.3.a",
+     "rec:56",
+     "rec:53"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.25,
+    "missing": [
+     "art:6.2",
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 2887,
+   "output_tokens": 402,
+   "cost_usd": 0.015564,
+   "cached": false,
+   "reasoning_md": "Il software analizza i dossier dei candidati ai corsi di laurea magistrale e produce una graduatoria usata per decidere l'ammissione: rientra nell'Allegato III, punto 3, lettera a (sistemi di IA per determinare l'accesso, l'ammissione o l'assegnazione di persone agli istituti di istruzione a tutti i livelli). Il considerando 56 conferma che tali sistemi sono ad alto rischio per l'impatto sul percorso formativo e professionale delle persone. La deroga descritta nel considerando 53 non appare applicabile, perché la commissione parte dalla graduatoria e di norma ammette i primi in lista, quindi il sistema influenza materialmente l'esito della decisione. L'università è deployer, mentre il fornitore del software è il provider soggetto agli obblighi principali; l'università ha comunque gli obblighi del deployer (sorveglianza umana, uso conforme, informazione ai candidati).",
+   "error": null,
+   "latency_ms": 5235,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "it"
+  },
+  {
+   "id": "annex3-3b-essay-autograding",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.3.b",
+     "annex:III.3.a"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1144,
+   "output_tokens": 301,
+   "cost_usd": 0.007582,
+   "cached": false,
+   "reasoning_md": "The tool is an AI system that automatically evaluates students' written essays in secondary schools and produces marks that are effectively entered into the register. Annex III point 3(b) lists AI systems intended to evaluate learning outcomes, including when those outcomes are used to steer the learning process, which covers both the grading and the next-exercise recommendations. Under Article 6(2) such systems are high-risk. The Article 6(3) derogation is unlikely to apply because the system performs the evaluation itself and the teacher override is nominal in practice, so it materially influences outcomes for students. The company sells the tool, making it the provider. No provisions were retrieved, so this rests on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 4749,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-3c-language-level-placement",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.3.a",
+    "annex:III.3.c"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.3.c",
+     "annex:III.3.a"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:26"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1263,
+   "output_tokens": 298,
+   "cost_usd": 0.008028,
+   "cached": false,
+   "reasoning_md": "The adaptive placement test is an AI system used to assess the appropriate level of education a learner will access within a vocational training institution, which falls under Annex III point 3(c). Its output also determines which certified courses learners may enrol in, which is closely related to determining access or assignment under Annex III point 3(a). Because it falls within an Annex III use case, it is high-risk under Article 6(2). Staff rarely review the placement, so the system has a significant influence on outcomes and the Article 6(3) derogation is unlikely to apply. The training centre uses the system under its own authority, so it is the deployer. The description does not say whether it also developed the system, so a provider role cannot be ruled out.",
+   "error": null,
+   "latency_ms": 4332,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-3d-online-proctoring",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.3.d"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1140,
+   "output_tokens": 310,
+   "cost_usd": 0.007656,
+   "cached": false,
+   "reasoning_md": "The system is an AI system that monitors and detects prohibited behaviour of students during tests, which falls squarely under Annex III point 3(d) (education and vocational training: monitoring and detecting prohibited behaviour of students during tests). Under Article 6(2), Annex III systems are high-risk unless the Article 6(3) exceptions apply, and those do not fit here because the system profiles behaviour and materially influences exam-board decisions about students. Article 5(1)(f) (emotion recognition in education) is not triggered because the provider states it does not infer emotions. The company develops and supplies the service to universities, so it is the provider; the universities are deployers. No retrieved provisions were supplied, so the classification rests on knowledge of the Act's text.",
+   "error": null,
+   "latency_ms": 4499,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-4a-cv-screener-vendor",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.4.a"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:16",
+     "art:43"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1155,
+   "output_tokens": 329,
+   "cost_usd": 0.007906,
+   "cached": false,
+   "reasoning_md": "TalentSift is an AI system that analyses and filters job applications and evaluates candidates, which falls under Annex III point 4(a) (employment, recruitment and selection of natural persons, in particular placing targeted job advertisements, analysing and filtering applications, and evaluating candidates). Under Article 6(2), systems listed in Annex III are high-risk; the profiling of natural persons means the Article 6(3) exemption cannot apply, and automatic rejection below a threshold materially influences decision outcomes. The company develops and sells the system as SaaS under its own name, making it a provider; employers using it are deployers. No retrieved provisions were supplied, so this relies on my knowledge of the Act, and I have not verified any changes made by Regulation (EU) 2026/1744, for example to application dates.",
+   "error": null,
+   "latency_ms": 4537,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-4b-rider-shift-allocation",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:118",
+    "rec:31",
+    "art:17.1.j",
+    "rec:3",
+    "rec:145",
+    "annex:VI.4",
+    "rec:128",
+    "art:17.1.f",
+    "art:17.2",
+    "art:17.1.m"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.4.b",
+     "art:6.2",
+     "art:17.1.f",
+     "art:17.2"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:26",
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 3548,
+   "output_tokens": 417,
+   "cost_usd": 0.018358,
+   "cached": false,
+   "reasoning_md": "The platform has developed in-house an AI system that allocates shifts and zones to riders, evaluates their performance (speed, acceptance rate, customer ratings) and can lead to deactivation. This falls under Annex III point 4(b): AI systems used to make decisions affecting the terms of work-related relationships, to allocate tasks based on individual behaviour or personal traits, and to monitor and evaluate performance and behaviour. Under Art. 6(2) it is therefore high-risk. The score is based on work-related performance in the same context in which the data is generated, so it is not the prohibited social scoring of Art. 5(1)(c) (cf. rec:31), though this should be checked. Since the company developed the system itself and uses it under its own name, it is both provider and deployer, and must meet the provider obligations (e.g. quality management system under Art. 17) as well as the deployer obligations. Annex III.4.b is cited from general knowledge of the Regulation because it was not in the retrieved provisions, which lowers confidence slightly.",
+   "error": null,
+   "latency_ms": 6917,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "it"
+  },
+  {
+   "id": "annex3-5a-housing-benefit-eligibility",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:58"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.5.a",
+     "art:6.2",
+     "rec:58"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1390,
+   "output_tokens": 338,
+   "cost_usd": 0.008936,
+   "cached": false,
+   "reasoning_md": "The system evaluates eligibility for essential public assistance benefits (housing assistance) and determines whether they are granted, reduced or revoked, which falls under Annex III point 5(a) for AI systems used by or on behalf of public authorities. Article 6(2) classifies such systems as high-risk. The Article 6(3) derogation is unlikely to apply because the system profiles eligibility and materially influences outcomes, with caseworkers usually following its recommendations, so human sign-off is not a meaningful exemption. The city's social services department uses the system under its own authority, making it a deployer; if it is built in-house it could also be a provider, but the description suggests procurement. I could not see the full text of the retrieved provisions, as rec:58 is truncated, so the Annex III citation rests on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 8182,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-5b-bank-milan-credit-scoring",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.5.b",
+     "art:26"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1147,
+   "output_tokens": 331,
+   "cost_usd": 0.007894,
+   "cached": false,
+   "reasoning_md": "The system is an AI model that evaluates the creditworthiness of natural persons (consumer loan applicants) by scoring their likelihood of repayment, which falls under Annex III point 5(b) and is therefore high-risk under Article 6(2). It is not used for detecting financial fraud, which is the only carve-out in that point, so the exclusion does not apply. The bank licenses the model from a fintech and uses it under its own authority, making it a deployer subject to Article 26 obligations, including human oversight, input data monitoring and log retention. Credit officers rely mainly on the score, so the system materially influences decisions and the Article 6(3) derogation is unlikely to apply. No retrieved provisions were supplied, so this classification rests on my knowledge of the Act rather than the retrieved text.",
+   "error": null,
+   "latency_ms": 6928,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-5c-life-insurance-pricing",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.5.c",
+    "rec:58",
+    "rec:110",
+    "rec:114",
+    "annex:XIII.c",
+    "rec:111",
+    "art:51.2",
+    "rec:68",
+    "art:51.1.b",
+    "art:92.1.b"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.5.c",
+     "art:6.2",
+     "rec:58"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:27",
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 3481,
+   "output_tokens": 397,
+   "cost_usd": 0.01789,
+   "cached": false,
+   "reasoning_md": "Il sistema è un modello di machine learning (sistema di IA) usato per valutare il rischio e determinare il prezzo di polizze vita per persone fisiche, il che rientra direttamente nell'Allegato III, punto 5, lettera c). Di conseguenza è un sistema ad alto rischio ai sensi dell'art. 6, par. 2. La compagnia lo ha sviluppato internamente e lo utilizza direttamente per proporre i prezzi ai clienti, quindi riveste sia il ruolo di fornitore sia quello di deployer. Non emergono elementi per l'applicazione di eccezioni dell'art. 6, par. 3, poiché il sistema effettua profilazione di persone fisiche e incide sostanzialmente sull'accesso a un servizio essenziale. Non si tratta di un modello per finalità generali, quindi non si applicano l'overlay gpai né gli obblighi di trasparenza dell'art. 50.",
+   "error": null,
+   "latency_ms": 8378,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "it"
+  },
+  {
+   "id": "annex3-5d-emergency-call-triage",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.5.d",
+    "rec:58"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.5.d",
+     "art:6.2"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1481,
+   "output_tokens": 291,
+   "cost_usd": 0.008830000000000001,
+   "cached": false,
+   "reasoning_md": "The system transcribes and classifies incoming emergency calls and proposes a priority code that determines the order in which ambulances and fire crews are dispatched. This falls squarely within Annex III point 5(d), which covers AI systems used to evaluate and classify emergency calls and to establish priority in dispatching emergency first response services. Under Article 6(2), Annex III systems are high-risk. The operator's ability to override the code does not remove it from scope, and it is unlikely the Article 6(3) derogation applies, since the system materially influences dispatch outcomes and operators rarely change its proposals under time pressure. The user supplies the software, so they are the provider; the emergency centre is the deployer.",
+   "error": null,
+   "latency_ms": 7865,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-6a-dv-victim-risk",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.6.a",
+     "art:26"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1144,
+   "output_tokens": 283,
+   "cost_usd": 0.007402000000000001,
+   "cached": false,
+   "reasoning_md": "The system is an AI tool used by law enforcement to estimate the risk that a domestic-violence victim will be attacked again. This falls under Annex III point 6(a), which covers AI systems intended for law enforcement authorities to assess the risk of a natural person becoming a victim of criminal offences. It is therefore high-risk under Article 6(2). It is not prohibited under Article 5(1)(d), because that applies to predicting offending by a person based on profiling, not to assessing victim risk. The police force buying the tool from a vendor is a deployer, with Article 26 obligations. No retrieved provisions were supplied, so this relies on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 6029,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-6b-police-deception-detection",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.6.b",
+     "annex:III.6.a"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1152,
+   "output_tokens": 325,
+   "cost_usd": 0.007854,
+   "cached": false,
+   "reasoning_md": "No provisions were retrieved, so this relies on my own knowledge of the Act. The system is an AI system that infers a 'deception likelihood' from physiological and facial signals, used by law enforcement during interviews. This matches Annex III point 6 (law enforcement), notably point 6(b) on polygraph-type and similar tools, so it is high-risk under Article 6(2). It is not clearly prohibited under Article 5: the emotion-recognition ban covers only the workplace and education, and the deception score is not a crime-risk prediction based solely on profiling. The police department is the deployer, since it is piloting software it presumably acquired. If it built the system itself, it would also be a provider. Real-case use means the high-risk obligations apply and this is not just testing.",
+   "error": null,
+   "latency_ms": 5836,
+   "difficulty": "hard",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-6c-evidence-reliability",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "art:50.4",
+    "annex:III.6.c"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.6.c",
+     "art:6.2"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.6666666666666666,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1488,
+   "output_tokens": 291,
+   "cost_usd": 0.008858,
+   "cached": false,
+   "reasoning_md": "The system assesses whether seized photos and chat logs have been manipulated and gives each item a reliability score that prosecutors use when building cases. This is an AI system used on behalf of law enforcement authorities to evaluate the reliability of evidence in the investigation or prosecution of criminal offences, which falls squarely within Annex III point 6(c). It is therefore high-risk under Article 6(2). The tool detects manipulation rather than generating deep fakes, so the Article 50(4) disclosure duty does not attach, and the Article 50(4) carve-out for law-enforcement use is not needed. The user develops and supplies the software, so they are the provider, while the prosecutors are deployers.",
+   "error": null,
+   "latency_ms": 8846,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-6d-reoffending-objective-facts",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.6.d"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.6.d",
+     "art:6.2"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.4,
+    "missing": [
+     "art:5.1.d",
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1320,
+   "output_tokens": 256,
+   "cost_usd": 0.007836,
+   "cached": false,
+   "reasoning_md": "The system is used by a police force (a law enforcement authority) to assess the risk of a natural person re-offending, which falls under Annex III point 6(d). Article 5(1)(d) prohibition applies only to risk assessments based solely on profiling or personality traits, and here the tool uses verified objective facts and criminal record, with the officer making the final assessment, so it is not prohibited. Annex III 6(d) covers assessments 'not solely on the basis of profiling', so this use is high-risk. The police force uses the tool and does not appear to have developed it, so it is a deployer.",
+   "error": null,
+   "latency_ms": 9160,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-6e-profiling-fraud-network",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:42"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.6.e",
+     "annex:III.6.d",
+     "art:6.2",
+     "art:5.1.d",
+     "rec:42"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:6.3",
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1393,
+   "output_tokens": 839,
+   "cost_usd": 0.013958000000000002,
+   "cached": false,
+   "reasoning_md": "The system profiles natural persons using bank, phone and company-register data to flag likely members of a VAT-fraud network, and it is built for a law enforcement unit. That fits Annex III point 6(e), profiling in the course of detection or investigation of criminal offences, and arguably point 6(d), so it is high-risk under Article 6(2). The Article 5(1)(d) prohibition, explained in recital 42, covers risk assessments based solely on profiling or personality traits. It should not apply here because the network is already under investigation, the system only supports human assessment, and investigators decide whom to look into. That carve-out holds only if the flags rest on objective, verifiable facts linked to the criminal activity and not on profiling alone. The user is building the platform, so the role is provider. The classification depends on how the system is designed and used, which is why confidence is medium.",
+   "error": null,
+   "latency_ms": 10200,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-7a-border-deception-kiosk",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "unknown",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.7.b",
+     "art:6.2",
+     "art:5.1.f",
+     "art:50.3"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.4,
+    "missing": [
+     "annex:III.7.a",
+     "annex:III.1.c",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1151,
+   "output_tokens": 383,
+   "cost_usd": 0.00843,
+   "cached": false,
+   "reasoning_md": "The kiosk is an AI system that analyses facial micro-expressions and voice to estimate whether a traveller is lying, used by a border authority in migration and border control. Annex III point 7(b) lists AI systems used as polygraphs or similar tools by or on behalf of competent public authorities in migration, asylum and border control management, so it is high-risk under Article 6(2). Article 5(1)(f) prohibits emotion inference only in workplace and education settings, so it does not apply to border control. The system analyses facial and voice data to infer an internal state, which may make it an emotion recognition system, so Article 50(3) deployer transparency duties are likely to attach as an overlay. The agency is described as considering the kiosk, so it appears to be the prospective deployer, but the provider is not identified, so the role is unclear. No provisions were retrieved, so this rests on my own knowledge of the Act.",
+   "error": null,
+   "latency_ms": 5450,
+   "difficulty": "hard",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-7b-traveller-risk-scoring",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.7.b",
+    "rec:60"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.7.b",
+     "rec:60"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.25,
+    "missing": [
+     "art:6.2",
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1492,
+   "output_tokens": 330,
+   "cost_usd": 0.009264,
+   "cached": false,
+   "reasoning_md": "The system is intended to be used by a competent public authority (Member State border police) to assess a security risk and a risk of irregular migration posed by natural persons entering the Member State's territory. This matches Annex III point 7(b) exactly, making it high-risk under Article 6(2). Recital 60 confirms that such border control AI systems are classified as high-risk because of the vulnerability of affected persons and the fundamental rights at stake. The border police is the user of the system, so it acts as deployer, though it could also be a provider if it develops the model in-house. The retrieved provisions do not show any Article 5 prohibition, such as biometric categorisation or prohibited individual crime-risk profiling based solely on profiling, being triggered, since the scoring is based on booking data and travel history and used to select persons for questioning by officers.",
+   "error": null,
+   "latency_ms": 7672,
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-7c-asylum-credibility",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:60",
+    "annex:III.7.c",
+    "rec:33",
+    "rec:127",
+    "annex:III.7.d",
+    "annex:III.7.b",
+    "rec:22",
+    "art:98.1",
+    "art:78.5",
+    "art:66.i"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.7.c",
+     "rec:60",
+     "art:6.2"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 3265,
+   "output_tokens": 379,
+   "cost_usd": 0.016846,
+   "cached": false,
+   "reasoning_md": "Lo strumento è destinato a essere usato da un'autorità pubblica competente (commissione territoriale) per assistere l'esame delle domande di asilo, assegnando un punteggio di credibilità alle dichiarazioni del richiedente. Ciò corrisponde all'Allegato III, punto 7, lettera c, che comprende le valutazioni correlate dell'affidabilità degli elementi probatori. Il sistema è quindi ad alto rischio ai sensi dell'art. 6, paragrafo 2. Il considerando 60 conferma la particolare vulnerabilità delle persone coinvolte e l'importanza di accuratezza, non discriminazione e trasparenza. La commissione agisce come deployer; se lo sviluppasse internamente o lo facesse sviluppare a proprio nome potrebbe essere anche provider, ma la descrizione indica soprattutto l'uso.",
+   "error": null,
+   "latency_ms": 7454,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "it"
+  },
+  {
+   "id": "annex3-7d-border-face-identification",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "annex:III.7.d"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.7.d",
+     "art:6.2"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.4,
+    "missing": [
+     "annex:III.1.a",
+     "art:26",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1216,
+   "output_tokens": 288,
+   "cost_usd": 0.00774,
+   "cached": false,
+   "reasoning_md": "The system is used by a border guard service, a competent public authority, in the context of border control management to identify natural persons through facial matching against national and EU databases. Annex III point 7(d) covers AI systems for detecting, recognising or identifying natural persons in migration, asylum and border control, except verification of travel documents. The user explicitly states this is not travel document verification, so the exception does not apply. The system is therefore high-risk under Article 6(2). The border guard service is the deployer, though the provider role is not clear from the description. Whether the matching is real-time remote biometric identification for law enforcement under Article 5 is not determinable from the provided provisions, so the high-risk classification is the best supported.",
+   "error": null,
+   "latency_ms": 8551,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "annex3-8a-judicial-drafting-assistant",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:61",
+    "annex:III.8.a",
+    "rec:59",
+    "annex:IV.7",
+    "art:75d.3",
+    "annex:IV.2.b",
+    "art:7.2.d",
+    "art:56.8",
+    "rec:48",
+    "rec:53"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": false,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.8.a",
+     "rec:61",
+     "art:7.2.d",
+     "rec:53",
+     "rec:48"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 0.2,
+    "missing": [
+     "art:6.2",
+     "art:26",
+     "art:27",
+     "art:50.2"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 3411,
+   "output_tokens": 295,
+   "cost_usd": 0.01659,
+   "cached": false,
+   "reasoning_md": "The system is to be used by a court to search for case law, reconstruct relevant facts and draft reasoning applying the law to a concrete case. This matches Annex III point 8(a): AI systems intended to assist a judicial authority in researching and interpreting facts and the law and applying the law to a concrete set of facts. The judge's review and signature does not remove the classification, because the system materially influences the substance of the decision by drafting the reasoning. The exemption logic in rec:53 for narrow procedural or preparatory tasks therefore does not fit well. The Italian court is the deployer; the system's provider is not identified, and the classification does not depend on it.",
+   "error": null,
+   "latency_ms": 8609,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "it"
+  },
+  {
+   "id": "annex3-8b-voter-microtargeting",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:62"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:62",
+     "art:6.2",
+     "annex:III.8.b",
+     "art:5.1.a",
+     "art:50.2"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1348,
+   "output_tokens": 809,
+   "cost_usd": 0.013478,
+   "cached": false,
+   "reasoning_md": "The system is intended to influence voting behaviour in a national election, which Annex III point 8.b and Recital 62 classify as high-risk (Art. 6.2). The Recital 62 exception for tools such as campaign logistics does not apply, because voters are directly exposed to the personalised messages the system generates and sends. The consultancy builds the system and uses it for its client, so it is both provider and deployer. Because the system generates synthetic text, Art. 50 marking and disclosure duties attach in addition to the high-risk obligations. The description does not show subliminal, deceptive or exploitative techniques, so Art. 5.1.a is not established. If the profiling or messaging were designed to materially distort voters' decisions through such techniques, or to exploit vulnerabilities, the system could become prohibited.",
+   "error": null,
+   "latency_ms": 9300,
+   "difficulty": "medium",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "edge-admissions-completeness-check",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": true,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "unknown",
+   "correct": false,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.3.a"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "art:6.3",
+     "art:6.3.a"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1097,
+   "output_tokens": 285,
+   "cost_usd": 0.007234000000000001,
+   "cached": false,
+   "reasoning_md": "An AI assistant that reviews each admissions application file and its attachments before a committee meets is used to support decisions on admission to an educational and vocational training institution. Annex III point 3(a) lists AI systems intended to determine access, admission or assignment to such institutions as high-risk under Article 6(2). Even though the committee makes the final decision, an assistant that screens or evaluates applicants materially influences the outcome, so the Article 6(3) derogation is unlikely to apply. No retrieved provisions were supplied, so this rests on my knowledge of the Act. The school is most likely the deployer, but whether it built or bought the system is not stated, so the role is unknown.",
+   "error": null,
+   "latency_ms": 5127,
+   "difficulty": "hard",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-careers-chatbot-screening-unknown",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": true,
+   "retrieved": [],
+   "tier": "limited_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "deployer",
+   "correct": false,
+   "overlays_correct": true,
+   "under": true,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:50.1"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.25,
+    "missing": [
+     "annex:III.4.a",
+     "art:6.3",
+     "art:26"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1099,
+   "output_tokens": 312,
+   "cost_usd": 0.0075120000000000004,
+   "cached": false,
+   "reasoning_md": "A chatbot that interacts directly with job seekers is an AI system that must inform natural persons they are interacting with AI under Art. 50(1), unless obvious from context. As described, it only answers questions about open positions and collects applications, which is not one of the Annex III.4.a uses (placing targeted job ads, analysing/filtering applications, or evaluating candidates), so it is not high-risk on these facts. If the chatbot later screens, ranks or evaluates applicants, it would fall under Annex III point 4 and become high-risk. No prohibited practice is indicated. The company is most likely a deployer, or possibly also a provider if it builds the chatbot itself, but no provisions were retrieved, so this classification rests on general knowledge of the Act.",
+   "error": null,
+   "latency_ms": 7324,
+   "difficulty": "hard",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-categorisation-clothing-colour",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:16",
+    "rec:15"
+   ],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:16",
+     "rec:15"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:5.1.g",
+     "annex:III.1.b"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1654,
+   "output_tokens": 304,
+   "cost_usd": 0.009652,
+   "cached": false,
+   "reasoning_md": "The system uses cameras and computer vision to count shoppers and classify clothing colours and types for trend analytics. It does not process biometric data (no face, body shape or other physical or behavioural features of the person), so it is neither biometric identification nor biometric categorisation under the definitions in recitals 15 and 16. It does not infer emotions, identify individuals or fall within any Article 5 practice or Annex III use case. It does not interact with people or generate synthetic content, so Article 50 transparency duties do not attach. It is an AI system with no specific obligations, so it is minimal risk. The retailer is the deployer; the role could be 'both' if it built the system in-house. Data protection law such as the GDPR may still apply to the camera footage.",
+   "error": null,
+   "latency_ms": 7068,
+   "difficulty": "medium",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-categorisation-race-ethnicity",
+   "expected_tier": "prohibited",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "prohibited",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": false,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.g",
+     "art:3.1"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:3.40"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1144,
+   "output_tokens": 312,
+   "cost_usd": 0.007692,
+   "cached": false,
+   "reasoning_md": "The billboard uses a camera to analyse faces and infer each person's race, which is biometric categorisation of natural persons based on their biometric data to deduce or infer race. Article 5(1)(g) prohibits placing on the market, putting into service or using such systems to infer race (and other listed sensitive attributes). The exception for labelling or filtering lawfully acquired biometric datasets and law enforcement use does not apply to ad targeting. Deleting images after a second does not remove the prohibition, since the prohibition turns on the inference purpose, not on retention. The company sells the billboards, so it acts as provider. No retrieved provisions were supplied, so the citations rely on my knowledge of the Act's text and numbering, which I could not check against the retrieved text.",
+   "error": null,
+   "latency_ms": 9387,
+   "difficulty": "easy",
+   "source": "art5",
+   "language": "en"
+  },
+  {
+   "id": "edge-chatbot-customer-service",
+   "expected_tier": "limited_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "limited_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:50.1",
+     "art:3.1"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:50.5"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1129,
+   "output_tokens": 283,
+   "cost_usd": 0.007342,
+   "cached": false,
+   "reasoning_md": "The chat assistant 'Giulia' is an AI system under Article 3(1) that interacts directly with natural persons (customers) and is designed to type like a human agent. It makes no decisions about customers and does not fall under Article 5 prohibited practices or any Annex III high-risk use case. The only applicable obligation is Article 50(1): the shop must ensure customers are informed they are interacting with an AI system, unless this is obvious from context, which is unlikely given the human-like persona. The shop built the system and deploys it on its own website, so it acts as both provider and deployer. No provisions were retrieved, so this relies on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 5753,
+   "difficulty": "easy",
+   "source": "art50",
+   "language": "en"
+  },
+  {
+   "id": "edge-cobot-safety-machinery",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "art:31.7",
+    "rec:50",
+    "rec:125",
+    "art:36.3",
+    "art:29.2",
+    "annex:XIV.3.b"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.1",
+     "annex:I",
+     "rec:50",
+     "rec:125"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "annex:I.B.21",
+     "art:2.2"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 2370,
+   "output_tokens": 308,
+   "cost_usd": 0.012556,
+   "cached": false,
+   "reasoning_md": "The ML vision module is a safety component of a collaborative robot, which is machinery under Union harmonisation legislation listed in Annex I. Because it is the main protective function, it counts as a safety component of the product. The product requires third-party conformity assessment by a notified body under the Machinery Regulation, which meets the conditions of Article 6(1) and Recital 50, so the AI system is high-risk. The company manufactures the robot and develops the module, so it acts as provider. No Article 50 transparency duty attaches, since this is not a system that interacts with people as a chatbot or generates synthetic content. Article 6(1) and Annex I were not among the retrieved provisions, so I cite them from general knowledge of the Act.",
+   "error": null,
+   "latency_ms": 8348,
+   "difficulty": "hard",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-cv-dedupe-formatting",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.3",
+     "annex:III.4.a"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:6.3.a",
+     "art:6.4"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1146,
+   "output_tokens": 357,
+   "cost_usd": 0.008150000000000001,
+   "cached": false,
+   "reasoning_md": "The system is an AI tool used in recruitment, which touches Annex III point 4(a) (recruitment or selection of natural persons, in particular placing targeted job ads, analysing and filtering applications, evaluating candidates). However, it only performs extraction of CV fields into a template and deduplication, a narrow procedural/preparatory task. It does not score, rank, filter or recommend candidates, and recruiters review every application themselves. Under Article 6(3), it does not pose a significant risk to health, safety or fundamental rights and does not materially influence decision-making, so it is not high-risk, provided it performs no profiling of natural persons. No Article 50 transparency duties attach, so it falls into minimal risk. The provider should document the Article 6(3) assessment (Art. 6(4)) and register it. No retrieved provisions were available, so this rests on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 11259,
+   "difficulty": "medium",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-cv-ranking-personality-profiling",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.4.a",
+     "art:6.3"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1152,
+   "output_tokens": 356,
+   "cost_usd": 0.008164,
+   "cached": false,
+   "reasoning_md": "The system analyses and filters job applications and evaluates candidates by ranking them on predicted job fit, which falls under Annex III point 4(a) (employment, recruitment and selection of natural persons). The claim that it is merely preparatory does not enable an Article 6(3) derogation: the system performs profiling of natural persons (inferring personality traits and ranking), and under Article 6(3) any AI system in Annex III that profiles natural persons is always high-risk. Shortlisting materially influences the recruiter's decision, so the human final call does not remove the classification. The description suggests the user develops the tool ('our tool'), so the role is provider. No retrieved provisions were supplied, so this relies on the Act's text as I know it, and I did not consider whether any Article 5 prohibition applies, since inferring personality traits from CVs and public profiles is not emotion recognition from biometric data.",
+   "error": null,
+   "latency_ms": 12998,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-cv-screener-hr-deployer",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.4.a",
+     "art:26"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.75,
+    "missing": [
+     "art:26.7"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1152,
+   "output_tokens": 339,
+   "cost_usd": 0.007994,
+   "cached": false,
+   "reasoning_md": "TalentSift is an AI system used to analyse, score and rank job applications and to filter out candidates, which falls within Annex III point 4(a) (recruitment and selection, in particular targeted job ads, analysing and filtering applications, and evaluating candidates). Under Article 6(2) such systems are high-risk, and no Article 6(3) exemption is plausible because the tool performs profiling-like scoring and automatic rejection that materially influences outcomes. The user is a company subscribing to a SaaS tool under its own authority, so it is a deployer, with obligations under Article 26 (human oversight, input data relevance, informing workers/candidates, monitoring). The provider (TalentSift vendor) bears the provider obligations. No retrieved provisions were supplied, so this relies on my knowledge of the Act.",
+   "error": null,
+   "latency_ms": 6283,
+   "difficulty": "easy",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-deepfake-marketing-video",
+   "expected_tier": "limited_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "art:5.1.ba",
+    "rec:134",
+    "art:3.60",
+    "rec:17"
+   ],
+   "tier": "limited_risk",
+   "confidence": "high",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:3.60",
+     "rec:134",
+     "art:5.1.ba"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "art:50.2",
+     "art:50.4"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1831,
+   "output_tokens": 298,
+   "cost_usd": 0.0103,
+   "cached": false,
+   "reasoning_md": "The tool generates realistic videos of an identifiable real person that would falsely appear authentic, which meets the deep fake definition in art:3.60. The footballer has given paid consent and the content is promotional, not sexually explicit or intimate, so the prohibition in art:5.1.ba does not apply. The system is not in an Annex III high-risk use case, so only transparency obligations apply. The agency built the tool (provider) and uses it to produce client content (deployer), so it must label the output as artificially generated or manipulated, as rec:134 describes. Consent does not remove the disclosure duty, and the commercial context is not an evidently artistic or satirical work that would soften it.",
+   "error": null,
+   "latency_ms": 7637,
+   "difficulty": "medium",
+   "source": "art50",
+   "language": "en"
+  },
+  {
+   "id": "edge-emotion-employees-wellbeing",
+   "expected_tier": "prohibited",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:18",
+    "rec:44",
+    "art:5.1.e",
+    "rec:57",
+    "rec:4",
+    "art:5.1.f",
+    "annex:III.4.b",
+    "rec:92",
+    "art:50.3",
+    "rec:19"
+   ],
+   "tier": "prohibited",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": false,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.f",
+     "rec:18",
+     "rec:44",
+     "art:50.3",
+     "annex:III.4.b"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:3.39"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 4033,
+   "output_tokens": 348,
+   "cost_usd": 0.019608,
+   "cached": false,
+   "reasoning_md": "The company plans to use cameras and software that infer emotions (stress, sadness, anger) from workers' facial expressions, which are biometric data. This is an emotion recognition system under rec:18, since sadness and anger are listed emotions. Article 5.1.f prohibits the use of AI systems to infer emotions of natural persons in the workplace, except for medical or safety reasons. The stated purposes of wellbeing and team building are neither medical nor safety purposes, so the exception does not apply. rec:44 stresses the power imbalance in employment and the poor scientific reliability of such systems. The company would use the system under its own authority, so it is the deployer. The Article 50.3 transparency duties and the Annex III.4.b high-risk category do not change the outcome, because the prohibition takes precedence.",
+   "error": null,
+   "latency_ms": 9455,
+   "difficulty": "medium",
+   "source": "commission_guidelines",
+   "language": "it"
+  },
+  {
+   "id": "edge-emotion-safety-control-room",
+   "expected_tier": "high_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:55"
+   ],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.f",
+     "annex:III.1.c",
+     "art:6.2",
+     "art:50.3",
+     "rec:55"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1408,
+   "output_tokens": 913,
+   "cost_usd": 0.014758,
+   "cached": false,
+   "reasoning_md": "The system infers emotional states such as panic from the voice, which is biometric data, of control-room operators. That is emotion recognition in the workplace, which Art. 5(1)(f) prohibits except for medical or safety reasons. The stated purpose is to protect plant safety by handing safety-critical controls to a second qualified operator, and the data is not used for performance evaluation, so the safety exception applies and the system is not prohibited. Emotion recognition systems are listed in Annex III point 1(c), so the system is high-risk under Art. 6(2). Recital 55 and the critical-infrastructure category do not clearly apply, because a Seveso chemical plant is not among the listed infrastructure types and the system is not itself a safety component of one. Art. 50(3) separately requires deployers of emotion recognition systems to inform the exposed operators. The plant operator is at least the deployer. It could also be a provider if it builds the system itself, which the description does not settle.",
+   "error": null,
+   "latency_ms": 13285,
+   "difficulty": "medium",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-fraud-detection-loan-applications",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": true,
+   "retrieved": [
+    "rec:133",
+    "annex:III.5.b"
+   ],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.5.b"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:6.2"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1451,
+   "output_tokens": 359,
+   "cost_usd": 0.009389999999999999,
+   "cached": false,
+   "reasoning_md": "The system is an AI model that screens loan applications to detect fraud (stolen, forged and synthetic identities) and flags them for manual investigation. Annex III point 5(b) lists creditworthiness evaluation and credit scoring of natural persons as high-risk, but expressly excludes AI systems used for detecting financial fraud. The described purpose is fraud detection rather than assessing creditworthiness or setting a credit score, so it falls within that exclusion and is not high-risk. No Article 5 prohibited practice applies, and it does not interact with people as a chatbot or generate synthetic content, so Article 50 duties are not triggered. Because a human investigates the flagged cases, it is minimal risk. The role is uncertain: the lender may build the model itself (making it a provider as well), but the description only clearly establishes use. Classification would change if the model's outputs fed into credit scoring or approval decisions.",
+   "error": null,
+   "latency_ms": 12861,
+   "difficulty": "medium",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-gpai-integrator-support-bot",
+   "expected_tier": "limited_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:109",
+    "rec:104",
+    "rec:97"
+   ],
+   "tier": "limited_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:50.1",
+     "rec:97",
+     "rec:109"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "art:50.2",
+     "art:3.68"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1898,
+   "output_tokens": 339,
+   "cost_usd": 0.010978,
+   "cached": false,
+   "reasoning_md": "The company builds an AI system (a chatbot) by integrating a third-party general-purpose AI model via API and adding its own prompts and retrieval. Per recital 97, models are distinct from AI systems, and the company did not train or fine-tune the model, so it is not a GPAI model provider. It is the provider of the AI system placed on the market under its own name. A customer-support chatbot does not fall under Article 5 prohibited practices or the Annex III high-risk use cases based on the description. It interacts directly with natural persons, so Article 50(1) requires that users be informed they are interacting with an AI system unless this is obvious. This makes it limited risk with a transparency overlay. The retrieved provisions do not include Article 50 or Annex III text, so the classification rests partly on general knowledge of the Act.",
+   "error": null,
+   "latency_ms": 6508,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-internal-helpdesk-bot-obviously-ai",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "art:4.1"
+   ],
+   "tier": "minimal_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:4.1"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:50.1",
+     "art:50.2"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1313,
+   "output_tokens": 268,
+   "cost_usd": 0.007928000000000001,
+   "cached": false,
+   "reasoning_md": "The HelpBot uses a language-understanding model to interpret employee questions, so it is likely an AI system under Article 3(1). It is an internal IT support tool that returns pre-written knowledge-base links, so it does not fall under any Article 5 prohibited practice and does not match an Annex I or Annex III high-risk use case. It generates no new synthetic text, and the users are employees who know it is a bot and see a robot icon, so Article 50 transparency duties do not attach. The company built and deployed it internally, so it acts as both provider and deployer. The only applicable obligation is AI literacy under Article 4, which the mandatory training already addresses.",
+   "error": null,
+   "latency_ms": 7071,
+   "difficulty": "hard",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-medical-device-skin-cancer",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "art:48.4",
+    "art:31.10",
+    "art:45.3",
+    "annex:VII.3.2",
+    "art:36.3",
+    "annex:VII.4.7",
+    "art:48.1",
+    "art:48.2"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:48.4",
+     "art:48.2",
+     "annex:VII.4.7"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:6.1",
+     "annex:I.A.11",
+     "art:16"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 2184,
+   "output_tokens": 352,
+   "cost_usd": 0.012251999999999999,
+   "cached": false,
+   "reasoning_md": "The app is an AI system whose intended purpose is to analyse mole photos and indicate likely melanoma, which is a medical device (software) under the MDR. It is CE-marked as class IIa and assessed by a notified body, so it is subject to third-party conformity assessment under MDR. Under Article 6(1) with Annex I (MDR is listed in Section A), an AI system that is a safety component of, or is itself, such a product requiring third-party conformity assessment is high-risk. The company develops and places the app on the market, so it is the provider. The retrieved provisions on CE marking, notified body identification and substantial changes apply to high-risk systems, consistent with this classification, though the retrieved text does not quote Article 6 or Annex I directly. No Article 5 prohibition appears to apply, and no Article 50 or GPAI overlay is indicated.",
+   "error": null,
+   "latency_ms": 7611,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-meeting-emotion-plugin-context-unknown",
+   "expected_tier": "prohibited",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": true,
+   "retrieved": [
+    "rec:18"
+   ],
+   "tier": "prohibited",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:18",
+     "art:3.39",
+     "art:5.1.f",
+     "annex:III.1.c",
+     "art:50.3"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1395,
+   "output_tokens": 708,
+   "cost_usd": 0.012655999999999999,
+   "cached": false,
+   "reasoning_md": "The plugin infers emotions such as mood and engagement from facial expressions and tone of voice, which are biometric data. That makes it an emotion recognition system (rec:18, art:3.39). It is sold for video meetings, which will mostly be workplace or educational settings. Article 5.1.f prohibits inferring emotions in those settings unless it is for medical or safety reasons, and an engagement and mood dashboard is neither. The vendor places the product on the market, so it is the provider. If a customer used it entirely outside workplace and education settings, it would instead be high-risk under Annex III.1.c, with Article 50.3 notification duties for deployers. Because the description does not state the deployment context, confidence is medium.",
+   "error": null,
+   "latency_ms": 8188,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-military-targeting",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "art:2.3",
+    "rec:24",
+    "rec:22"
+   ],
+   "tier": "out_of_scope",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:2.3",
+     "rec:24"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1856,
+   "output_tokens": 279,
+   "cost_usd": 0.01021,
+   "cached": false,
+   "reasoning_md": "The system detects and classifies military vehicles in drone imagery and proposes targets to operators, and it is built exclusively for a Member State's armed forces. Article 2(3) excludes AI systems placed on the market, put into service, or used exclusively for military, defence or national security purposes, regardless of the type of entity carrying them out. Recital 24 confirms that private entities such as defence contractors are covered by this exclusion. Because the system will not be sold for civilian use, the exclusion is not lost through dual use. The user develops and supplies the system, so the role is provider. The exclusion would no longer apply if the system were later used for civilian or other non-excluded purposes.",
+   "error": null,
+   "latency_ms": 9024,
+   "difficulty": "easy",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-nudify-app",
+   "expected_tier": "prohibited",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "art:5.1.ba",
+    "rec:17"
+   ],
+   "tier": "prohibited",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": false,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.ba"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "art:5.1a",
+     "art:113"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1490,
+   "output_tokens": 245,
+   "cost_usd": 0.008406,
+   "cached": false,
+   "reasoning_md": "The app is an AI system that generates realistic nude images of identifiable natural persons from uploaded photos. Article 5(1)(ba) prohibits placing on the market, putting into service or using such systems without the depicted person's freely-given, specific, informed, unambiguous and explicit consent. The operator does not verify consent from the depicted person, and a user's acceptance of the terms of service does not amount to the depicted person's consent. The company is launching the app, so it is the provider placing it on the market. The prohibition applies regardless of other transparency duties, so the system is prohibited.",
+   "error": null,
+   "latency_ms": 6874,
+   "difficulty": "medium",
+   "source": "art5",
+   "language": "en"
+  },
+  {
+   "id": "edge-payroll-rule-based",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [
+    "rec:67",
+    "rec:102"
+   ],
+   "tier": "out_of_scope",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:12"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:3.1",
+     "art:2.1"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1607,
+   "output_tokens": 338,
+   "cost_usd": 0.009804,
+   "cached": false,
+   "reasoning_md": "The payroll software applies fixed, legally and contractually defined formulas and tables configured by staff, with no machine learning or statistical model, and it is fully deterministic. Such rule-based software does not infer from inputs how to generate outputs and therefore does not meet the definition of an AI system in Article 3(1), as clarified by the recitals distinguishing AI systems from simpler traditional software systems based on rules defined solely by natural persons. Because it is not an AI system, the AI Act's risk tiers and overlays do not apply. The accounting firm uses the software under its own authority, so it is at most a deployer-type user, though no AI Act obligations arise. Note that the retrieved provisions (rec:67, rec:102) do not address this question, so the classification rests on the Article 3(1) definition and rec:12 from general knowledge rather than the retrieved text.",
+   "error": null,
+   "latency_ms": 7964,
+   "difficulty": "easy",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-performance-promotion-role-unknown",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": true,
+   "retrieved": [
+    "rec:57",
+    "rec:1",
+    "annex:III.4.b",
+    "rec:67",
+    "rec:12",
+    "rec:20",
+    "art:110.68",
+    "rec:72",
+    "rec:4",
+    "rec:74"
+   ],
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "annex:III.4.b",
+     "rec:57",
+     "art:6.2"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:16",
+     "art:26"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 4454,
+   "output_tokens": 369,
+   "cost_usd": 0.021502,
+   "cached": false,
+   "reasoning_md": "Il sistema di IA valuta le prestazioni dei dipendenti e suggerisce chi promuovere, rientrando nell'uso previsto dall'Allegato III punto 4(b): decisioni sulla promozione e monitoraggio e valutazione delle prestazioni nei rapporti di lavoro. Il considerando 57 conferma che tali sistemi sono ad alto rischio per il loro impatto su carriera e diritti dei lavoratori. Ai sensi dell'art. 6, par. 2, i sistemi dell'Allegato III sono ad alto rischio, e non emergono elementi per un'esenzione dell'art. 6, par. 3, dato che il sistema incide sulle decisioni di promozione. L'utente dichiara di 'usare' il sistema, quindi è presumibilmente deployer; il ruolo di fornitore non è indicato.",
+   "error": null,
+   "latency_ms": 8832,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "it"
+  },
+  {
+   "id": "edge-police-post-rbi",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.1.a",
+     "annex:III.6.c",
+     "annex:III.6.e",
+     "art:5.1.h"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:26.10",
+     "art:27"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1132,
+   "output_tokens": 379,
+   "cost_usd": 0.008314,
+   "cached": false,
+   "reasoning_md": "The system performs post-remote biometric identification: footage from a past crime is searched against a custody-photo database days later, within a specific criminal investigation. Article 5(1)(h) prohibits only real-time remote biometric identification in publicly accessible spaces for law enforcement, so a retrospective use does not fall under that prohibition. Remote biometric identification systems are listed in Annex III point 1(a), and AI used by law enforcement in the investigation or prosecution of criminal offences is covered by Annex III point 6, so the system is high-risk under Article 6(2). The police authority is the deployer, and it must meet the deployer obligations, including the specific authorisation and safeguards for post-remote biometric identification. No retrieved provisions were supplied, so this classification rests on my knowledge of the Act and not on retrieved text, and the citation IDs are unverified.",
+   "error": null,
+   "latency_ms": 7735,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-police-realtime-frs-square",
+   "expected_tier": "prohibited",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "prohibited",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.h"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.3333333333333333,
+    "missing": [
+     "art:5.2",
+     "annex:II"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1143,
+   "output_tokens": 323,
+   "cost_usd": 0.007798,
+   "cached": false,
+   "reasoning_md": "The system performs real-time remote biometric identification of every passer-by in a publicly accessible space (the main square) for law enforcement purposes, which falls under Article 5(1)(h). The exception for targeted searches is limited to specific objectives such as victims of abduction, prevention of specific imminent terrorist threats or serious crime, and locating suspects of serious offences listed in Annex II (punishable by at least four years). Shoplifting, pickpocketing and unpaid fines are minor offences that do not meet that threshold. Indiscriminate scanning against a general watchlist also lacks the necessary prior judicial or independent administrative authorisation and a fundamental rights impact assessment. No provisions were retrieved, so this is based on my knowledge of the Act. The police act as deployer; the role of the vendor is not described.",
+   "error": null,
+   "latency_ms": 11723,
+   "difficulty": "easy",
+   "source": "art5",
+   "language": "en"
+  },
+  {
+   "id": "edge-pre-market-prototype",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "out_of_scope",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "unknown",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [],
+    "n_cited": 0,
+    "n_valid": 0,
+    "validity": null,
+    "recall": 0.0,
+    "missing": [
+     "art:2.8",
+     "annex:III.5.b"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1154,
+   "output_tokens": 303,
+   "cost_usd": 0.0076419999999999995,
+   "cached": false,
+   "reasoning_md": "The system is a credit-scoring model that exists only in the lab, trained and tested on historical anonymised data and synthetic applicants. Under Article 2(8) of the AI Act, research, testing and development activity before an AI system is placed on the market or put into service is excluded from the Regulation (testing in real-world conditions is not covered by that exclusion, but no real-world testing is planned). Because no launch decision has been made and no real customers are scored, there is no placing on the market or putting into service. Credit scoring of natural persons would be high-risk under Annex III point 5(b) if the system were placed on the market or put into service, so the classification would change on launch or real-world pilot. No provisions were retrieved, so this rests on my knowledge of the Act rather than the retrieved text.",
+   "error": null,
+   "latency_ms": 7539,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-predictive-policing-profiling-only",
+   "expected_tier": "prohibited",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "prohibited",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:5.1.d"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "annex:III.6.d"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1147,
+   "output_tokens": 307,
+   "cost_usd": 0.007653999999999999,
+   "cached": false,
+   "reasoning_md": "The system assigns each resident a 'future offender' score based on profiling and personality traits and uses it to direct police attention, with no specific crime or objective, verifiable facts linking the person to criminal activity. This matches the Article 5(1)(d) prohibition on AI systems that assess or predict the risk of a person committing a criminal offence solely on the basis of profiling or assessing personality traits and characteristics. The inputs (age, family background, school results, social media activity, personality indicators) are profiling-based and not tied to objective, verifiable facts directly linked to a criminal activity. The user is pitching the system to a police department, so they act as provider, with the police as prospective deployer. No retrieved provisions were supplied, so this rests on my knowledge of the Act's text.",
+   "error": null,
+   "latency_ms": 6078,
+   "difficulty": "easy",
+   "source": "art5",
+   "language": "en"
+  },
+  {
+   "id": "edge-retail-gender-age-categorisation",
+   "expected_tier": "limited_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "limited_risk",
+   "confidence": "medium",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:3.1",
+     "art:3.40",
+     "art:5.1.g",
+     "annex:III.1.b",
+     "art:50.3"
+    ],
+    "n_cited": 5,
+    "n_valid": 5,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1147,
+   "output_tokens": 1025,
+   "cost_usd": 0.014834,
+   "cached": false,
+   "reasoning_md": "The box is an AI system that assigns shoppers to gender and age categories from facial biometric data, which is biometric categorisation (art:3.40). It is not prohibited under art:5.1.g, because that provision covers only inference of race, political opinions, trade union membership, religious or philosophical beliefs, sex life or sexual orientation, and gender and age are not on that list. Annex III.1.b covers categorisation by sensitive or protected attributes, and I read that as the special-category style attributes, so I treat gender and age bracket for retail analytics as outside it. That reading is contestable because gender and age are protected characteristics under EU non-discrimination law, and no provisions were retrieved to confirm it. The system therefore falls under the transparency duty in art:50.3, which obliges the deploying retailer to inform exposed shoppers. The company sells the product, so it is the provider and should design for that disclosure and supply instructions to deployers.",
+   "error": null,
+   "latency_ms": 12344,
+   "difficulty": "hard",
+   "source": "commission_guidelines",
+   "language": "en"
+  },
+  {
+   "id": "edge-spam-filter",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "retrieved": [],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:3.1",
+     "art:6.2",
+     "art:50.1"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1121,
+   "output_tokens": 333,
+   "cost_usd": 0.00781,
+   "cached": false,
+   "reasoning_md": "A machine-learning spam and phishing filter is an AI system under Art. 3(1), but it does not fall under the Article 5 prohibited practices. It is not a safety component of a product under Annex I and does not match any Annex III use case, so it is not high-risk under Art. 6. Although phishing detection touches on security, it is not a safety component of critical digital infrastructure under Annex III.2 because it only sorts email into a junk folder. It does not interact with users as a chatbot, generate synthetic content, or perform emotion recognition, so Art. 50 transparency duties do not apply. The ISP develops (or at least puts into service) the filter and uses it on its own service, so it acts as both provider and deployer. No retrieved provisions were supplied, so this classification relies on general knowledge of the Act.",
+   "error": null,
+   "latency_ms": 6200,
+   "difficulty": "easy",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-university-research-depression-voice",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": true,
+   "retrieved": [
+    "rec:25",
+    "rec:44"
+   ],
+   "tier": "out_of_scope",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:25",
+     "rec:44"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:2.6",
+     "art:2.8"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1604,
+   "output_tokens": 299,
+   "cost_usd": 0.009402,
+   "cached": false,
+   "reasoning_md": "The system is currently being developed in a university lab for research, and rec:25 states the Regulation does not apply to AI systems developed and put into service solely for scientific research, nor to product-oriented research, testing and development before being placed on the market or put into service. It is therefore out of scope for now. This exclusion ends if the lab spins it out as a product: once placed on the market or put into service, the Regulation applies. A depression-detection system inferring emotional or mental state from voice biometric data would then likely be high-risk as emotion recognition under Annex III, or could be treated as a medical device if intended for diagnosis. It would be prohibited only if used to infer emotions in workplace or education settings (rec:44). The lab is the provider (developer).",
+   "error": null,
+   "latency_ms": 5845,
+   "difficulty": "hard",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "edge-us-credit-api-scope-unknown",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": true,
+   "retrieved": [],
+   "tier": "high_risk",
+   "confidence": "medium",
+   "overlays": [],
+   "role": "provider",
+   "correct": false,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.5.b",
+     "art:2.1"
+    ],
+    "n_cited": 3,
+    "n_valid": 3,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "llm_calls": 1,
+   "input_tokens": 1109,
+   "output_tokens": 286,
+   "cost_usd": 0.007292,
+   "cached": false,
+   "reasoning_md": "The system is an AI model that evaluates the creditworthiness of natural persons by predicting individual default probability, which falls under Annex III point 5(b) (credit scoring, except fraud detection) and is therefore high-risk under Article 6(2). The company develops and supplies the API to lenders, making it a provider. Although it is based in Texas, Article 2(1) applies to providers placing systems on the EU market or where the output is used in the EU; this assumes the API is offered to EU lenders or its outputs are used in the Union. No retrieved provisions were available, so this rests on my knowledge of the Act, and the territorial scope depends on facts not stated.",
+   "error": null,
+   "latency_ms": 5372,
+   "difficulty": "medium",
+   "source": "edge",
+   "language": "en"
+  },
+  {
+   "id": "gpai-model-provider",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [
+    "gpai"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:97"
+   ],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [
+    "gpai"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "rec:97"
+    ],
+    "n_cited": 1,
+    "n_valid": 1,
+    "validity": 1.0,
+    "recall": 0.0,
+    "missing": [
+     "art:53",
+     "art:51.2"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1405,
+   "output_tokens": 332,
+   "cost_usd": 0.008936,
+   "cached": false,
+   "reasoning_md": "The user trains a general-purpose language model able to write, summarise, translate and code, and places it on the market through a paid API. Under rec:97, such a model is a general-purpose AI model, distinct from an AI system, and APIs are a recognised way of placing it on the market. The user is therefore a provider of a GPAI model and the gpai overlay applies. With 3×10^24 FLOPs of training compute, the model is below the 10^25 FLOPs presumption threshold for systemic risk, so only the baseline GPAI obligations apply. No end-user application is offered and no prohibited or Annex III use is described, so the system-level tier is minimal_risk. Downstream companies that build products on the API take on their own obligations as providers or deployers of those systems. The retrieved provisions are limited to rec:97, so confidence is medium.",
+   "error": null,
+   "latency_ms": 7199,
+   "difficulty": "medium",
+   "source": "gpai",
+   "language": "en"
+  },
+  {
+   "id": "gpai-systemic-risk-frontier",
+   "expected_tier": "minimal_risk",
+   "expected_overlays": [
+    "gpai"
+   ],
+   "should_ask": false,
+   "retrieved": [
+    "rec:111",
+    "art:51.2",
+    "annex:XIII.c",
+    "annex:XI.1.2.d"
+   ],
+   "tier": "minimal_risk",
+   "confidence": "medium",
+   "overlays": [
+    "gpai"
+   ],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:51.2",
+     "rec:111",
+     "annex:XIII.c",
+     "annex:XI.1.2.d"
+    ],
+    "n_cited": 4,
+    "n_valid": 4,
+    "validity": 1.0,
+    "recall": 0.25,
+    "missing": [
+     "art:52.1",
+     "art:53",
+     "art:55"
+    ]
+   },
+   "llm_calls": 1,
+   "input_tokens": 1583,
+   "output_tokens": 372,
+   "cost_usd": 0.010048,
+   "cached": false,
+   "reasoning_md": "The user is a US company placing a foundation model on the EU market via API, so it is a provider of a general-purpose AI model and falls within the Act's territorial scope. Training compute of about 5×10^25 FLOPs exceeds the 10^25 FLOP threshold, so the model is presumed to have high-impact capabilities and to be a GPAI model with systemic risk under art:51.2. This triggers the gpai overlay, including the notification, model evaluation, and technical documentation duties (compute details per annex:XI.1.2.d and the criteria in annex:XIII.c). The model is not itself a prohibited or high-risk AI system as described, and no Article 50 transparency role is established from the facts given, so the system-level tier is minimal_risk with the GPAI obligations as an overlay. Downstream integrations by deployers could change the system-level classification.",
+   "error": null,
+   "latency_ms": 9596,
+   "difficulty": "medium",
+   "source": "gpai",
+   "language": "en"
+  }
+ ]
+}
