@@ -22,6 +22,7 @@ EXAMPLES: list[dict] = [
         },
         "tags": ["transparency", "Art. 50"],
         "expected_tier": "limited_risk",
+        "expected_overlays": ['transparency_art50'],
     },
     {
         "id": "emotion-recognition-call-centre",
@@ -72,6 +73,7 @@ EXAMPLES: list[dict] = [
         },
         "tags": ["generative", "Art. 50"],
         "expected_tier": "limited_risk",
+        "expected_overlays": ['transparency_art50'],
     },
     {
         "id": "medical-device-triage",
@@ -92,6 +94,7 @@ EXAMPLES: list[dict] = [
         },
         "tags": ["GPAI", "Chapter V"],
         "expected_tier": "minimal_risk",
+        "expected_overlays": ['gpai'],
     },
     {
         "id": "police-facial-recognition",
@@ -136,6 +139,7 @@ def examples_for(lang: str) -> list[dict]:
             "text": e["description"][lang],
             "tags": e["tags"],
             "expected_tier": e["expected_tier"],
+            "expected_overlays": e.get("expected_overlays", []),
         }
         for e in EXAMPLES
     ]
