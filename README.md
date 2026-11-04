@@ -218,7 +218,8 @@ ai-act-checker/
 - The rule engine encodes one conservative reading of the text. Where the Act is ambiguous, it picks the stricter outcome and says so; the eval notes list the known ambiguities (`eval/README.md`).
 - The Art. 6 classification guidelines are a draft (May 2026) and may change before adoption. Cases that rely on them are flagged.
 - The Italian narrative is only as good as the model behind it; the legal text itself is the official Italian version.
-- Small local models are weaker at fact extraction. Expect more questions and more mistakes with the 3B model than with the 14B or with Claude; the eval quantifies this.
+- Small local models are weaker at fact extraction. Expect more questions and more mistakes with the 3B model than with the 14B or with Claude; the eval quantifies this (the 3B model also fails to produce valid JSON on a few cases).
+- Scope exclusions are only as good as the description. The two cases Claude still gets wrong are a US-only service with no EU link and a research-only prototype: the extractor did not flag the Art. 2 exclusion, and the engine records "assumed in scope" rather than asking. Say explicitly where the system is used and whether it is on the market.
 - No accounts and no persistence: descriptions are not stored (apart from the local LLM cache on your machine).
 - Intended for a sandbox or local demo; it has no authentication or rate limiting.
 
