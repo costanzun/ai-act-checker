@@ -29,3 +29,4 @@ eval/results/**/raw/
 *.log
 logs/
 .claude-cli-cwd/
+docs/screenshots/*.webm
