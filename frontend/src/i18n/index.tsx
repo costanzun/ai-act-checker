@@ -15,6 +15,8 @@ interface Ctx {
   /** Pick the current language from a {en, it} object, falling back to English. */
   l: (text: LText | undefined | null) => string;
   formatDate: (iso: string) => string;
+  /** False until the language from ?lang= / localStorage has been resolved (children effects run first). */
+  ready: boolean;
 }
 
 const LangContext = createContext<Ctx | null>(null);
@@ -25,6 +27,7 @@ function isLang(v: unknown): v is Lang {
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [lang, setLangState] = useState<Lang>("en");
+  const [ready, setReady] = useState(false);
 
   // Resolve initial language: ?lang= beats localStorage beats default.
   useEffect(() => {
@@ -39,6 +42,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
     // eslint-disable-next-line react-hooks/set-state-in-effect
     setLangState(next);
+    setReady(true);
   }, []);
 
   useEffect(() => {
@@ -61,6 +65,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     const dict = DICTS[lang];
     const locale = lang === "it" ? "it-IT" : "en-GB";
     return {
+      ready,
       lang,
       setLang,
       t: (key, vars) => {
@@ -75,7 +80,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         return d.toLocaleDateString(locale, { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" });
       },
     };
-  }, [lang, setLang]);
+  }, [lang, setLang, ready]);
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
 }

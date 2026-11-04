@@ -1,0 +1,440 @@
+{
+ "config": "hybrid:claude_cli:sonnet",
+ "mode": "hybrid",
+ "provider": "claude_cli",
+ "model": "sonnet",
+ "run_at": "2026-11-03T16:42:54+00:00",
+ "hardware": "Claude Code CLI (subscription)",
+ "summary": {
+  "n": 3,
+  "n_errors": 0,
+  "tier_accuracy": 1.0,
+  "tier_correct": 3,
+  "under_classification_rate": 0.0,
+  "overlay_accuracy": 1.0,
+  "asked_when_should": null,
+  "silent_when_complete": 0.6666666666666666,
+  "citation_validity": 1.0,
+  "citation_recall": 0.8333333333333334,
+  "stripped_citations_total": 0,
+  "latency_p50_ms": 25034,
+  "latency_p95_ms": 25034,
+  "latency_uncached_p50_ms": 25034,
+  "mean_cost_usd": 0.035581,
+  "total_cost_usd": 0.106743,
+  "mean_input_tokens": 7971,
+  "mean_output_tokens": 1125,
+  "hard_accuracy": null,
+  "wall_time_s": 38.1
+ },
+ "rows": [
+  {
+   "id": "annex3-4a-cv-screener-vendor",
+   "expected_tier": "high_risk",
+   "expected_overlays": [],
+   "should_ask": false,
+   "latency_ms": 25034,
+   "rounds": 0,
+   "questions": [],
+   "error": null,
+   "tier": "high_risk",
+   "confidence": "high",
+   "overlays": [],
+   "role": "provider",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:6.2",
+     "annex:III.4.a",
+     "annex:III",
+     "rec:57",
+     "art:6.3",
+     "art:3.52",
+     "art:113",
+     "art:4",
+     "art:5",
+     "art:14",
+     "art:9",
+     "art:10",
+     "art:4a",
+     "art:11",
+     "annex:IV",
+     "art:12",
+     "art:13",
+     "art:15",
+     "art:16",
+     "art:17",
+     "art:63",
+     "art:18",
+     "art:19",
+     "art:20",
+     "art:21",
+     "art:22",
+     "art:43",
+     "art:43.2",
+     "annex:VI",
+     "art:47",
+     "annex:V",
+     "art:48",
+     "art:49.1",
+     "art:71",
+     "annex:VIII",
+     "art:72",
+     "art:73",
+     "art:3.49",
+     "art:4.1",
+     "art:3.56",
+     "rec:20"
+    ],
+    "n_cited": 41,
+    "n_valid": 41,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "stripped_citations": 0,
+   "llm_calls": 2,
+   "input_tokens": 10243,
+   "output_tokens": 1511,
+   "cost_usd": 0.056074,
+   "cached": false,
+   "facts": {
+    "system_summary": "TalentSift is a SaaS product that reads CVs, scores applicants against a job description, shows recruiters a ranked shortlist and automatically rejects candidates below a threshold.",
+    "is_ai_system": true,
+    "role": "provider",
+    "in_eu_scope": true,
+    "scope_exclusion": null,
+    "sector": "employment_workers_management",
+    "purpose": "Reads incoming CVs, scores each applicant against the job description, shows recruiters a ranked shortlist, and auto-rejects candidates below a threshold.",
+    "affected_persons": [
+     "job applicants"
+    ],
+    "decision_impact": "determines_outcome",
+    "human_oversight": null,
+    "annex_iii_area": "4a_recruitment_selection",
+    "annex_i_product": null,
+    "safety_component": false,
+    "context_workplace_or_education": true,
+    "social_scoring": false,
+    "nudify_or_sexual_abuse_material": false,
+    "annex_i_third_party_assessment": null,
+    "public_body_or_public_service": null,
+    "free_open_source_licence": null,
+    "financial_fraud_detection": null,
+    "intimate_content_foreseeable_without_safeguards": false,
+    "biometric": {
+     "uses_biometric_data": false,
+     "remote_identification": false,
+     "real_time": null,
+     "publicly_accessible_space": null,
+     "categorisation": false,
+     "infers_sensitive_attributes": null,
+     "emotion_recognition": false,
+     "verification_only": null,
+     "medical_or_safety_purpose": null,
+     "dataset_labelling_or_law_enforcement": null
+    },
+    "manipulation": {
+     "subliminal_or_deceptive": false,
+     "exploits_vulnerabilities": false,
+     "distorts_behaviour_significant_harm": false
+    },
+    "art63": {
+     "narrow_procedural_task": false,
+     "improves_prior_human_activity": false,
+     "detects_patterns_without_replacing_assessment": false,
+     "preparatory_task_only": false,
+     "profiling_of_natural_persons": true
+    },
+    "gpai": {
+     "is_gpai_model": false,
+     "provider_of_model": false,
+     "systemic_risk": null,
+     "integrates_third_party_gpai": false,
+     "substantially_modifies_model": null
+    },
+    "transparency": {
+     "interacts_with_natural_persons": false,
+     "obvious_to_users_it_is_ai": null,
+     "generates_synthetic_content": false,
+     "deepfake": false,
+     "public_interest_text": false,
+     "assistive_editing_only": null,
+     "human_editorial_control": null,
+     "artistic_creative_satirical": null
+    },
+    "law_enforcement": {
+     "used_by_or_for_law_enforcement": false,
+     "predictive_policing_profiling_only": false,
+     "untargeted_facial_scraping": false,
+     "rbi_strictly_necessary_objective": false,
+     "authorised_by_law_for_criminal_offences": false
+    },
+    "free_text_notes": [
+     "Provider is based in Dublin, Ireland and sells to employers across the EU as SaaS.",
+     "Candidates below a threshold are auto-rejected, while recruiters see a ranked shortlist for the remaining candidates; the degree of human review of the auto-rejections is not stated."
+    ]
+   },
+   "reasoning_md": "TalentSift is classified as a high-risk AI system. The decisive reason is its purpose: it analyses and filters job applications and evaluates candidates, which is the recruitment and selection use listed in Annex III [[annex:III.4.a]]. AI systems in that list are considered high-risk [[art:6.2]], and the legislator explains that such systems can have an appreciable impact on applicants' career prospects and livelihoods [[rec:57]]. The high-risk rules for Annex III systems apply from 2 December 2027, so they are not yet in force [[art:113]].\n\nThe Article 6(3) derogation does not help here. An Annex III system escapes high-risk status only if it poses no significant risk to fundamental rights, for example because it performs a narrow procedural task [[art:6.3]]. That route is closed because TalentSift profiles natural persons, and profiling is always high-risk [[art:6.3]][[art:3.52]]. The automatic rejection of candidates below a threshold also means the system determines outcomes rather than merely supporting them. The general provisions, including AI literacy and the prohibited practices, already apply since 2 February 2025 [[art:113]][[art:4]][[art:5]].\n\nThe facts given were sufficient for the classification. One assumption was made: that none of the Article 2 exclusions (military, research-only, personal use, pre-market testing) applies. The extent of human review of auto-rejections is not stated; it does not change the tier, since profiling already excludes the derogation, but it matters for how oversight is designed in practice [[art:14]].",
+   "difficulty": "easy",
+   "source": "annex_iii",
+   "language": "en"
+  },
+  {
+   "id": "edge-chatbot-customer-service",
+   "expected_tier": "limited_risk",
+   "expected_overlays": [
+    "transparency_art50"
+   ],
+   "should_ask": false,
+   "latency_ms": 26145,
+   "rounds": 1,
+   "questions": [
+    "annex_iii_area",
+    "transparency.obvious_to_users_it_is_ai"
+   ],
+   "error": null,
+   "tier": "limited_risk",
+   "confidence": "high",
+   "overlays": [
+    "transparency_art50"
+   ],
+   "role": "both",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": true,
+   "citations": {
+    "cited": [
+     "art:50.1",
+     "art:50.5",
+     "rec:132",
+     "art:50.2",
+     "rec:133",
+     "art:111.4",
+     "art:113",
+     "art:5",
+     "art:4.1",
+     "art:3.56",
+     "rec:20",
+     "art:95",
+     "rec:165"
+    ],
+    "n_cited": 13,
+    "n_valid": 13,
+    "validity": 1.0,
+    "recall": 1.0,
+    "missing": []
+   },
+   "stripped_citations": 0,
+   "llm_calls": 1,
+   "input_tokens": 4825,
+   "output_tokens": 516,
+   "cost_usd": 0.024456,
+   "cached": false,
+   "facts": {
+    "system_summary": "A website chat assistant for an online electronics shop answers customer questions about orders, returns and products in natural language, presenting itself as a human-like agent named 'Giulia'.",
+    "is_ai_system": true,
+    "role": "both",
+    "in_eu_scope": null,
+    "scope_exclusion": null,
+    "sector": "retail_marketing",
+    "purpose": "Answer customers' questions about orders, returns and products in natural language on the shop's website, without taking decisions about customers.",
+    "affected_persons": [
+     "online shop customers"
+    ],
+    "decision_impact": "no_decision_about_persons",
+    "human_oversight": null,
+    "annex_iii_area": "none",
+    "annex_i_product": null,
+    "safety_component": false,
+    "context_workplace_or_education": false,
+    "social_scoring": false,
+    "nudify_or_sexual_abuse_material": false,
+    "annex_i_third_party_assessment": null,
+    "public_body_or_public_service": false,
+    "free_open_source_licence": null,
+    "financial_fraud_detection": null,
+    "intimate_content_foreseeable_without_safeguards": false,
+    "biometric": {
+     "uses_biometric_data": false,
+     "remote_identification": false,
+     "real_time": null,
+     "publicly_accessible_space": null,
+     "categorisation": false,
+     "infers_sensitive_attributes": null,
+     "emotion_recognition": false,
+     "verification_only": null,
+     "medical_or_safety_purpose": null,
+     "dataset_labelling_or_law_enforcement": null
+    },
+    "manipulation": {
+     "subliminal_or_deceptive": false,
+     "exploits_vulnerabilities": false,
+     "distorts_behaviour_significant_harm": false
+    },
+    "art63": {
+     "narrow_procedural_task": null,
+     "improves_prior_human_activity": null,
+     "detects_patterns_without_replacing_assessment": null,
+     "preparatory_task_only": null,
+     "profiling_of_natural_persons": false
+    },
+    "gpai": {
+     "is_gpai_model": false,
+     "provider_of_model": false,
+     "systemic_risk": null,
+     "integrates_third_party_gpai": false,
+     "substantially_modifies_model": null
+    },
+    "transparency": {
+     "interacts_with_natural_persons": true,
+     "obvious_to_users_it_is_ai": false,
+     "generates_synthetic_content": true,
+     "deepfake": false,
+     "public_interest_text": false,
+     "assistive_editing_only": null,
+     "human_editorial_control": null,
+     "artistic_creative_satirical": null
+    },
+    "law_enforcement": {
+     "used_by_or_for_law_enforcement": false,
+     "predictive_policing_profiling_only": false,
+     "untargeted_facial_scraping": false,
+     "rbi_strictly_necessary_objective": null,
+     "authorised_by_law_for_criminal_offences": null
+    },
+    "free_text_notes": [
+     "The assistant types like a human agent named 'Giulia'; it is not stated whether users are told they are interacting with an AI.",
+     "The underlying model (own or third-party) is not stated.",
+     "Geographic location of the shop and customers is not stated."
+    ]
+   },
+   "reasoning_md": "The chat assistant \"Giulia\" is classified as limited risk, with transparency duties under Article 50. The decisive reason is that it interacts directly with customers, who must be told they are dealing with an AI system unless that is obvious to a reasonably well-informed, observant and circumspect person [[art:50.1]]. Because it types like a human agent, this is not obvious from the context, and the information must be given clearly at the latest at the first interaction [[art:50.5]]. The system also produces text, so its outputs must be marked in a machine-readable, detectable way [[art:50.2]]. These transparency duties apply from 2 August 2026 [[art:113]]. If the system was placed on the market before that date, the marking step must be completed by 2 December 2026 [[art:111.4]].\n\nThe classification stays at limited risk because the assistant takes no decisions about customers and falls under no high-risk area. The facts also show no prohibited practice, such as deceptive manipulation, which the Article 5 prohibitions have covered since 2 February 2025 [[art:5]]. The \"Giulia\" persona is exactly the kind of impersonation risk that the transparency rules are meant to address [[rec:132]].\n\nSome points remain open. The classification assumes the shop's system is used in the EU and that no Article 2 exclusion applies. It is not stated whether users are already told they are talking to an AI. Disclosure at the start of the chat would meet the information duty, but a persona alone would not. The underlying model, whether own or third-party, is also unknown. That affects who handles the technical marking, but not the tier.",
+   "difficulty": "easy",
+   "source": "art50",
+   "language": "en"
+  },
+  {
+   "id": "edge-payroll-rule-based",
+   "expected_tier": "out_of_scope",
+   "expected_overlays": [],
+   "should_ask": false,
+   "latency_ms": 13053,
+   "rounds": 0,
+   "questions": [],
+   "error": null,
+   "tier": "out_of_scope",
+   "confidence": "high",
+   "overlays": [],
+   "role": "deployer",
+   "correct": true,
+   "overlays_correct": true,
+   "under": false,
+   "asked": false,
+   "citations": {
+    "cited": [
+     "art:3.1",
+     "rec:12"
+    ],
+    "n_cited": 2,
+    "n_valid": 2,
+    "validity": 1.0,
+    "recall": 0.5,
+    "missing": [
+     "art:2.1"
+    ]
+   },
+   "stripped_citations": 0,
+   "llm_calls": 2,
+   "input_tokens": 8845,
+   "output_tokens": 1348,
+   "cost_usd": 0.026213,
+   "cached": false,
+   "facts": {
+    "system_summary": "Payroll software that calculates salaries, tax withholdings and social contributions using fixed legal formulas and tables configured by staff, with no machine learning or statistical model.",
+    "is_ai_system": false,
+    "role": "deployer",
+    "in_eu_scope": null,
+    "scope_exclusion": null,
+    "sector": "finance_other",
+    "purpose": "Calculate salaries, tax withholdings and social contributions using formulas and tables set by law and collective agreements.",
+    "affected_persons": [
+     "employees of clients"
+    ],
+    "decision_impact": "no_decision_about_persons",
+    "human_oversight": null,
+    "annex_iii_area": null,
+    "annex_i_product": null,
+    "safety_component": false,
+    "context_workplace_or_education": null,
+    "social_scoring": false,
+    "nudify_or_sexual_abuse_material": false,
+    "annex_i_third_party_assessment": null,
+    "public_body_or_public_service": null,
+    "free_open_source_licence": null,
+    "financial_fraud_detection": null,
+    "intimate_content_foreseeable_without_safeguards": false,
+    "biometric": {
+     "uses_biometric_data": false,
+     "remote_identification": false,
+     "real_time": null,
+     "publicly_accessible_space": null,
+     "categorisation": false,
+     "infers_sensitive_attributes": false,
+     "emotion_recognition": false,
+     "verification_only": null,
+     "medical_or_safety_purpose": null,
+     "dataset_labelling_or_law_enforcement": null
+    },
+    "manipulation": {
+     "subliminal_or_deceptive": false,
+     "exploits_vulnerabilities": false,
+     "distorts_behaviour_significant_harm": false
+    },
+    "art63": {
+     "narrow_procedural_task": null,
+     "improves_prior_human_activity": null,
+     "detects_patterns_without_replacing_assessment": null,
+     "preparatory_task_only": null,
+     "profiling_of_natural_persons": null
+    },
+    "gpai": {
+     "is_gpai_model": false,
+     "provider_of_model": false,
+     "systemic_risk": null,
+     "integrates_third_party_gpai": false,
+     "substantially_modifies_model": null
+    },
+    "transparency": {
+     "interacts_with_natural_persons": false,
+     "obvious_to_users_it_is_ai": null,
+     "generates_synthetic_content": false,
+     "deepfake": false,
+     "public_interest_text": false,
+     "assistive_editing_only": null,
+     "human_editorial_control": null,
+     "artistic_creative_satirical": null
+    },
+    "law_enforcement": {
+     "used_by_or_for_law_enforcement": false,
+     "predictive_policing_profiling_only": false,
+     "untargeted_facial_scraping": false,
+     "rbi_strictly_necessary_objective": null,
+     "authorised_by_law_for_criminal_offences": null
+    },
+    "free_text_notes": [
+     "Description states the logic is fixed, deterministic formulas and tables with no learned or inferential component.",
+     "Geography of the accounting firm is not stated."
+    ]
+   },
+   "reasoning_md": "The payroll software falls outside the AI Act, because it is not an \"AI system\". The definition requires a machine-based system that infers, from the input it receives, how to generate outputs such as predictions, recommendations or decisions [[art:3.1]]. The software applies formulas and tables set by law and collective agreements and configured by your staff, and the same inputs always give the same result. It therefore does not infer anything. The definition is meant to separate AI from simpler traditional software and should not cover systems that rely solely on rules defined by natural persons to execute operations automatically [[rec:12]].\n\nBecause the system is not an AI system, the questions that usually come next do not arise: no prohibited-practice, high-risk or transparency tier is reached, and no application date is relevant, since no obligations attach. The rule engine therefore lists no overlays and no dates.\n\nThe facts given were sufficient for this result, with one point worth noting. The firm's location is not stated, but that does not matter here, since the system fails the definition regardless of where it is used. The result rests on the description that the logic is fixed and has no learned or statistical component. It would need to be reassessed if a later version added machine learning, for example to infer tax treatment or classify pay items from past data, or otherwise began to infer outputs rather than apply configured rules [[art:3.1]].",
+   "difficulty": "easy",
+   "source": "commission_guidelines",
+   "language": "en"
+  }
+ ]
+}

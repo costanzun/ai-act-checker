@@ -380,18 +380,39 @@ class Pipeline:
         return None, trace
 
 
+_NULL_STRINGS = {"null", "unknown", "n/a", "not stated", "not specified", "unspecified", ""}
+_LIST_FIELDS = ("affected_persons", "free_text_notes")
+_STR_FIELDS = ("system_summary", "purpose")
+
+
 def _coerce_nulls(data: dict[str, Any]) -> dict[str, Any]:
-    """Small models sometimes write "null"/"unknown" strings; map them to None."""
+    """Make small-model JSON validate: "unknown"-style strings → None, missing lists → [].
+
+    Note: the string "none" is NOT mapped to None, because it is a legitimate value of
+    scope_exclusion / annex_iii_area / annex_i_product.
+    """
+
     def fix(v: Any) -> Any:
         if isinstance(v, dict):
             return {k: fix(x) for k, x in v.items()}
         if isinstance(v, list):
-            return [fix(x) for x in v]
-        if isinstance(v, str) and v.strip().lower() in {"null", "none", "unknown", "n/a", "not stated"}:
+            return [fix(x) for x in v if x is not None]
+        if isinstance(v, str) and v.strip().lower() in _NULL_STRINGS:
             return None
         return v
 
-    return fix(data)
+    out = fix(data)
+    if isinstance(out, dict):
+        for k in _LIST_FIELDS:
+            v = out.get(k)
+            out[k] = [] if v is None else ([v] if isinstance(v, str) else v)
+        for k in _STR_FIELDS:
+            if out.get(k) is None:
+                out[k] = ""
+        for k in ("biometric", "manipulation", "art63", "gpai", "transparency", "law_enforcement"):
+            if out.get(k) is None:
+                out[k] = {}
+    return out
 
 
 def _fallback_narrative(c: Classification, lang: str) -> str:

@@ -15,8 +15,11 @@ async function untilResult(page: Page) {
     const n = await sets.count();
     for (let k = 0; k < n; k++) {
       const fs = sets.nth(k);
-      const radio = fs.getByRole("radio").first();
-      if (await radio.count()) await radio.click();
+      const radios = fs.getByRole("radio");
+      const rc = await radios.count();
+      // boolean (Yes/No/Not sure): answer "No" so exemptions do not apply; otherwise first option
+      if (rc === 3) await radios.nth(1).click();
+      else if (rc) await radios.first().click();
       else await fs.getByRole("textbox").fill("n/a");
     }
     await page.getByTestId("clarify-continue").click();
@@ -26,7 +29,7 @@ async function untilResult(page: Page) {
 test("landing loads examples from the API", async ({ page }) => {
   await page.goto("/");
   await expect(page.getByTestId("example-link")).toHaveCount(12, { timeout: 15_000 });
-  await expect(page.getByText("CV screening for an HR department")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "CV screening for an HR department" })).toBeVisible();
 });
 
 test("CV example: stages, streaming, high risk, citations, exports", async ({ page }) => {

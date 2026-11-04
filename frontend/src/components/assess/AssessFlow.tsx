@@ -31,7 +31,7 @@ const EMPTY: Session = { description: "", sessionId: null, facts: null, answers:
 const saveKey = (id: string) => `aiact.assessment.${id}`;
 
 export function AssessFlow() {
-  const { t, lang } = useT();
+  const { t, lang, ready } = useT();
   const params = useSearchParams();
   const [phase, setPhase] = useState<Phase>("describe");
   const [session, setSession] = useState<Session>(EMPTY);
@@ -87,7 +87,7 @@ export function AssessFlow() {
 
   // Boot from URL: ?id= (saved result), ?example= (run an example), ?q= (text from landing)
   useEffect(() => {
-    if (bootedRef.current) return;
+    if (!ready || bootedRef.current) return;
     bootedRef.current = true;
     const id = params.get("id");
     const example = params.get("example");
@@ -117,7 +117,7 @@ export function AssessFlow() {
       if (q.trim().length >= MIN_CHARS) void run({ ...EMPTY, description: q.trim() });
       else setSession({ ...EMPTY, description: q });
     }
-  }, [params, lang, run]);
+  }, [params, lang, run, ready]);
 
   useEffect(() => () => abortRef.current?.abort(), []);
 
