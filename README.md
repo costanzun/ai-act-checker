@@ -176,7 +176,7 @@ Set `LLM_PROVIDER` (and `LLM_MODEL`) in `.env`. Embeddings and reranking always 
 | `claude_cli` (default) | Claude Code CLI logged in; `CLAUDE_CLI_PATH` if not on `PATH`. No API key. | `sonnet`, `opus`, `haiku` | Runs `claude -p` headless on your subscription, with `--tools ""`, `--no-session-persistence`, `--setting-sources ""`, `--strict-mcp-config`, a `--system-prompt`, the prompt on stdin, and `json` or `stream-json` output. |
 | `nvidia` | `NVIDIA_API_KEY` (free catalogue at build.nvidia.com); `NVIDIA_BASE_URL` | `nvidia/llama-3.3-nemotron-super-49b-v1`, `meta/llama-3.1-70b-instruct` | OpenAI-compatible endpoint. |
 | `local_mlx` | Apple Silicon; weights via `backend/.venv/bin/python scripts/download_models.py --llm-only` | `mlx-community/Qwen2.5-14B-Instruct-4bit` (`MLX_MODEL`), `mlx-community/Qwen2.5-3B-Instruct-4bit` (`MLX_SMALL_MODEL`) | In-process via mlx-lm; no network, no key. |
-| `anthropic_api` | `ANTHROPIC_API_KEY` | TODO(coordinator): confirm the default model ID to document | Per-token billing. |
+| `anthropic_api` | `ANTHROPIC_API_KEY` | `claude-sonnet-5-5` (default), `claude-opus-5-5` | Direct Messages API, per-token billing; use this or `nvidia` on a server, where the CLI cannot run. |
 | `openai_compat` | `OPENAI_BASE_URL` (default `http://localhost:8080/v1`), `OPENAI_API_KEY` | whatever the server serves | llama-server, vLLM or any OpenAI-compatible server. |
 
 Shared behaviour: responses are cached in SQLite (`LLM_CACHE=1`, `LLM_CACHE_PATH=data/cache/llm.sqlite`), keyed on a hash of provider, model, prompt and parameters, so repeated runs replay instantly. `LLM_MAX_CONCURRENCY` (default 2) caps parallel calls, which matters for the rate-limited CLI. Retryable errors (network, HTTP 408/429/5xx, overloaded) are retried with backoff; the request timeout is `LLM_TIMEOUT_S` (default 180).
@@ -218,4 +218,4 @@ A written, untested plan for Vercel (frontend), a container host for the backend
 
 ## Licence and attribution
 
-Code: MIT (TODO(coordinator): add a `LICENSE` file). Legal text: © European Union, reused under Commission Decision 2011/833/EU; the Commission guidance documents are reused under the same decision. Built by Costantino Zunino.
+Code: MIT (`LICENSE`). Legal text: © European Union, reused under Commission Decision 2011/833/EU; the Commission guidance documents are reused under the same decision. Built by Costantino Zunino.

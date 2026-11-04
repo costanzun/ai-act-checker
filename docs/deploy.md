@@ -21,11 +21,11 @@ vercel env add NEXT_PUBLIC_API_URL production
 vercel deploy --prod
 ```
 
-The assessment endpoint streams over SSE straight from the browser to the backend, so the backend needs HTTPS and a CORS entry for the Vercel domain (below). TODO(coordinator): confirm the frontend calls the backend directly and not through a Next.js route handler.
+The assessment endpoint streams over SSE straight from the browser to the backend, so the backend needs HTTPS and a CORS entry for the Vercel domain (below). The frontend calls the backend directly from the browser (`frontend/src/lib/api.ts` reads `NEXT_PUBLIC_API_URL` and consumes the SSE stream with `fetch`); there is no Next.js route handler in between, so the backend must be reachable from the user's browser.
 
 ## (b) Backend options
 
-The backend needs about 5 GB for the embedding models, the corpus (`data/corpus`), the guidance (`data/guidance`) and the LanceDB index (`data/index`). Memory: plan for 4 GB or more (TODO(coordinator): measure resident memory with BGE-M3 and the reranker loaded). `local_mlx` is not available on Linux hosts.
+The backend needs about 5 GB for the embedding models, the corpus (`data/corpus`), the guidance (`data/guidance`) and the LanceDB index (`data/index`). Memory: on the macOS development machine the backend process shows only about 0.3 GB resident after warm-up, because the BGE-M3 and reranker weights (about 2.3 GB each in fp16) live in unified GPU memory under MPS and are not counted in RSS. On a CPU-only Linux host those weights sit in process memory, so plan for 4 GB or more. `local_mlx` is not available on Linux hosts.
 
 Environment for production:
 
@@ -73,7 +73,7 @@ CMD [".venv/bin/python", "-m", "uvicorn", "app.main:app", "--host", "0.0.0.0", "
 
 Alternative to baking in the models: skip the download step, mount a persistent volume at `/app/data/models` (and `/app/data/index`), and run the two scripts once. This keeps the image small and speeds up deploys, at the cost of a slow first start.
 
-Notes: `uv sync --no-dev` pulls `torch` (large; consider the CPU wheel index to save about 2 GB) and skips `mlx-lm` automatically on Linux (it is darwin-only in `pyproject.toml`). `app/main.py` resolves the project root two levels above `app/` (here `/app`), so `data/corpus` must sit at `/app/data/corpus`, as in the snippet. TODO(coordinator): verify the build once with `docker build`.
+Notes: `uv sync --no-dev` pulls `torch` (large; consider the CPU wheel index to save about 2 GB) and skips `mlx-lm` automatically on Linux (it is darwin-only in `pyproject.toml`). `app/main.py` resolves the project root two levels above `app/` (here `/app`), so `data/corpus` must sit at `/app/data/corpus`, as in the snippet. The Docker build has not been executed in this repository; verify it once with `docker build` before relying on it.
 
 ### Fly.io
 
@@ -120,12 +120,12 @@ create index on provisions using hnsw (embedding vector_cosine_ops);
 create index on provisions using gin (to_tsvector('simple', text));
 ```
 
-Swap point: `backend/app/retrieval/index.py`. The `LanceIndex` class exposes `has`, `count`, `build`, `search_vector` and `search_fts`; a `PgVectorIndex` with the same methods (vector search with `embedding <=> $1`, full-text with `ts_rank`) would replace it, and `search.py` would keep fusing the two result lists (reciprocal rank fusion) and reranking. `scripts/build_index.py` would insert rows instead of writing Lance tables. The chunk metadata (`type`, binding flag, label) needs matching columns. TODO(coordinator): confirm the exact `LanceIndex` signature before writing the adapter.
+Swap point: `backend/app/retrieval/index.py`. The `LanceIndex` class exposes `has`, `count`, `build`, `search_vector` and `search_fts`; a `PgVectorIndex` with the same methods (vector search with `embedding <=> $1`, full-text with `ts_rank`) would replace it, and `search.py` would keep fusing the two result lists (reciprocal rank fusion) and reranking. `scripts/build_index.py` would insert rows instead of writing Lance tables. The chunk metadata (`type`, binding flag, label) needs matching columns. The current signature (`backend/app/retrieval/index.py`): `has(lang)`, `count(lang)`, `build(lang, chunks, embedder, batch_size=16, ...)`, `search_vector(lang, vec, n, types=None, binding=None)`, `search_fts(lang, query, n, types=None, binding=None)`; rows carry `id`, `label`, `text`, `type`, `article`, `annex`, `lang`, `binding`.
 
 ## (d) Cost notes
 
 - Vercel Hobby covers the static-ish frontend. Check the current terms before using it for anything commercial.
-- Backend: a 4 GB shared VM on Fly.io or Railway, or a Hetzner CX32, is roughly in the range of 10 to 30 EUR per month; check current price lists. TODO(coordinator): fill in the actual figures at deploy time.
+- Backend: a 4 GB shared VM on Fly.io or Railway, or a Hetzner CX32, is roughly in the range of 10 to 30 EUR per month; check current price lists. Check the providers' current price lists at deploy time.
 - LLM: `nvidia` free catalogue is rate-limited and not for production load. `anthropic_api` bills per token; the eval report gives tokens in and out per assessment, which gives a per-assessment cost for the chosen model.
 - Embeddings run on the backend CPU; query latency is higher than on Apple Silicon (about 370 ms per query with reranking on the development machine). A 2-vCPU host will be slower; cache the LLM responses (`LLM_CACHE=1`) on a persistent volume.
 - No database, authentication or storage costs unless the optional pgvector path is taken.

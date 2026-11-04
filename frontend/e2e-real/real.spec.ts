@@ -1,28 +1,29 @@
 import { expect, test, type Page } from "@playwright/test";
 
-/** Answer any clarify rounds by picking the first option, until the result is shown. */
+/** Answer clarify rounds cheaply and deterministically: boolean -> "No", other -> "I don't know". */
 async function untilResult(page: Page) {
   for (let i = 0; i < 3; i++) {
-    const winner = await Promise.race([
-      page.getByTestId("result-view").waitFor({ timeout: 150_000 }).then(() => "result" as const),
-      page.getByTestId("question-form").waitFor({ timeout: 150_000 }).then(() => "questions" as const),
-      page.getByTestId("error-card").waitFor({ timeout: 150_000 }).then(() => "error" as const),
-    ]);
+    const handle = await page.waitForFunction(() => {
+      if (document.querySelector('[data-testid="result-view"]')) return "result";
+      if (document.querySelector('[data-testid="question-form"]')) return "questions";
+      if (document.querySelector('[data-testid="error-card"]')) return "error";
+      return null;
+    }, undefined, { timeout: 120_000 });
+    const winner = await handle.jsonValue();
     if (winner === "result") return;
     if (winner === "error") throw new Error("error card: " + (await page.getByTestId("error-card").innerText()));
-    const form = page.getByTestId("question-form");
-    const sets = form.locator("fieldset");
+    const sets = page.getByTestId("question-form").locator("fieldset");
     const n = await sets.count();
     for (let k = 0; k < n; k++) {
       const fs = sets.nth(k);
       const radios = fs.getByRole("radio");
       const rc = await radios.count();
-      // boolean (Yes/No/Not sure): answer "No" so exemptions do not apply; otherwise first option
       if (rc === 3) await radios.nth(1).click();
-      else if (rc) await radios.first().click();
+      else if (rc) await fs.getByRole("button", { name: "I don't know" }).click();
       else await fs.getByRole("textbox").fill("n/a");
     }
     await page.getByTestId("clarify-continue").click();
+    await page.getByTestId("question-form").waitFor({ state: "detached" });
   }
 }
 
