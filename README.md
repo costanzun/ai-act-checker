@@ -20,13 +20,17 @@ Every company that builds or deploys AI in the EU has to know which tier its sys
 
 ## Demo
 
-![Landing](docs/screenshots/landing.png)
-![Result](docs/screenshots/result.png)
-![Citation panel](docs/screenshots/citation-panel.png)
+![Demo: describe, clarify, cited result](docs/screenshots/demo.gif)
 
-Demo GIF: `docs/screenshots/demo.gif`
+| Landing with the examples gallery | Result with the tier, reasoning and citations |
+|---|---|
+| ![Landing](docs/screenshots/landing.png) | ![Result](docs/screenshots/result.png) |
 
-<!-- TODO(coordinator): add the four files under docs/screenshots/ -->
+| Clarifying question (dark mode) | Citation panel with the provision text | Mobile |
+|---|---|---|
+| ![Clarify](docs/screenshots/clarify.png) | ![Citation panel](docs/screenshots/citation-panel.png) | ![Mobile](docs/screenshots/result-mobile.png) |
+
+Screenshots are produced by `frontend/scripts/capture_screenshots.mjs` and the GIF by `frontend/scripts/record_demo.mjs` against the running app.
 
 ## How it decides
 
