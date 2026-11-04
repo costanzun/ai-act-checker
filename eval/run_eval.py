@@ -350,16 +350,16 @@ def write_report() -> None:
     lines.append(f"Generated {datetime.now(timezone.utc).strftime('%Y-%m-%d %H:%M UTC')} by `eval/run_eval.py`. Test set: `eval/cases.yaml` ({n_cases} labelled cases; see `eval/README.md`).\n")
     lines.append("Law baseline: Regulation (EU) 2024/1689 consolidated 2026-07-27 (incl. Regulation (EU) 2026/1744).\n")
     lines.append("## Headline table\n")
-    lines.append("| Configuration | Tier accuracy | Under-classified | Overlays | Asked when needed | Citation validity | Citation recall | p50 latency | Mean cost / assessment | Errors |")
+    lines.append("| Configuration | Tier accuracy | Under-classified | Overlays | Asked when needed | Citation validity | Citation recall | p50 latency (uncached) | Mean cost / assessment | Errors |")
     lines.append("|---|---|---|---|---|---|---|---|---|---|")
     for cfg, d in sorted(latest.items(), key=lambda kv: (kv[1]["mode"] != "hybrid", kv[0])):
         s = d["summary"]
         label = f"**{d['mode']}** · {d['provider']} · `{d['model'].split('/')[-1]}`"
         lines.append(
-            f"| {label} | {s['tier_correct']}/{s['n']} ({fmt_pct(s['tier_accuracy'])}) | {fmt_pct(s['under_classification_rate'])} | {fmt_pct(s['overlay_accuracy'])} | {fmt_pct(s['asked_when_should'])} | {fmt_pct(s['citation_validity'])} | {fmt_pct(s['citation_recall'])} | {fmt_ms(s['latency_p50_ms'])} | {fmt_usd(s['mean_cost_usd'])} | {s['n_errors']} |"
+            f"| {label} | {s['tier_correct']}/{s['n']} ({fmt_pct(s['tier_accuracy'])}) | {fmt_pct(s['under_classification_rate'])} | {fmt_pct(s['overlay_accuracy'])} | {fmt_pct(s['asked_when_should'])} | {fmt_pct(s['citation_validity'])} | {fmt_pct(s['citation_recall'])} | {fmt_ms(s.get('latency_uncached_p50_ms') or s['latency_p50_ms'])} | {fmt_usd(s['mean_cost_usd'])} | {s['n_errors']} |"
         )
     lines.append("")
-    lines.append("Definitions: *Tier accuracy* = exact match of the risk tier. *Under-classified* = predicted a less severe tier than the label (the dangerous error). *Overlays* = Art. 50 / GPAI overlays exactly right (among completed runs). *Asked when needed* = share of `should_ask` cases where at least one clarifying question was asked. *Citation validity* = share of cited IDs that resolve to a real provision. *Citation recall* = share of the labelled key provisions that were cited. Cost = API-equivalent USD reported by the Claude CLI (billed as subscription) or $0 for local models (Apple M4 Max). Latency includes all LLM calls and question rounds; cached calls are included where marked.\n")
+    lines.append("Definitions: *Tier accuracy* = exact match of the risk tier. *Under-classified* = predicted a less severe tier than the label (the dangerous error). *Overlays* = Art. 50 / GPAI overlays exactly right (among completed runs). *Asked when needed* = share of `should_ask` cases where at least one clarifying question was asked. *Citation validity* = share of cited IDs that resolve to a real provision. *Citation recall* = share of the labelled key provisions that were cited. Cost = API-equivalent USD reported by the Claude CLI (billed as subscription) or $0 for local models (Apple M4 Max). Latency is the median over assessments whose LLM calls were not served from the cache; it includes all LLM calls and question rounds.\n")
     # per-configuration detail
     for cfg, d in sorted(latest.items(), key=lambda kv: (kv[1]["mode"] != "hybrid", kv[0])):
         s = d["summary"]

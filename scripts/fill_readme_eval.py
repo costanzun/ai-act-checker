@@ -25,7 +25,7 @@ ROWS = [
     ("baseline:local_mlx:mlx-community/Qwen2.5-14B-Instruct-4bit", "baseline · Qwen2.5-14B"),
 ]
 
-HEADER = "| Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency | Cost / assessment |"
+HEADER = "| Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency (uncached) | Cost / assessment |"
 SEP = "|---|---|---|---|---|---|---|---|"
 
 
@@ -52,7 +52,8 @@ def row(label: str, d: dict | None) -> str:
     s = d["summary"]
     acc = f"{s['tier_correct']}/{s['n']} ({pct(s['tier_accuracy'])})"
     err = f" · {s['n_errors']} errors" if s.get("n_errors") else ""
-    lat = "–" if s["latency_p50_ms"] is None else f"{s['latency_p50_ms']/1000:.0f} s"
+    lat_ms = s.get("latency_uncached_p50_ms") or s.get("latency_p50_ms")
+    lat = "–" if lat_ms is None else f"{lat_ms/1000:.0f} s"
     cost = "$0 (local)" if d["provider"] == "local_mlx" else ("–" if s["mean_cost_usd"] is None else f"${s['mean_cost_usd']:.3f}")
     asked = pct(s["asked_when_should"]) if d["mode"] == "hybrid" else "n/a"
     validity = pct(s["citation_validity"]) + (" (by construction)" if d["mode"] == "hybrid" else "")

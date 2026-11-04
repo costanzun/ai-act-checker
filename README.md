@@ -87,13 +87,13 @@ Two kinds of numbers are reported, and they mean different things:
 
 **Test set:** 56 cases: 25 Annex III (one per point or letter), 4 Art. 5, 8 taken from Commission guidance, 15 edge cases, 2 GPAI, 2 Art. 50. Seven are in Italian and seven require a clarifying question. Labels follow the consolidated text of 27 July 2026; ambiguous cases take the stricter reading and say so in their notes. Details and known ambiguities: `eval/README.md`.
 
-| Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency | Cost / assessment |
+| Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency (uncached) | Cost / assessment |
 |---|---|---|---|---|---|---|---|
-| hybrid · Claude Sonnet (CLI) | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| hybrid · Qwen2.5-14B-Instruct-4bit (local) | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| hybrid · Qwen2.5-3B-Instruct-4bit (local) | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| baseline (pure LLM+RAG) · Claude Sonnet | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
-| baseline · Qwen2.5-14B | TBD | TBD | TBD | TBD | TBD | TBD | TBD |
+| hybrid · Claude Sonnet (CLI) | 54/56 (96%) | 0% | 57% | 100% (by construction) | 84% | 10 s | $0.030 |
+| hybrid · Qwen2.5-14B-Instruct-4bit (local) | not run | – | – | – | – | – | – |
+| hybrid · Qwen2.5-3B-Instruct-4bit (local) | 42/56 (75%) · 2 errors | 14% | 29% | 100% (by construction) | 52% | 17 s | $0 (local) |
+| baseline (pure LLM+RAG) · Claude Sonnet | 53/56 (95%) | 2% | n/a | 100% | 49% | 8 s | $0.011 |
+| baseline · Qwen2.5-14B | not run | – | – | – | – | – | – |
 
 Metric definitions:
 
