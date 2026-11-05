@@ -83,6 +83,7 @@ Two kinds of numbers are reported, and they mean different things:
 
 - **Tier accuracy and under-classification** are measured end to end: the LLM extracts facts from the description, the rule engine decides the tier, and when the engine asks a clarifying question the runner answers it from the labelled ground-truth facts (an "oracle user"). These figures therefore measure fact extraction plus question selection, not unaided accuracy. Runs that fail for infrastructure reasons count as wrong answers and are also reported separately as errors.
 - **Citation validity is 100% for the hybrid pipeline by construction**: engine citations come from a hand-checked list, and narrative citation tokens outside the allow-list are stripped before scoring. It is shown only to contrast with the baseline, where the model writes citations freely and the metric measures how many resolve to a real provision. For the hybrid pipeline the informative figures are *citation recall* against the labelled key provisions and the number of *stripped citations* and *unverified references* (how often the model tried to cite something not allowed). Validity means "the ID exists and was allowed", not "the provision supports the sentence".
+- Provenance of the rows: the Claude rows and the 14B rows were produced with the final engine (the 14B hybrid run was restarted after the machine slept, replaying its cached extraction calls); the 3B row predates the last question-gating fix and was not re-run, so its "asked when needed" figure is pessimistic.
 - A separate deterministic check (`eval/validate_cases.py` plus the engine run on the labelled facts) gives 56/56. That check is circular — the same project authored both the labels and the rules — and is reported only as a consistency test, not as accuracy.
 
 **Test set:** 56 cases: 25 Annex III (one per point or letter), 4 Art. 5, 8 taken from Commission guidance, 15 edge cases, 2 GPAI, 2 Art. 50. Seven are in Italian and seven require a clarifying question. Labels follow the consolidated text of 27 July 2026; ambiguous cases take the stricter reading and say so in their notes. Details and known ambiguities: `eval/README.md`.
@@ -90,10 +91,10 @@ Two kinds of numbers are reported, and they mean different things:
 | Configuration | Tier accuracy | Under-classified | Asked when needed | Citation validity | Citation recall | p50 latency (uncached) | Cost / assessment |
 |---|---|---|---|---|---|---|---|
 | hybrid · Claude Sonnet (CLI) | 54/56 (96%) | 0% | 57% | 100% (by construction) | 84% | 10 s | $0.030 |
-| hybrid · Qwen2.5-14B-Instruct-4bit (local) | not run | – | – | – | – | – | – |
+| hybrid · Qwen2.5-14B-Instruct-4bit (local) | 48/56 (86%) · 1 errors | 7% | 71% | 100% (by construction) | 72% | 61 s | $0 (local) |
 | hybrid · Qwen2.5-3B-Instruct-4bit (local) | 42/56 (75%) · 2 errors | 14% | 29% | 100% (by construction) | 52% | 17 s | $0 (local) |
 | baseline (pure LLM+RAG) · Claude Sonnet | 53/56 (95%) | 2% | n/a | 100% | 49% | 8 s | $0.011 |
-| baseline · Qwen2.5-14B | not run | – | – | – | – | – | – |
+| baseline · Qwen2.5-14B | 39/56 (70%) | 12% | n/a | 96% | 17% | 12 s | $0 (local) |
 
 Metric definitions:
 
@@ -218,7 +219,7 @@ ai-act-checker/
 - The rule engine encodes one conservative reading of the text. Where the Act is ambiguous, it picks the stricter outcome and says so; the eval notes list the known ambiguities (`eval/README.md`).
 - The Art. 6 classification guidelines are a draft (May 2026) and may change before adoption. Cases that rely on them are flagged.
 - The Italian narrative is only as good as the model behind it; the legal text itself is the official Italian version.
-- Small local models are weaker at fact extraction. Expect more questions and more mistakes with the 3B model than with the 14B or with Claude; the eval quantifies this (the 3B model also fails to produce valid JSON on a few cases).
+- Small local models are weaker at fact extraction: 48/56 for Qwen2.5-14B and 42/56 for Qwen2.5-3B against 54/56 for Claude Sonnet, with under-classification rising from 0% to 7% and 14%. The 3B model also fails to produce valid JSON on a few cases. The local models are slow on a laptop (p50 31 s for 14B).
 - Scope exclusions are only as good as the description. The two cases Claude still gets wrong are a US-only service with no EU link and a research-only prototype: the extractor did not flag the Art. 2 exclusion, and the engine records "assumed in scope" rather than asking. Say explicitly where the system is used and whether it is on the market.
 - No accounts and no persistence: descriptions are not stored (apart from the local LLM cache on your machine).
 - Intended for a sandbox or local demo; it has no authentication or rate limiting.
