@@ -15,7 +15,7 @@ One screen, one path:
 1. **Describe** the system in a sentence or two (English or Italian), or click one of the example chips (CV screening, customer-service chatbot, credit scoring, ...). Progress shows live while the model reads it.
 2. **Answer a few chips, only if needed.** When a fact that changes the answer is missing, up to three yes/no (or short multiple-choice) questions appear inline under the text box. "Not sure" is always allowed; the answer then says what it assumed.
 3. **Get the verdict.** The rules decide as soon as the facts are known, so the verdict appears before the model has finished writing its explanation:
-   - the risk tier (prohibited, high risk, transparency obligations, minimal risk, out of scope), with a colour, an icon and a label; your role (provider or deployer); the key deadline that applies and how far away it is;
+   - the risk tier (prohibited, high risk, transparency obligations, minimal risk, out of scope) as a big colour block with its own pixel-art dog and a label; your role (provider or deployer); the key deadline that applies and how far away it is;
    - one sentence of *why*, with the article cited;
    - **what you must do**: the mandatory obligations for your role, each with its article (hover a citation for the text, click it for the full provision in a side panel); recommended and conditional duties one click away;
    - **documents to prepare**, as a tickable checklist;
@@ -34,6 +34,25 @@ One screen, one path:
 | Inline questions | Citation panel | Mobile (light / dark) |
 |---|---|---|
 | ![Inline questions](docs/screenshots/clarify.png) | ![Citation panel](docs/screenshots/citation-panel.png) | ![Mobile](docs/screenshots/result-mobile.png) ![Mobile dark](docs/screenshots/result-mobile-dark.png) |
+
+### The dogs
+
+The app is dressed as a pixel-art dog show: an acid-lime page, flat colour blocks, white cards and black pill buttons, with two original mascots drawn as code (`frontend/src/components/pixel/sprites.ts`, 32x32 character maps rendered as crisp SVG rects). The **schnauzer** (salt-and-pepper, bushy eyebrows, beard) reads and explains; the **doberman** (black and tan, cropped ears) guards the rules. Every state has its own scene:
+
+| State | Block | Dog |
+|---|---|---|
+| Prohibited practice | tomato red | doberman on guard, teeth showing, stop sign |
+| High risk | amber | doberman on alert, side-eye, warning sign |
+| Transparency obligations | electric blue | schnauzer in reading glasses with a "!" bubble |
+| Minimal risk | lime | happy schnauzer, eyes closed, tongue out |
+| Out of scope | black | schnauzer napping, "Zz" |
+| Questions | lilac | full-body schnauzer raising a paw at a giant "?" |
+| Analysing | electric blue | full-body schnauzer sniffing a document, tail wagging |
+| Error | tomato red | worried doberman, eyes shut, a drop of sweat |
+
+Animation is limited to a few frame swaps (blink, tail wag, sniff, floating "Zz") with CSS `steps()`, and stops under `prefers-reduced-motion`. Dark mode swaps the lime page for black. Type: Inter Tight (900 for headlines), Silkscreen for small pixel labels.
+
+![One dog per verdict](docs/screenshots/verdicts.png)
 
 Screenshots are produced by `frontend/scripts/capture_screenshots.mjs` and the GIF by `frontend/scripts/record_demo.mjs` against the running app.
 
