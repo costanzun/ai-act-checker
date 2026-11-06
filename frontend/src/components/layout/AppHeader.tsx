@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { DogScene } from "@/components/pixel/Pixel";
+import { ModelPicker } from "@/components/layout/ModelPicker";
 import { useTheme } from "next-themes";
 import { useT } from "@/i18n";
 import { cn } from "@/lib/utils";
@@ -64,7 +65,8 @@ export function AppHeader() {
           </span>
           <span className="truncate text-[17px] font-black tracking-[-0.04em]">{t("app.name")}</span>
         </Link>
-        <div className="flex items-center gap-1.5">
+        <div className="flex shrink-0 items-center gap-1.5">
+          <ModelPicker />
           <LangToggle />
           <ThemeToggle />
         </div>

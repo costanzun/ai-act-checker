@@ -188,3 +188,50 @@ test("each verdict has its own dog scene; animations stop under reduced motion",
   const anim = await page.locator(".px-twinkle").first().evaluate((el) => getComputedStyle(el).animationName);
   expect(anim).toBe("none");
 });
+
+test("model picker: header pill opens 'Who does the sniffing?' with subscriptions, API keys and local", async ({ page }) => {
+  await page.goto("/");
+  await page.getByTestId("model-pill").click();
+  const dialog = page.getByTestId("model-dialog");
+  await expect(dialog).toContainText("Who does the sniffing?");
+  for (const id of ["claude_cli", "codex_cli", "anthropic_api", "openai_api", "nvidia", "local_mlx"]) {
+    await expect(page.getByTestId(`model-${id}`)).toBeVisible();
+  }
+  await expect(page.getByTestId("model-claude_cli")).toHaveAttribute("data-active", "true");
+  await expect(page.getByTestId("model-claude_cli")).toContainText("Claude Code found");
+
+  // Codex missing: copyable install + login commands, "Use this" disabled
+  await page.getByTestId("model-codex_cli").getByRole("button").first().click();
+  await expect(page.getByTestId("model-codex_cli")).toContainText("Codex CLI is not installed");
+  await expect(page.getByRole("button", { name: "Copy command: codex login" })).toBeVisible();
+  await expect(page.getByTestId("use-codex_cli")).toBeDisabled();
+
+  // API key: password field, model suggestions, Test disabled until a key is saved
+  await page.getByTestId("model-anthropic_api").getByRole("button").first().click();
+  await expect(page.getByTestId("key-anthropic_api")).toHaveAttribute("type", "password");
+  await expect(page.getByTestId("test-anthropic_api")).toBeDisabled();
+  await page.getByRole("button", { name: "claude-opus-5-5" }).click();
+  await expect(page.getByTestId("model-input-anthropic_api")).toHaveValue("claude-opus-5-5");
+
+  // Test the active subscription
+  await page.getByTestId("model-claude_cli").getByRole("button").first().click();
+  await page.getByTestId("test-claude_cli").click();
+  await expect(page.getByTestId("model-test")).toContainText("Connected");
+  await page.getByRole("button", { name: "Close" }).click();
+  await expect(page.getByTestId("model-dialog")).toBeHidden();
+});
+
+test("model picker in Italian, and the pill fits a 375px phone", async ({ page }) => {
+  await page.setViewportSize({ width: 375, height: 812 });
+  await page.goto("/?lang=it");
+  const pill = page.getByTestId("model-pill");
+  await expect(pill).toBeVisible();
+  await expect(page.getByTestId("theme-toggle")).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
+  await pill.click();
+  await expect(page.getByTestId("model-dialog")).toContainText("Chi fiuta la legge?");
+  await expect(page.getByTestId("model-codex_cli")).toContainText("Abbonamento ChatGPT");
+  const box = (await page.getByTestId("model-dialog").boundingBox())!;
+  expect(box.x).toBeGreaterThanOrEqual(0);
+  expect(box.x + box.width).toBeLessThanOrEqual(375);
+});
