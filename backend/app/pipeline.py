@@ -306,6 +306,29 @@ class Pipeline:
         excerpt_ids = [c for f in classification.findings for c in f.citations][:8]
         excerpts = {pid: self.store.full_text(pid, lang) for pid in dict.fromkeys(excerpt_ids) if self.store.exists(pid)}
 
+        # assumptions are shown from classification.assumptions; uncertainties hold only the open facts
+        uncertainties: list[dict[str, str]] = []
+        for path in classification.unresolved:
+            uncertainties.append({"en": f"Not stated: {path.replace('_', ' ').replace('.', ' → ')}", "it": f"Non indicato: {path.replace('_', ' ').replace('.', ' → ')}"})
+        decisive = next((f for f in classification.findings if f.decisive), None)
+        assessment = Assessment(
+            language=lang,
+            model=ModelInfo(provider=provider.name, model=provider.model),
+            description=req.description,
+            facts=facts,
+            classification=classification,
+            summary=decisive.title if decisive else None,
+            reasoning_md="",
+            obligations=obligations,
+            checklist=checklist,
+            related_provisions=related,
+            uncertainties=uncertainties,
+            what_if=engine.what_would_change(facts, classification),
+            metrics=metrics,
+        )
+        # The verdict is final before the narrative is written: send it now so the UI can show it at once.
+        yield ("verdict", {"assessment": assessment.model_dump()})
+
         # 4. narrative (streamed)
         yield self._stage("drafting")
         messages = narrative_messages(
@@ -331,26 +354,8 @@ class Pipeline:
 
         # 5. assemble
         yield self._stage("finalising")
-        # assumptions are shown from classification.assumptions; uncertainties hold only the open facts
-        uncertainties: list[dict[str, str]] = []
-        for path in classification.unresolved:
-            uncertainties.append({"en": f"Not stated: {path.replace('_', ' ').replace('.', ' → ')}", "it": f"Non indicato: {path.replace('_', ' ').replace('.', ' → ')}"})
         metrics.latency_ms = int((time.perf_counter() - t0) * 1000)
-        decisive = next((f for f in classification.findings if f.decisive), None)
-        assessment = Assessment(
-            language=lang,
-            model=ModelInfo(provider=provider.name, model=provider.model),
-            description=req.description,
-            facts=facts,
-            classification=classification,
-            summary=decisive.title if decisive else None,
-            reasoning_md=reasoning,
-            obligations=obligations,
-            checklist=checklist,
-            related_provisions=related,
-            uncertainties=uncertainties,
-            metrics=metrics,
-        )
+        assessment = assessment.model_copy(update={"reasoning_md": reasoning, "metrics": metrics})
         yield ("result", {"assessment": assessment.model_dump()})
         yield ("done", {"status": "complete"})
 

@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 
 from app.engine.facts import FactSheet
 from app.engine.models import ChecklistItem, Classification, Milestone, Obligation, Question
+from app.engine.whatif import WhatIf
 
 Language = Literal["en", "it"]
 
@@ -88,6 +89,7 @@ class Assessment(BaseModel):
     checklist: list[ChecklistItem]
     related_provisions: list[RelatedProvision] = Field(default_factory=list)
     uncertainties: list[dict[str, str]] = Field(default_factory=list)
+    what_if: list[WhatIf] = Field(default_factory=list, description="Answers that could change the tier (engine counterfactuals)")
     disclaimer: dict[str, str] = Field(default_factory=lambda: dict(DISCLAIMER))
     metrics: Metrics = Field(default_factory=Metrics)
 

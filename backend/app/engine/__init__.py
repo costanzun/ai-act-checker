@@ -21,6 +21,7 @@ from .obligations import obligation_citation_ids, obligations_for
 from .questions import next_questions
 from .rules import classify, rule_citation_ids
 from .timeline import timeline, timeline_citation_ids
+from .whatif import WhatIf, what_would_change
 
 
 def all_citation_ids() -> set[str]:
@@ -44,4 +45,6 @@ __all__ = [
     "next_questions",
     "obligations_for",
     "timeline",
+    "WhatIf",
+    "what_would_change",
 ]

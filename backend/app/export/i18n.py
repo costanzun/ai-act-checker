@@ -48,6 +48,7 @@ S: dict[str, dict[str, str]] = {
     "template": {"en": "Template hint", "it": "Indicazione per il modello"},
     "timeline": {"en": "Timeline", "it": "Scadenze"},
     "assumptions": {"en": "Assumptions and uncertainties", "it": "Ipotesi e incertezze"},
+    "what_if": {"en": "What could change the answer", "it": "Cosa potrebbe cambiare il risultato"},
     "assumptions_sub": {"en": "Assumptions", "it": "Ipotesi"},
     "uncertainties_sub": {"en": "Uncertainties", "it": "Incertezze"},
     "unresolved": {"en": "Facts still unknown", "it": "Fatti ancora ignoti"},
@@ -182,3 +183,8 @@ def appendix_text(store, pid: str, lang: str) -> tuple[str, bool]:
         return txt, False
     cut = txt[:APPENDIX_CAP].rsplit(" ", 1)[0].rstrip()
     return cut + " ...", True
+
+
+def what_if_lines(a, lang: str) -> list[str]:
+    """One line per counterfactual: question, the answer that would change it, and the resulting tier."""
+    return [f"{pick(w.question, lang)} → {pick(w.answer, lang)}: {TIER_LABELS[w.tier][lang]}" for w in a.what_if]

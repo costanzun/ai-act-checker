@@ -7,7 +7,7 @@ from datetime import datetime, timezone
 from app.corpus.store import CorpusStore
 from app.export.i18n import (
     CATEGORIES, CONFIDENCE, OBLIGATION_ROLES, ROLES, TIER_LABELS, appendix_text, cited_ids, fmt_date,
-    linkify_md, pick, t,
+    linkify_md, pick, t, what_if_lines,
 )
 from app.schemas import Assessment
 
@@ -86,6 +86,9 @@ def render_markdown(a: Assessment, store: CorpusStore, now: datetime | None = No
             extra = f" ({cites(m.citations)})" if m.citations else ""
             L += [f"- **{fmt_date(m.date, lang)}**: {pick(m.what, lang)}{extra}"]
         L += [""]
+
+    if a.what_if:
+        L += [f"## {t('what_if', lang)}", ""] + [f"- {x}" for x in what_if_lines(a, lang)] + [""]
 
     if c.assumptions or a.uncertainties or c.unresolved:
         L += [f"## {t('assumptions', lang)}", ""]

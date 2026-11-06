@@ -95,3 +95,17 @@ def test_api_pdf(client):
 
 def test_api_invalid(client):
     assert client.post("/api/export/pdf", json={"assessment": {}}).status_code == 422
+
+
+def test_what_if_section_in_markdown_and_pdf():
+    from app.engine import classify, what_would_change
+    from tests.test_engine_rules import sheet
+
+    f = sheet(annex_i_product="medical_devices", safety_component=True, annex_i_third_party_assessment=True)
+    c = classify(f)
+    a = load().model_copy(update={"what_if": what_would_change(f, c)})
+    md = render_markdown(a, STORE)
+    assert "## What could change the answer" in md
+    assert "→" in md.split("## What could change the answer")[1]
+    text = "".join(p.extract_text() for p in PdfReader(io.BytesIO(render_pdf(a, STORE))).pages)
+    assert "What could change the answer" in text

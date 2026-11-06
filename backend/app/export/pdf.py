@@ -12,7 +12,7 @@ from fpdf.enums import XPos, YPos
 from app.corpus.store import CorpusStore
 from app.export.i18n import (
     CATEGORIES, CONFIDENCE, OBLIGATION_ROLES, ROLES, TIER_COLORS, TIER_LABELS, appendix_text, cited_ids,
-    fmt_date, pick, segments, t,
+    fmt_date, pick, segments, t, what_if_lines,
 )
 from app.schemas import Assessment
 
@@ -295,9 +295,10 @@ def render_pdf(a: Assessment, store: CorpusStore, now: datetime | None = None) -
             pdf.set_x(18)
             pdf.ln(1.5)
 
-    if c.assumptions or a.uncertainties or c.unresolved:
+    if c.assumptions or a.uncertainties or c.unresolved or a.what_if:
         pdf.heading(t("assumptions", lang))
-        for title, items in [(t("assumptions_sub", lang), [pick(x, lang) for x in c.assumptions]),
+        for title, items in [(t("what_if", lang), what_if_lines(a, lang)),
+                             (t("assumptions_sub", lang), [pick(x, lang) for x in c.assumptions]),
                              (t("uncertainties_sub", lang), [pick(x, lang) for x in a.uncertainties]),
                              (t("unresolved", lang), list(c.unresolved))]:
             if not items:
