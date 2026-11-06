@@ -90,6 +90,20 @@ export interface Metrics {
   cost_usd: number; cached: boolean;
 }
 
+/** Engine counterfactual: an answer that could move the tier (backend `engine/whatif.py`). */
+export interface WhatIf {
+  fact_path: string;
+  question: LText;
+  why: LText;
+  current: LText;
+  current_value: FactValue;
+  answer: LText;
+  value: string | number | boolean | null;
+  tier: Tier;
+  unresolved: boolean;
+  actionable: boolean;
+}
+
 export interface Assessment {
   id: string;
   created_at: string;
@@ -107,6 +121,8 @@ export interface Assessment {
   checklist: ChecklistItem[];
   related_provisions: RelatedProvision[];
   uncertainties: LText[];
+  /** Answers that could change the tier; may be absent on assessments saved before it existed. */
+  what_if?: WhatIf[];
   disclaimer: LText;
   metrics: Metrics;
 }
@@ -181,6 +197,7 @@ export type SseEvent =
   | { type: "facts"; facts: FactSheet }
   | { type: "questions"; questions: Question[]; facts: FactSheet; round: number; session_id: string; asked?: string[] }
   | { type: "token"; section: string; text: string }
+  | { type: "verdict"; assessment: Assessment }
   | { type: "result"; assessment: Assessment }
   | { type: "done"; status: "complete" | "needs_clarification" }
   | { type: "error"; message: LText; code: "llm_unavailable" | "invalid_input" | "internal" };

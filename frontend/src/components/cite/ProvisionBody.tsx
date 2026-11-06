@@ -31,7 +31,7 @@ export function ProvisionBody({ data, asPage = false }: { data: LawResponse; asP
         {p.amendment && <Badge variant="outline" className="border-eu/40 text-eu">{t(amendKey)}</Badge>}
         {p.type === "guidance" && <Badge variant="secondary">{t("cite.guidance")}</Badge>}
       </div>
-      {p.title && p.type !== "recital" && <p className="font-heading text-lg leading-snug">{p.title}</p>}
+      {p.title && p.type !== "recital" && <p className="text-[17px] font-medium leading-snug">{p.title}</p>}
       <div className="space-y-3 border-l border-border pl-4 text-[0.95rem] leading-relaxed">
         {paragraphs.map((para, i) => <p key={i}>{para}</p>)}
       </div>

@@ -1,3 +1,4 @@
+import { Ban, CircleCheck, CircleMinus, Eye, TriangleAlert, type LucideIcon } from "lucide-react";
 import type { DictKey } from "@/i18n/en";
 import type { Tier } from "@/lib/types";
 
@@ -7,6 +8,15 @@ export const TIER_VAR: Record<Tier, string> = {
   limited_risk: "var(--tier-limited)",
   minimal_risk: "var(--tier-minimal)",
   out_of_scope: "var(--tier-oos)",
+};
+
+/** Every tier carries an icon as well as a colour and a label. */
+export const TIER_ICON: Record<Tier, LucideIcon> = {
+  prohibited: Ban,
+  high_risk: TriangleAlert,
+  limited_risk: Eye,
+  minimal_risk: CircleCheck,
+  out_of_scope: CircleMinus,
 };
 
 export const TIER_KEY: Record<Tier, DictKey> = {

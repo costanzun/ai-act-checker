@@ -1,19 +1,16 @@
 "use client";
 
-import { Suspense } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Menu, Moon, Sun } from "lucide-react";
+import { useEffect, useState } from "react";
+import { Moon, Scale, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
-import { Button } from "@/components/ui/button";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { useT } from "@/i18n";
 import { cn } from "@/lib/utils";
 
 function LangToggle() {
   const { lang, setLang, t } = useT();
   return (
-    <div role="group" aria-label={t("nav.language")} className="inline-flex rounded-md border border-border p-0.5">
+    <div role="group" aria-label={t("nav.language")} className="inline-flex h-9 items-center rounded-xl border border-hairline bg-card/70 p-0.5">
       {(["en", "it"] as const).map((l) => (
         <button
           key={l}
@@ -21,7 +18,7 @@ function LangToggle() {
           aria-pressed={lang === l}
           onClick={() => setLang(l)}
           className={cn(
-            "rounded-[5px] px-2 py-1 text-xs font-medium tracking-wide transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "h-full rounded-[9px] px-2.5 text-[12px] font-medium tracking-wide transition-colors",
             lang === l ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground",
           )}
         >
@@ -35,90 +32,41 @@ function LangToggle() {
 function ThemeToggle() {
   const { t } = useT();
   const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+  // eslint-disable-next-line react-hooks/set-state-in-effect
+  useEffect(() => setMounted(true), []);
+  const dark = mounted && resolvedTheme === "dark";
   return (
-    <Button
-      variant="ghost"
-      size="icon"
+    <button
+      type="button"
       aria-label={t("nav.theme")}
       data-testid="theme-toggle"
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={() => setTheme(dark ? "light" : "dark")}
+      className="inline-flex size-9 items-center justify-center rounded-xl border border-hairline bg-card/70 text-muted-foreground transition-colors hover:text-foreground"
     >
-      <Sun className="hidden size-4 dark:block" aria-hidden />
-      <Moon className="size-4 dark:hidden" aria-hidden />
-    </Button>
-  );
-}
-
-function useLinks() {
-  const { t } = useT();
-  return [
-    { href: "/", label: t("nav.home") },
-    { href: "/about", label: t("nav.about") },
-  ];
-}
-
-function NavLinks() {
-  const path = usePathname();
-  const links = useLinks();
-  return (
-    <ul className="hidden items-center sm:flex">
-      {links.map((l) => {
-        const active = path === l.href;
-        return (
-          <li key={l.href}>
-            <Link
-              href={l.href}
-              aria-current={active ? "page" : undefined}
-              className={cn("rounded px-2 py-1.5 text-sm transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-                active ? "font-medium text-foreground underline decoration-eu decoration-2 underline-offset-8" : "text-muted-foreground")}
-            >
-              {l.label}
-            </Link>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function MobileMenu() {
-  const { t } = useT();
-  const links = useLinks();
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger render={<Button variant="ghost" size="icon" className="sm:hidden" aria-label={t("nav.menu")} data-testid="mobile-menu" />}>
-        <Menu className="size-4" aria-hidden />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        {links.map((l) => (
-          <DropdownMenuItem key={l.href} render={<Link href={l.href} />}>{l.label}</DropdownMenuItem>
-        ))}
-      </DropdownMenuContent>
-    </DropdownMenu>
+      {dark ? <Sun className="size-4" aria-hidden /> : <Moon className="size-4" aria-hidden />}
+    </button>
   );
 }
 
 export function AppHeader() {
-  const { t } = useT();
-  const links = useLinks();
+  const { t, lang } = useT();
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-background">
+    <header className="sticky top-0 z-40 border-b border-hairline bg-background/80 backdrop-blur-md">
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-2 focus:z-50 focus:rounded focus:bg-primary focus:px-3 focus:py-1.5 focus:text-primary-foreground">
         {t("nav.skip")}
       </a>
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
-        <Link href="/" className="flex shrink-0 items-baseline gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
-          <span aria-hidden className="inline-block size-2.5 translate-y-[-1px] rounded-full bg-eu" />
-          <span className="whitespace-nowrap font-heading text-base font-semibold tracking-tight sm:text-lg">{t("app.name")}</span>
+      <div className="mx-auto flex h-14 max-w-5xl items-center justify-between gap-2 px-4 sm:px-6">
+        <Link href={`/?lang=${lang}`} className="flex min-w-0 items-center gap-2">
+          <span aria-hidden className="flex size-7 shrink-0 items-center justify-center rounded-lg bg-sun text-[#1C1B18]">
+            <Scale className="size-4" strokeWidth={2} />
+          </span>
+          <span className="truncate text-[15px] font-medium tracking-tight">{t("app.name")}</span>
         </Link>
-        <nav aria-label={t("nav.menu")} className="flex items-center gap-1 sm:gap-3">
-          <Suspense fallback={<ul className="hidden items-center sm:flex">{links.map((l) => <li key={l.href} className="px-2 py-1.5 text-sm text-muted-foreground">{l.label}</li>)}</ul>}>
-            <NavLinks />
-          </Suspense>
+        <div className="flex items-center gap-1.5">
           <LangToggle />
           <ThemeToggle />
-          <MobileMenu />
-        </nav>
+        </div>
       </div>
     </header>
   );

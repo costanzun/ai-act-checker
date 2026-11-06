@@ -24,10 +24,10 @@ export function LawPage() {
   const cur = res && res.key === key ? res : null;
 
   return (
-    <article className="mx-auto max-w-3xl py-10 sm:py-14">
+    <article className="mx-auto max-w-3xl py-8 sm:py-12">
       <Link href="/" className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground"><ArrowLeft className="size-4" aria-hidden /> {t("law.back")}</Link>
-      <h1 className="mt-4 font-heading text-4xl font-medium">{cur?.data?.provision.label ?? citeLabel(id, lang)}</h1>
-      <div className="rule mt-6 pt-6">
+      <h1 className="mt-4 text-[32px] font-light tracking-tight sm:text-[40px]">{cur?.data?.provision.label ?? citeLabel(id, lang)}</h1>
+      <div className="panel mt-5 p-5 sm:p-6">
         {!cur && <div className="space-y-3"><Skeleton className="h-4 w-1/2" /><Skeleton className="h-32 w-full" /></div>}
         {cur && !cur.data && <p role="alert" className="text-muted-foreground">{t("law.notFound")}</p>}
         {cur?.data && <ProvisionBody data={cur.data} asPage />}

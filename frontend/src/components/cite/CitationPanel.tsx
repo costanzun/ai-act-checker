@@ -35,7 +35,7 @@ export function CitationPanel({ id, onClose }: { id: string | null; onClose: () 
       <SheetContent side="right" className="w-full overflow-y-auto sm:max-w-lg" data-testid="citation-panel">
         <SheetHeader className="border-b border-border pr-12">
           <p className="text-xs uppercase tracking-wider text-muted-foreground">{t("cite.panel.title")}</p>
-          <SheetTitle className="font-heading text-2xl">{label}</SheetTitle>
+          <SheetTitle className="text-[24px] font-light tracking-tight">{label}</SheetTitle>
           <SheetDescription className="sr-only">{t("cite.panel.title")}</SheetDescription>
           <div className="mt-2 flex items-center gap-2" role="group" aria-label={t("cite.language")}>
             {(["en", "it"] as const).map((l) => (

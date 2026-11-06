@@ -1,5 +1,5 @@
 import type {
-  Assessment, ChecklistItem, Classification, FactSheet, FactValue, Lang, LText, Milestone, Obligation, Question, Tier,
+  Assessment, ChecklistItem, Classification, FactSheet, FactValue, Lang, LText, Milestone, Obligation, Question, Tier, WhatIf,
 } from "../types";
 
 const t = (en: string, it: string): LText => ({ en, it });
@@ -24,6 +24,30 @@ export const TIMELINE: Milestone[] = [
 ];
 
 const ms = (...ids: string[]) => TIMELINE.filter((m) => ids.includes(m.id));
+
+const WI_DECISION: WhatIf = {
+  fact_path: "decision_impact",
+  question: t("Who decides in the end: does the system's output decide, or does a person make the final decision?", "Chi decide alla fine: decide l'output del sistema oppure una persona prende la decisione finale?"),
+  why: t("The Article 6(3) derogation needs the output not to materially influence the decision.", "La deroga dell'articolo 6, par. 3, richiede che l'output non influenzi in modo sostanziale la decisione."),
+  current: t("A person decides but relies heavily on the output", "Una persona decide ma si basa molto sull'output"),
+  current_value: "materially_influences",
+  answer: t("A person assesses the case independently; the output is just one input", "Una persona valuta il caso in modo indipendente; l'output è solo uno degli elementi"),
+  value: "supports_human_decision", tier: "minimal_risk", unresolved: false, actionable: true,
+};
+const WI_AREA: WhatIf = {
+  fact_path: "annex_iii_area",
+  question: t("Which of these uses best describes what the system's output is used for?", "Quale di questi utilizzi descrive meglio l'impiego dell'output del sistema?"),
+  why: t("Uses listed in Annex III make a system high-risk.", "Gli utilizzi elencati nell'allegato III rendono un sistema ad alto rischio."),
+  current: t("None of these", "Nessuno di questi"), current_value: "none",
+  answer: t("Used for an Annex III purpose (e.g. hiring, credit scoring, education, essential services)", "Usato per una finalità dell'allegato III (ad es. assunzioni, merito creditizio, istruzione, servizi essenziali)"),
+  value: null, tier: "high_risk", unresolved: false, actionable: false,
+};
+const WI_OBVIOUS: WhatIf = {
+  fact_path: "transparency.obvious_to_users_it_is_ai",
+  question: t("Is it obvious to users, from the context, that they are dealing with an AI system?", "È evidente agli utenti, dal contesto, che stanno interagendo con un sistema di IA?"),
+  why: t("Art. 50(1) does not apply where this is obvious.", "L'art. 50, par. 1, non si applica quando ciò è evidente."),
+  current: t("No", "No"), current_value: false, answer: t("Yes", "Sì"), value: true, tier: "minimal_risk", unresolved: false, actionable: true,
+};
 
 // ---------- CV screening: high risk, asks 2 questions first ----------
 export const CV_QUESTIONS: Question[] = [
@@ -107,7 +131,7 @@ function cvAssessment(lang: Lang, description: string, answers: Record<string, u
   return build("cv-screening", lang, description, classification, reasoning, obligations, checklist,
     [{ id: "rec:57", why: t("Explains why employment systems are high-risk.", "Spiega perché i sistemi per l'occupazione sono ad alto rischio.") }, { id: "art:6.3", why: t("The derogation you may want to test.", "La deroga che potresti voler verificare.") }],
     unknown ? [t("Not stated: whether the ranking decides who is interviewed.", "Non indicato: se la classifica decide chi viene convocato.")] : [],
-    { role, sector: "employment", decision_impact: (answers.decision_impact ?? null) as FactValue });
+    { role, sector: "employment", decision_impact: (answers.decision_impact ?? null) as FactValue }, [WI_DECISION, WI_AREA]);
 }
 
 // ---------- Chatbot: limited risk ----------
@@ -136,7 +160,7 @@ function chatbotAssessment(lang: Lang, description: string): Assessment {
     { id: "ck-handoff", title: t("Offer a way to reach a human", "Offrire un modo per contattare una persona"), description: t("Good practice, not required by Article 50.", "Buona prassi, non richiesta dall'articolo 50."), citations: [], obligation_ids: [], template_hint: null },
   ];
   return build("customer-chatbot", lang, description, classification, reasoning, obligations, checklist,
-    [{ id: "rec:132", why: t("Background on the transparency duty.", "Contesto dell'obbligo di trasparenza.") }], [], { role: "provider", interacts_with_people: true });
+    [{ id: "rec:132", why: t("Background on the transparency duty.", "Contesto dell'obbligo di trasparenza.") }], [], { role: "provider", interacts_with_people: true }, [WI_OBVIOUS, WI_AREA]);
 }
 
 // ---------- Emotion recognition at work: prohibited ----------
@@ -188,20 +212,20 @@ function minimalAssessment(lang: Lang, description: string): Assessment {
   const checklist: ChecklistItem[] = [
     { id: "ck-literacy", title: t("Give staff a short AI literacy briefing", "Offrire al personale una breve formazione sull'IA"), description: t("A one-hour session is a reasonable starting point.", "Una sessione di un'ora è un buon punto di partenza."), citations: ["art:4"], obligation_ids: ["ob-literacy3"], template_hint: null },
   ];
-  return build("minimal", lang, description, classification, reasoning, obligations, checklist, [], [], { role: "deployer" });
+  return build("minimal", lang, description, classification, reasoning, obligations, checklist, [], [], { role: "deployer" }, [WI_AREA]);
 }
 
 function build(
   key: string, lang: Lang, description: string, classification: Classification, reasoning_md: string,
   obligations: Obligation[], checklist: ChecklistItem[], related: Assessment["related_provisions"],
-  uncertainties: LText[], facts: FactSheet,
+  uncertainties: LText[], facts: FactSheet, what_if: WhatIf[] = [],
 ): Assessment {
   return {
     id: `mock-${key}-${lang}`, created_at: new Date().toISOString(), language: lang,
     law_as_of: "2026-07-27", checked_at: "2026-11-03",
     model: { provider: "mock", model: "fixture-v1" },
     description, facts, classification, reasoning_md, obligations, checklist,
-    related_provisions: related, uncertainties, disclaimer: DISCLAIMER,
+    related_provisions: related, uncertainties, what_if, disclaimer: DISCLAIMER,
     metrics: { latency_ms: 4200, llm_calls: 2, input_tokens: 2100, output_tokens: 640, cost_usd: key === "cv-screening" ? 0.054 : 0, cached: false },
   };
 }
@@ -218,7 +242,7 @@ export function pickScenario(description: string): Scenario {
 
 export function buildMockAssessment(scenario: Scenario, lang: Lang, description: string, answers: Record<string, unknown>): Assessment {
   switch (scenario) {
-    case "cv": return cvAssessment(lang, description, answers);
+    case "cv": return answers.decision_impact === "supports_human_decision" ? minimalAssessment(lang, description) : cvAssessment(lang, description, answers);
     case "chatbot": return chatbotAssessment(lang, description);
     case "emotion": return emotionAssessment(lang, description);
     default: return minimalAssessment(lang, description);

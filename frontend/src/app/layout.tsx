@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Newsreader } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { ThemeProvider } from "next-themes";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { Toaster } from "@/components/ui/sonner";
@@ -9,25 +9,24 @@ import { AppHeader } from "@/components/layout/AppHeader";
 import { AppFooter } from "@/components/layout/AppFooter";
 import "./globals.css";
 
-const inter = Inter({ variable: "--font-inter", subsets: ["latin"], display: "swap" });
-const newsreader = Newsreader({ variable: "--font-newsreader", subsets: ["latin"], weight: ["400", "500", "600"], display: "swap" });
-const mono = JetBrains_Mono({ variable: "--font-jetbrains", subsets: ["latin"], display: "swap" });
+const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"], display: "swap" });
+const geistMono = Geist_Mono({ variable: "--font-geist-mono", subsets: ["latin"], display: "swap" });
 
 export const metadata: Metadata = {
   title: "EU AI Act Checker",
-  description: "Find out which EU AI Act rules apply to your AI system, with a citation for every claim.",
+  description: "Describe your AI system, get its EU AI Act risk tier, your obligations and the documents to prepare, each with the article behind it.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning className={`${inter.variable} ${newsreader.variable} ${mono.variable}`}>
-      <body className="flex min-h-dvh flex-col">
+    <html lang="en" data-scroll-behavior="smooth" suppressHydrationWarning className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body className="app-bg flex min-h-dvh flex-col">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
           <LanguageProvider>
             <TooltipProvider delay={250}>
               <CitationProvider>
                 <AppHeader />
-                <main id="main" className="mx-auto w-full max-w-6xl flex-1 px-4 sm:px-6">{children}</main>
+                <main id="main" className="mx-auto w-full max-w-5xl flex-1 px-4 sm:px-6">{children}</main>
                 <AppFooter />
               </CitationProvider>
             </TooltipProvider>

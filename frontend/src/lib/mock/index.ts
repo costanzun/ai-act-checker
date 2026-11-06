@@ -46,7 +46,7 @@ export async function* mockAssess(req: AssessRequest, signal?: AbortSignal): Asy
   const scenario: Scenario = pickScenario(req.description);
   const needsQuestions = scenario === "cv" && req.round === 0;
 
-  const stages = needsQuestions ? STAGES.slice(0, 3) : STAGES;
+  const stages = STAGES.slice(0, 3);
   for (const s of stages) {
     yield { type: "stage", stage: s.stage, message: { en: s.en, it: s.it } };
     await sleep(s.stage === "drafting" ? 250 : 550, signal);
@@ -60,7 +60,10 @@ export async function* mockAssess(req: AssessRequest, signal?: AbortSignal): Asy
   }
 
   const assessment: Assessment = buildMockAssessment(scenario, req.language, req.description, toAnswerMap(req));
+  // Like the real backend: the verdict is sent before the narrative streams.
+  yield { type: "verdict", assessment: { ...assessment, reasoning_md: "" } };
   // Stream the reasoning word by word.
+  yield { type: "stage", stage: "drafting", message: { en: "Writing the reasoning", it: "Stesura della motivazione" } };
   const words = assessment.reasoning_md.split(/(\s+)/);
   let buf = "";
   for (const w of words) {
