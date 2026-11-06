@@ -206,15 +206,21 @@ Tests marked `live` call a real model and run only with `LIVE_LLM=1`.
 
 ## Switching the LLM provider
 
-Set `LLM_PROVIDER` (and `LLM_MODEL`) in `.env`. Embeddings and reranking always run locally, whatever the provider.
+The easiest way is the **AI pill in the header** (a robot icon on phones). It opens "Who does the sniffing?", where you pick a Claude subscription (Claude Code), a ChatGPT subscription (Codex CLI), an Anthropic, OpenAI or NVIDIA API key, or the local model. Each option shows whether it is ready. If a CLI is missing, it shows the install and login commands to copy. Each option also has a model field with suggestions, plus **Save**, **Test** (one tiny prompt, not cached) and **Use this**. The choice takes effect on the next request, with no restart. It is saved to `data/llm_settings.json` (gitignored, mode 600) and overrides `.env`. Keys are write-only: the API only ever returns a masked hint such as `sk-…abcd`. The endpoints are `GET`/`PUT /api/settings/llm` and `POST /api/settings/llm/test/{provider}`.
 
-| `LLM_PROVIDER` | Needs | Example `LLM_MODEL` | Notes |
+![The model picker: subscription, API key or local model](docs/screenshots/model-picker.png)
+
+Or set `LLM_PROVIDER` and that provider's model variable in `.env`. The older `LLM_MODEL` still works and applies to the provider named in `LLM_PROVIDER`. Embeddings and reranking always run locally, whatever the provider.
+
+| `LLM_PROVIDER` | Needs | Model variable (default) | Notes |
 |---|---|---|---|
-| `claude_cli` (default) | Claude Code CLI logged in; `CLAUDE_CLI_PATH` if not on `PATH`. No API key. | `sonnet`, `opus`, `haiku` | Runs `claude -p` headless on your subscription, with `--tools ""`, `--no-session-persistence`, `--setting-sources ""`, `--strict-mcp-config`, a `--system-prompt`, the prompt on stdin, and `json` or `stream-json` output. |
-| `nvidia` | `NVIDIA_API_KEY` (free catalogue at build.nvidia.com); `NVIDIA_BASE_URL` | `nvidia/llama-3.3-nemotron-super-49b-v1`, `meta/llama-3.1-70b-instruct` | OpenAI-compatible endpoint. |
-| `local_mlx` | Apple Silicon; weights via `backend/.venv/bin/python scripts/download_models.py --llm-only` | `mlx-community/Qwen2.5-14B-Instruct-4bit` (`MLX_MODEL`), `mlx-community/Qwen2.5-3B-Instruct-4bit` (`MLX_SMALL_MODEL`) | In-process via mlx-lm; no network, no key. |
-| `anthropic_api` | `ANTHROPIC_API_KEY` | `claude-sonnet-5-5` (default), `claude-opus-5-5` | Direct Messages API, per-token billing; use this or `nvidia` on a server, where the CLI cannot run. |
-| `openai_compat` | `OPENAI_BASE_URL` (default `http://localhost:8080/v1`), `OPENAI_API_KEY` | whatever the server serves | llama-server, vLLM or any OpenAI-compatible server. |
+| `claude_cli` (default) | Claude Code CLI logged in; `CLAUDE_CLI_PATH` if not on `PATH`. No API key. | `CLAUDE_CLI_MODEL` (`sonnet`; also `opus`, `haiku`) | Runs `claude -p` headless on your subscription, with `--tools ""`, `--no-session-persistence`, `--setting-sources ""`, `--strict-mcp-config`, a `--system-prompt`, the prompt on stdin, and `json` or `stream-json` output. |
+| `codex_cli` | OpenAI Codex CLI (`npm install -g @openai/codex`, then `codex login` with your ChatGPT account); `CODEX_CLI_PATH` | `CODEX_MODEL` (empty = Codex default) | Runs `codex exec --skip-git-repo-check --sandbox read-only --ephemeral --output-last-message FILE -` in an empty temp folder, with the system text leading the prompt on stdin. No token streaming. |
+| `anthropic_api` | `ANTHROPIC_API_KEY` | `ANTHROPIC_MODEL` (`claude-sonnet-5-5`; or `claude-opus-5-5`) | Direct Messages API, per-token billing; use this or `nvidia` on a server, where the CLI cannot run. |
+| `openai_api` | `OPENAI_API_KEY` | `OPENAI_MODEL` (none; pick one) | OpenAI platform (`https://api.openai.com/v1`), JSON mode, `max_completion_tokens`. |
+| `nvidia` | `NVIDIA_API_KEY` (free catalogue at build.nvidia.com); `NVIDIA_BASE_URL` | `NVIDIA_MODEL` (`meta/llama-3.3-70b-instruct`) | OpenAI-compatible endpoint. |
+| `local_mlx` | Apple Silicon; weights via `backend/.venv/bin/python scripts/download_models.py --llm-only` | `MLX_MODEL` (`mlx-community/Qwen2.5-14B-Instruct-4bit`), `MLX_SMALL_MODEL` | In-process via mlx-lm; no network, no key. |
+| `openai_compat` | `OPENAI_BASE_URL` (default `http://localhost:8080/v1`), optional `OPENAI_COMPAT_API_KEY` | `OPENAI_COMPAT_MODEL` (or `LLM_MODEL`) | llama-server, vLLM or any OpenAI-compatible server. Set in `.env` only; not shown in the picker. |
 
 Shared behaviour: responses are cached in SQLite (`LLM_CACHE=1`, `LLM_CACHE_PATH=data/cache/llm.sqlite`), keyed on a hash of provider, model, prompt and parameters, so repeated runs replay instantly. `LLM_MAX_CONCURRENCY` (default 2) caps parallel calls, which matters for the rate-limited CLI. Retryable errors (network, HTTP 408/429/5xx, overloaded) are retried with backoff; the request timeout is `LLM_TIMEOUT_S` (default 180).
 

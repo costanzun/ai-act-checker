@@ -261,14 +261,14 @@ function ModelDialog({ open, onOpenChange, onChanged }: { open: boolean; onOpenC
         data-testid="model-dialog"
         className="flex max-h-[min(90dvh,800px)] w-[min(640px,calc(100vw-24px))] max-w-none flex-col gap-0 overflow-hidden rounded-[1.6rem] border-2 border-foreground bg-card p-0 text-foreground ring-0 sm:max-w-none"
       >
-        <div className="px-block m-2 flex items-end gap-3 overflow-hidden rounded-[1.2rem] px-4 pt-4 sm:px-5"
+        <div className="px-block relative m-2 flex shrink-0 items-end gap-3 overflow-hidden rounded-[1.2rem] pl-4 pr-14 pt-4 sm:pl-5 sm:pr-16"
           style={{ "--block": "var(--block-loading)", "--grid": "4px" } as React.CSSProperties}>
           <div className="min-w-0 flex-1 pb-4">
             <p className="pixel-label">{t("model.eyebrow")}</p>
             <DialogTitle className="display mt-1.5 text-[26px] font-black leading-[0.95] sm:text-[34px]">{t("model.title")}</DialogTitle>
           </div>
           <DogScene scene="loading" label={t("model.scene")} className="w-[110px] shrink-0 sm:w-[150px]" />
-          <DialogClose aria-label={t("model.close")} className="absolute right-4 top-4 inline-flex size-9 items-center justify-center rounded-full border-2 border-foreground bg-card text-foreground">
+          <DialogClose aria-label={t("model.close")} className="absolute right-3 top-3 inline-flex size-9 items-center justify-center rounded-full border-2 border-foreground bg-card text-foreground">
             <X className="size-4" aria-hidden />
           </DialogClose>
         </div>
