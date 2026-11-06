@@ -173,3 +173,18 @@ test("reasoning streams behind the verdict and opens on demand; copy link and ne
   await page.getByTestId("new-check").click();
   await expect(page.locator("#describe")).toHaveValue("");
 });
+
+test("each verdict has its own dog scene; animations stop under reduced motion", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByTestId("mascots").getByRole("img")).toHaveCount(2);
+  await page.goto("/?example=emotion-workplace");
+  const hero = page.getByTestId("tier-hero");
+  await expect(hero).toHaveAttribute("data-tier", "prohibited", { timeout: 20_000 });
+  await expect(hero.getByRole("img", { name: /doberman on guard.*stop sign/ })).toBeVisible();
+  await page.goto("/?example=spam-filter");
+  await expect(page.getByTestId("tier-hero").getByRole("img", { name: /schnauzer smiling/ })).toBeVisible({ timeout: 20_000 });
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  const anim = await page.locator(".px-twinkle").first().evaluate((el) => getComputedStyle(el).animationName);
+  expect(anim).toBe("none");
+});
