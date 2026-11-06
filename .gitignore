@@ -36,3 +36,8 @@ docs/screenshots/*.webm
 # model choice saved from the app (may hold API keys)
 data/llm_settings.json
 data/llm_settings.tmp
+
+# internal notes (kept local)
+LAUNCH.md
+PLAN.md
+STATUS.md
