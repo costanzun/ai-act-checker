@@ -23,7 +23,7 @@ class ClaudeCLIProvider(LLMProvider):
 
     def __init__(self, model: str | None = None):
         s = get_settings()
-        self.model = model or s.llm_model or "sonnet"
+        self.model = model or s.claude_cli_model or "sonnet"
         self.cli = s.claude_cli_path
         self.timeout = s.llm_timeout_s
 

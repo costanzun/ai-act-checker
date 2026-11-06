@@ -32,3 +32,7 @@ eval/results/**/raw/
 logs/
 .claude-cli-cwd/
 docs/screenshots/*.webm
+
+# model choice saved from the app (may hold API keys)
+data/llm_settings.json
+data/llm_settings.tmp

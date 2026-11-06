@@ -1,4 +1,4 @@
-"""OpenAI-compatible chat/completions provider (NVIDIA catalog and generic servers)."""
+"""OpenAI-compatible chat/completions provider: the OpenAI API, the NVIDIA catalog and generic servers."""
 from __future__ import annotations
 
 import json
@@ -19,18 +19,28 @@ class OpenAICompatProvider(LLMProvider):
     def __init__(self, kind: str = "openai_compat", model: str | None = None):
         s = get_settings()
         self.name = kind
+        # OpenAI's current models take max_completion_tokens and only the default temperature.
+        self.openai_params = kind == "openai_api"
         if kind == "nvidia":
             if not s.nvidia_api_key:
-                raise LLMError("NVIDIA_API_KEY is not set (get one at build.nvidia.com and put it in .env)")
+                raise LLMError("No NVIDIA API key: get one at build.nvidia.com, add it in the model picker or set NVIDIA_API_KEY")
             self.base_url, self.key = s.nvidia_base_url, s.nvidia_api_key
             self.json_flag = s.nvidia_json_mode == "1"
-        else:
-            self.base_url, self.key = s.openai_base_url, s.openai_api_key
+            self.model = model or s.nvidia_model
+        elif kind == "openai_api":
+            if not s.openai_api_key:
+                raise LLMError("No OpenAI API key: add one in the model picker or set OPENAI_API_KEY in .env")
+            self.base_url, self.key = s.openai_api_base_url, s.openai_api_key
+            self.json_flag = True
+            self.model = model or s.openai_model
+        else:  # generic local server; the key is usually ignored
+            self.base_url = s.openai_base_url
+            self.key = s.openai_compat_api_key or "not-needed"
             self.json_flag = s.openai_json_mode == "1"
+            self.model = model or s.openai_compat_model
         self.base_url = self.base_url.rstrip("/")
-        self.model = model or s.llm_model
         if not self.model:
-            raise LLMError(f"LLM_MODEL must be set for provider {kind!r}")
+            raise LLMError(f"no model set for provider {kind!r} (pick one in the model picker or set LLM_MODEL)")
         self.timeout = s.llm_timeout_s
 
     def _payload(self, messages, temperature, max_tokens, json_mode, stream) -> dict:
@@ -42,8 +52,11 @@ class OpenAICompatProvider(LLMProvider):
                     break
             else:
                 msgs.insert(0, {"role": "system", "content": JSON_INSTRUCTION})
-        p = {"model": self.model, "messages": msgs, "temperature": temperature, "max_tokens": max_tokens,
-             "stream": stream}
+        p = {"model": self.model, "messages": msgs, "stream": stream}
+        if self.openai_params:
+            p["max_completion_tokens"] = max_tokens
+        else:
+            p["temperature"], p["max_tokens"] = temperature, max_tokens
         if json_mode and self.json_flag:
             p["response_format"] = {"type": "json_object"}
         if stream:

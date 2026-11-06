@@ -17,10 +17,10 @@ class AnthropicAPIProvider(LLMProvider):
     def __init__(self, model: str | None = None):
         s = get_settings()
         if not s.anthropic_api_key:
-            raise LLMError("ANTHROPIC_API_KEY is not set (put it in .env)")
+            raise LLMError("No Anthropic API key: add one in the model picker or set ANTHROPIC_API_KEY in .env")
         self.key = s.anthropic_api_key
         self.url = s.anthropic_base_url.rstrip("/") + "/v1/messages"
-        self.model = model or s.llm_model or "claude-sonnet-5-5"
+        self.model = model or s.anthropic_model or "claude-sonnet-5-5"
         self.timeout = s.llm_timeout_s
 
     def _payload(self, messages, temperature, max_tokens, json_mode, stream) -> dict:

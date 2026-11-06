@@ -5,7 +5,7 @@ from .base import LLMError, LLMProvider, LLMResult, Message
 from .json_utils import JSONParseError, parse_json_object
 from .settings import get_settings
 
-PROVIDERS = ("claude_cli", "nvidia", "local_mlx", "anthropic_api", "openai_compat")
+PROVIDERS = ("claude_cli", "codex_cli", "anthropic_api", "openai_api", "nvidia", "local_mlx", "openai_compat")
 
 
 def get_provider(name: str | None = None, model: str | None = None) -> LLMProvider:
@@ -14,7 +14,10 @@ def get_provider(name: str | None = None, model: str | None = None) -> LLMProvid
     if name == "claude_cli":
         from .claude_cli import ClaudeCLIProvider
         return ClaudeCLIProvider(model)
-    if name in ("nvidia", "openai_compat"):
+    if name == "codex_cli":
+        from .codex_cli import CodexCLIProvider
+        return CodexCLIProvider(model)
+    if name in ("nvidia", "openai_api", "openai_compat"):
         from .openai_compat import OpenAICompatProvider
         return OpenAICompatProvider(name, model)
     if name == "local_mlx":

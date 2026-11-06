@@ -57,8 +57,10 @@ app.add_middleware(
 )
 
 from app.api.routes import router  # noqa: E402
+from app.api.settings import router as settings_router
 
 app.include_router(router)
+app.include_router(settings_router)
 
 try:  # export routes are added by a separate module; optional until present
     from app.api.export import router as export_router  # noqa: E402
