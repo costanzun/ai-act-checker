@@ -10,7 +10,7 @@ A configuration is ``<mode>:<provider>:<model>`` where mode is ``hybrid``
 (facts → rule engine → cited narrative; the product flow) or ``baseline``
 (pure LLM + retrieved provisions; the comparison point).
 
-Metrics per configuration (see PLAN.md §5): tier accuracy, under-classification
+Metrics per configuration (defined in eval/README.md): tier accuracy, under-classification
 rate, question behaviour, citation validity, citation recall, latency, tokens,
 cost. Results are written to ``eval/results/<timestamp>-<config>.json`` and
 summarised in ``eval/REPORT.md``.

@@ -1,6 +1,6 @@
 """Assessment pipeline: description → facts → (questions | classification + cited narrative).
 
-Flow (see PLAN.md §3):
+Flow:
 1. extract facts with the LLM (skipped when the client sends prior facts);
 2. apply the user's answers deterministically;
 3. classify with the rule engine; ask questions chosen by sensitivity analysis
