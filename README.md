@@ -10,25 +10,30 @@ Every company that builds or deploys AI in the EU has to know which tier its sys
 
 ## What it does
 
-1. Takes a free-text description of an AI system, in English or Italian.
-2. Extracts structured facts from it (purpose, sector, who is affected, role, exceptions).
-3. Classifies the system: out of scope, prohibited, high-risk, limited risk (Art. 50) or minimal risk, plus GPAI and transparency overlays.
-4. Asks at most three clarifying questions per round (two rounds), and only about facts that would change the result.
-5. Lists the obligations for your role (provider, deployer or both) and a documentation checklist.
-6. Cites the exact provision for every claim; each citation opens the law text in a side panel, in the chosen language. Guidance is labelled non-binding.
-7. Exports the assessment to Markdown and PDF, with a "not legal advice" notice, a confidence level, the unresolved assumptions and the "law as of" date.
+One screen, one path:
+
+1. **Describe** the system in a sentence or two (English or Italian), or click one of the example chips (CV screening, customer-service chatbot, credit scoring, ...). Progress shows live while the model reads it.
+2. **Answer a few chips, only if needed.** When a fact that changes the answer is missing, up to three yes/no (or short multiple-choice) questions appear inline under the text box. "Not sure" is always allowed; the answer then says what it assumed.
+3. **Get the verdict.** The rules decide as soon as the facts are known, so the verdict appears before the model has finished writing its explanation:
+   - the risk tier (prohibited, high risk, transparency obligations, minimal risk, out of scope), with a colour, an icon and a label; your role (provider or deployer); the key deadline that applies and how far away it is;
+   - one sentence of *why*, with the article cited;
+   - **what you must do**: the mandatory obligations for your role, each with its article (hover a citation for the text, click it for the full provision in a side panel); recommended and conditional duties one click away;
+   - **documents to prepare**, as a tickable checklist;
+   - **what would change the answer**: the answers that could move the system to another tier, computed by the rule engine, each re-checkable in one click;
+   - the full cited reasoning, collapsed by default.
+4. **Export** to PDF or Markdown, or copy a link. The "not legal advice" notice and the "law as of" date stay on the page and in every export.
 
 ## Demo
 
-![Demo: describe, clarify, cited result](docs/screenshots/demo.gif)
+![Demo: describe, verdict, citation](docs/screenshots/demo.gif)
 
-| Landing with the examples gallery | Result with the tier, reasoning and citations |
+| Landing | Verdict |
 |---|---|
-| ![Landing](docs/screenshots/landing.png) | ![Result](docs/screenshots/result.png) |
+| ![Landing](docs/screenshots/landing.png) | ![Verdict](docs/screenshots/result.png) |
 
-| Clarifying question | Citation panel with the provision text | Mobile |
+| Inline questions | Citation panel | Mobile (light / dark) |
 |---|---|---|
-| ![Clarify](docs/screenshots/clarify.png) | ![Citation panel](docs/screenshots/citation-panel.png) | ![Mobile](docs/screenshots/result-mobile.png) |
+| ![Inline questions](docs/screenshots/clarify.png) | ![Citation panel](docs/screenshots/citation-panel.png) | ![Mobile](docs/screenshots/result-mobile.png) ![Mobile dark](docs/screenshots/result-mobile-dark.png) |
 
 Screenshots are produced by `frontend/scripts/capture_screenshots.mjs` and the GIF by `frontend/scripts/record_demo.mjs` against the running app.
 
@@ -39,6 +44,7 @@ The design is neuro-symbolic: the language model reads and writes, but a determi
 - **The LLM extracts facts.** A schema-guided prompt turns the description into a `FactSheet` (`backend/app/engine/facts.py`). Unknown stays unknown; the engine tolerates partial sheets.
 - **A rule engine decides the tier.** The rules are authored by hand from the text of the Act, in the order Art. 2 scope, Art. 5, Art. 6 with Annex I and III, the Art. 6(3) derogation, Art. 50, GPAI. Every rule carries its citations, so the provisions behind a tier decision come from a hand-checked list, not from the model.
 - **Questions come from sensitivity analysis.** For each unknown fact the engine checks whether the tier, or the set of obligations, changes across its possible values. Only facts that change the outcome are asked, ordered by how much uncertainty they remove.
+- **"What would change the answer" is a counterfactual over the same engine** (`backend/app/engine/whatif.py`). It probes the other values of the facts the result hinges on (the decisive findings, the Art. 6(3) derogation and the unresolved facts) and keeps the ones that move the tier. It reads the engine; it never changes the classification.
 - **The narrative is constrained.** A second LLM call writes the explanation, but it may cite only provision IDs from an allow-list (the engine's findings, the obligations and retrieved passages). The server checks every citation token against that list and strips the rest; prose mentions such as "Article 6(3)" are turned into verified links when they resolve to an allowed provision and counted as unverified references when they do not. The guard checks that a cited provision exists and is allowed; it does not prove that the provision supports the sentence it is attached to.
 - **Retrieval** (BGE-M3 vectors plus full-text search in LanceDB, then a bge-reranker-v2-m3 cross-encoder) supplies related provisions. The binding Regulation and the non-binding guidance are searched separately, because guidance chunks otherwise crowd out the law.
 
@@ -53,12 +59,13 @@ flowchart LR
   R --> N[LLM: narrative<br/>citation allow-list]
   N --> V[Strip disallowed citations,<br/>count them]
   V --> O[Result + obligations<br/>+ checklist + export]
+  E --> W[Verdict sent first<br/>+ what-if counterfactuals]
 ```
 
 ```mermaid
 flowchart TB
   subgraph FE[Next.js :3101]
-    UI[Describe → Clarify → Result → Citation panel → Export]
+    UI[One screen: describe → inline questions → verdict → citation panel → export]
   end
   subgraph BE[FastAPI :8101]
     API[/api/assess SSE · /api/law · /api/examples · /health/] --> PL[Pipeline]

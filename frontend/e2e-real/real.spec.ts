@@ -45,7 +45,11 @@ test("CV example: progress, verdict before reasoning, high risk, citations, expo
   console.log("VERDICT:", (await hero.innerText()).replace(/\s+/g, " "));
   console.log("WHAT-IF:", (await page.getByTestId("what-if").innerText()).replace(/\s+/g, " ").slice(0, 400));
 
-  await page.locator('[data-cite="annex:III.4.a"]').first().click();
+  await page.getByTestId("verdict-why").locator("[data-cite]").first().click();
+  await expect(page.getByTestId("citation-panel")).not.toContainText("Loading", { timeout: 10_000 });
+  await page.keyboard.press("Escape");
+  await page.getByTestId("reasoning-toggle").click();
+  await page.locator('[data-cite="annex:III.4.a"]').locator("visible=true").first().click();
   await expect(page.getByTestId("citation-panel")).toContainText("recruitment or selection of natural persons");
   await page.keyboard.press("Escape");
 

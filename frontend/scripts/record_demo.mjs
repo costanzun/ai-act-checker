@@ -26,24 +26,29 @@ await page.goto(`${BASE}/`);
 await page.evaluate(() => localStorage.setItem("theme", "light"));
 await page.reload();
 await page.waitForLoadState("networkidle");
-await pause(1200);
-await smoothScroll(700);
-await pause(600);
-const link = page.locator('a[href*="example=cv-screening-deployer"]').first();
-await link.scrollIntoViewIfNeeded();
-await pause(1200);
-await link.click({ force: true });
-await page.getByText(/high[ -]risk/i).first().waitFor({ timeout: 180_000 });
+await pause(1500);
+await page.locator('[data-example="cv-screening-deployer"]').click();
+for (let i = 0; i < 3; i++) {
+  const w = await Promise.race([
+    page.getByTestId("tier-hero").waitFor({ timeout: 180_000 }).then(() => "r"),
+    page.getByTestId("question-form").waitFor({ timeout: 180_000 }).then(() => "q"),
+  ]);
+  if (w === "r") break;
+  await pause(1500);
+  await page.getByTestId("clarify-continue").click();
+  await page.getByTestId("question-form").waitFor({ state: "detached" });
+}
+await pause(2500);
+await page.getByTestId("verdict-why").locator("[data-cite]").first().hover();
 await pause(1800);
-await smoothScroll(520);
-await pause(900);
-await page.getByText("Annex III, point 4(a)", { exact: false }).first().click();
+await page.getByTestId("verdict-why").locator("[data-cite]").first().click();
 await page.getByRole("dialog").waitFor({ timeout: 10_000 });
 await pause(2200);
 await page.keyboard.press("Escape");
 await pause(500);
-await smoothScroll(1500, 1200);
-await smoothScroll(2600, 1200);
+await smoothScroll(700, 1400);
+await smoothScroll(1400, 1400);
+await smoothScroll(2100, 1400);
 await pause(800);
 await smoothScroll(0, 800);
 await pause(600);
