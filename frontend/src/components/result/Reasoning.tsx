@@ -40,11 +40,11 @@ export function Reasoning({ markdown, streaming, note, metrics }: { markdown: st
   const { t } = useT();
   const [open, setOpen] = useState(false);
   return (
-    <section aria-labelledby="reasoning-heading" className="panel p-4 sm:p-6" data-testid="reasoning">
+    <section aria-labelledby="reasoning-heading" className="panel p-5 sm:p-7" data-testid="reasoning">
       <div className="flex flex-wrap items-center justify-between gap-2">
-        <h2 id="reasoning-heading" className="text-[20px] font-normal tracking-tight sm:text-[22px]">
+        <h2 id="reasoning-heading" className="h-section">
           {t("reasoning.title")}
-          {streaming && <span className="ml-2.5 align-middle text-[12px] font-normal text-muted-foreground shimmer-text" data-testid="reasoning-streaming">{t("reasoning.writing")}</span>}
+          {streaming && <span className="pixel-label ml-2.5 align-middle text-muted-foreground shimmer-text" data-testid="reasoning-streaming">{t("reasoning.writing")}</span>}
         </h2>
         <button
           type="button"
@@ -52,7 +52,7 @@ export function Reasoning({ markdown, streaming, note, metrics }: { markdown: st
           aria-controls="reasoning-body"
           onClick={() => setOpen((v) => !v)}
           data-testid="reasoning-toggle"
-          className="no-print inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5 text-[12.5px] text-ink-2 hover:text-foreground"
+          className="pill pill-secondary no-print h-10 px-4 text-[13.5px]"
         >
           <ChevronDown className={cn("size-3.5 transition-transform", open && "rotate-180")} aria-hidden />
           {open ? t("reasoning.hide") : t("reasoning.show")}

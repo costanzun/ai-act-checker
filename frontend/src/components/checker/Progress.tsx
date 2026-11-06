@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { Check } from "lucide-react";
+import { DogScene } from "@/components/pixel/Pixel";
 import { useT } from "@/i18n";
 import type { Stage } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -25,35 +26,42 @@ export function Progress({ seen, onCancel }: { seen: Stage[]; onCancel: () => vo
   const cur = seen.length ? RANK[seen[seen.length - 1]] : -1;
   // Reading the description is the long step: creep towards the next milestone while it runs.
   const pct = cur < 0 ? 4 : cur === 0 ? Math.min(55, 8 + secs * 4) : cur === 1 ? 70 : 88;
+  const SEGS = 20;
+  const filled = Math.round((pct / 100) * SEGS);
 
   return (
-    <div role="status" aria-live="polite" data-testid="progress" className="border-t border-hairline bg-card/40 px-4 py-4 sm:px-5">
-      <div className="flex items-center justify-between gap-3">
-        <p className="text-[13px] font-medium">{t("progress.title")}</p>
-        <div className="flex items-center gap-3">
-          <span className="num text-[12px] text-muted-foreground">{t("progress.elapsed", { s: secs })}</span>
-          <button type="button" onClick={onCancel} className="text-[12px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline">{t("progress.cancel")}</button>
+    <div role="status" aria-live="polite" data-testid="progress"
+      className="px-block fade-up mx-2 mb-2 flex flex-col gap-4 overflow-hidden rounded-[1.4rem] px-5 pb-5 pt-5 sm:mx-2.5 sm:mb-2.5 sm:flex-row sm:items-center sm:gap-7 sm:px-7"
+      style={{ "--block": "var(--block-loading)", "--grid": "5px" } as React.CSSProperties}>
+      <DogScene scene="loading" label={t("scene.loading")} className="w-[200px] shrink-0 max-sm:mx-auto sm:w-[240px]" />
+      <div className="min-w-0 flex-1">
+        <div className="flex items-center justify-between gap-3">
+          <p className="pixel-label">{t("progress.eyebrow")}</p>
+          <span className="num text-[13px] font-semibold">{t("progress.elapsed", { s: secs })}</span>
         </div>
+        <p className="display mt-2 text-[28px] sm:text-[34px]">{t("progress.title")}</p>
+        <div className="mt-4 flex gap-[3px]" aria-hidden>
+          {Array.from({ length: SEGS }, (_, i) => (
+            <span key={i} className={cn("h-3 flex-1 transition-colors duration-300", i < filled ? "bg-[#111]" : "bg-white/55")} />
+          ))}
+        </div>
+        <ol className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
+          {STEPS.map((s, i) => {
+            const done = i < cur;
+            const active = i === cur || (cur < 0 && i === 0);
+            return (
+              <li key={s.stage} className="flex items-center gap-2 text-[14px] font-semibold" data-state={done ? "done" : active ? "active" : "pending"}>
+                <span className={cn("flex size-5 items-center justify-center rounded-full border-2 border-[#111]",
+                  done ? "bg-[#111] text-white" : active ? "bg-white" : "bg-transparent")}>
+                  {done ? <Check className="size-3" strokeWidth={3} aria-hidden /> : active ? <span className="size-1.5 bg-[#111]" /> : null}
+                </span>
+                <span className={cn(active && "shimmer-text", !done && !active && "opacity-70")}>{t(s.key)}</span>
+              </li>
+            );
+          })}
+        </ol>
+        <button type="button" onClick={onCancel} className="pill pill-secondary mt-5 h-11 border-[#111] bg-white px-5 text-[14px] text-[#111] max-sm:w-full">{t("progress.cancel")}</button>
       </div>
-      <div className="relative mt-3 h-1.5 overflow-hidden rounded-full bg-raised/70" aria-hidden>
-        <div className="absolute inset-y-0 left-0 rounded-full bg-sun transition-[width] duration-500 ease-out" style={{ width: `${pct}%` }} />
-        <div className="progress-sweep absolute inset-y-0 w-1/3 bg-gradient-to-r from-transparent via-white/50 to-transparent" />
-      </div>
-      <ol className="mt-3 flex flex-wrap gap-x-5 gap-y-1.5">
-        {STEPS.map((s, i) => {
-          const done = i < cur;
-          const active = i === cur || (cur < 0 && i === 0);
-          return (
-            <li key={s.stage} className="flex items-center gap-1.5 text-[12.5px]" data-state={done ? "done" : active ? "active" : "pending"}>
-              <span className={cn("flex size-4 items-center justify-center rounded-full border",
-                done ? "border-transparent bg-primary text-primary-foreground" : active ? "border-brand" : "border-border")}>
-                {done ? <Check className="size-2.5" aria-hidden /> : active ? <span className="size-1.5 animate-pulse rounded-full bg-brand" /> : null}
-              </span>
-              <span className={cn(active ? "shimmer-text font-medium" : done ? "text-foreground" : "text-muted-foreground")}>{t(s.key)}</span>
-            </li>
-          );
-        })}
-      </ol>
     </div>
   );
 }

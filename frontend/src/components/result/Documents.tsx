@@ -40,13 +40,13 @@ export function Documents({ assessmentId, items }: { assessmentId: string; items
   const count = items.filter((i) => done.includes(i.id)).length;
 
   return (
-    <section aria-labelledby="checklist-heading" data-testid="checklist" className="panel p-4 sm:p-6">
+    <section aria-labelledby="checklist-heading" data-testid="checklist" className="panel p-5 sm:p-7">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="checklist-heading" className="text-[20px] font-normal tracking-tight sm:text-[22px]">{t("docs.title")}</h2>
-        <span className="num text-[12.5px] text-muted-foreground" aria-live="polite">{t("docs.progress", { done: count, total: items.length })}</span>
+        <h2 id="checklist-heading" className="h-section">{t("docs.title")}</h2>
+        <span className="pixel-label text-muted-foreground" aria-live="polite">{t("docs.progress", { done: count, total: items.length })}</span>
       </div>
-      <div className="mt-3 h-1 overflow-hidden rounded-full bg-raised/70" aria-hidden>
-        <div className="h-full rounded-full bg-sun transition-[width] duration-300" style={{ width: `${(count / items.length) * 100}%` }} />
+      <div className="mt-4 h-3 overflow-hidden rounded-full border-2 border-foreground bg-card" aria-hidden>
+        <div className="h-full bg-[var(--sun)] transition-[width] duration-300" style={{ width: `${(count / items.length) * 100}%` }} />
       </div>
       <ul className="mt-2 divide-y divide-hairline">
         {items.map((it) => {
@@ -54,18 +54,18 @@ export function Documents({ assessmentId, items }: { assessmentId: string; items
           return (
             <li key={it.id} className="py-3">
               <label className="flex cursor-pointer items-start gap-3">
-                <Checkbox checked={on} onCheckedChange={(v) => toggle(it.id, v === true)} className="mt-0.5 size-[18px] rounded-[5px]" />
+                <Checkbox checked={on} onCheckedChange={(v) => toggle(it.id, v === true)} className="mt-0.5 size-5 rounded-[6px] border-2 border-foreground" />
                 <span className="min-w-0 flex-1">
-                  <span className={cn("block text-[14.5px] font-medium leading-snug", on && "text-muted-foreground line-through")}>{l(it.title)}</span>
-                  <span className="mt-0.5 block text-[13.5px] leading-relaxed text-muted-foreground">{l(it.description)}</span>
+                  <span className={cn("block text-[16px] font-bold leading-snug tracking-[-0.01em]", on && "text-muted-foreground line-through")}>{l(it.title)}</span>
+                  <span className="mt-0.5 block text-[14.5px] leading-relaxed text-ink-2">{l(it.description)}</span>
                   {it.template_hint && (
-                    <span className="mt-1.5 block rounded-lg border border-dashed border-border bg-card/60 px-2.5 py-1.5 text-[12.5px] text-ink-2">
-                      <span className="font-medium">{t("docs.template")}: </span>{l(it.template_hint)}
+                    <span className="mt-2 block rounded-xl bg-surface px-3 py-2 text-[13.5px] text-ink-2">
+                      <span className="font-bold">{t("docs.template")}: </span>{l(it.template_hint)}
                     </span>
                   )}
                 </span>
               </label>
-              {it.citations.length > 0 && <div className="mt-1 pl-[30px]"><CiteList ids={it.citations} /></div>}
+              {it.citations.length > 0 && <div className="mt-1 pl-[32px]"><CiteList ids={it.citations} /></div>}
             </li>
           );
         })}

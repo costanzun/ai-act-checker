@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useT } from "@/i18n";
 import type { ExampleItem } from "@/lib/types";
 import { cn } from "@/lib/utils";
@@ -47,10 +47,10 @@ export function Composer({ text, onText, onSubmit, examples, onExample, busy, ch
   return (
     <section className="panel overflow-hidden" aria-labelledby="describe-label">
       <form
-        className="p-4 sm:p-5"
+        className="p-5 sm:p-7"
         onSubmit={(e) => { e.preventDefault(); submit(); }}
       >
-        <label id="describe-label" htmlFor="describe" className="text-[13px] font-medium text-muted-foreground">{t("input.label")}</label>
+        <label id="describe-label" htmlFor="describe" className="h-section">{t("input.label")}</label>
         <textarea
           id="describe"
           ref={ref}
@@ -60,26 +60,24 @@ export function Composer({ text, onText, onSubmit, examples, onExample, busy, ch
           placeholder={t("input.placeholder")}
           rows={3}
           disabled={busy}
-          className="mt-2 block min-h-24 w-full resize-y rounded-xl border border-input bg-card/80 px-3.5 py-3 text-[15px] leading-relaxed outline-none transition-colors placeholder:text-muted-foreground/80 focus-visible:border-ring focus-visible:ring-3 focus-visible:ring-ring/30 disabled:opacity-70 sm:text-[16px]"
+          className="mt-3 block min-h-28 w-full resize-y rounded-2xl border-2 border-input bg-card px-4 py-3.5 text-[16px] leading-relaxed outline-none transition-shadow placeholder:text-muted-foreground focus-visible:shadow-[0_0_0_4px_var(--sun)] disabled:opacity-70 sm:text-[17px]"
         />
         <div className="mt-3 flex flex-wrap items-center justify-between gap-3">
-          <span className="text-[12px] text-muted-foreground" aria-live="polite">
+          <span className="text-[13px] font-medium text-muted-foreground" aria-live="polite">
             {!valid && n > 0 ? t("input.min", { n: MIN_CHARS - n }) : <span className="max-sm:hidden">{t("input.shortcut")}</span>}
           </span>
           <button
             type="submit"
             disabled={!valid || busy}
             data-testid="describe-submit"
-            className="inline-flex h-11 items-center gap-2 rounded-full bg-primary px-5 text-[14px] font-medium text-primary-foreground transition-opacity hover:opacity-90 disabled:opacity-40 max-sm:flex-1 max-sm:justify-center"
+            className="pill pill-primary h-13 px-7 text-[16px] max-sm:flex-1"
           >
             {t("input.submit")} <ArrowRight className="size-4" aria-hidden />
           </button>
         </div>
         {examples.length > 0 && !busy && (
-          <div className="mt-4 flex flex-wrap items-center gap-1.5 border-t border-dashed border-border pt-4" data-testid="examples">
-            <span className="mr-1 inline-flex items-center gap-1 text-[12px] text-muted-foreground">
-              <Sparkles className="size-3.5 text-brand" aria-hidden /> {t("input.examples")}
-            </span>
+          <div className="mt-5 flex flex-wrap items-center gap-2 border-t-2 border-dashed border-border pt-5" data-testid="examples">
+            <span className="pixel-label mr-1 text-muted-foreground">{t("input.examples")}</span>
             {shown.map((ex) => (
               <button
                 key={ex.id}
@@ -87,14 +85,14 @@ export function Composer({ text, onText, onSubmit, examples, onExample, busy, ch
                 data-testid="example-chip"
                 data-example={ex.id}
                 onClick={() => onExample(ex)}
-                className="rounded-full border border-border bg-card/70 px-3 py-1 text-[12.5px] text-ink-2 transition-colors hover:border-foreground/30 hover:bg-card hover:text-foreground"
+                className="rounded-full border-2 border-foreground bg-card px-3.5 py-1.5 text-[13.5px] font-semibold transition-colors hover:bg-sun-soft"
               >
                 {ex.title}
               </button>
             ))}
             {examples.length > SHOWN && (
               <button type="button" onClick={() => setAll((v) => !v)} aria-expanded={all}
-                className={cn("rounded-full px-2.5 py-1 text-[12.5px] text-muted-foreground underline-offset-4 hover:text-foreground hover:underline")}>
+                className={cn("rounded-full px-2.5 py-1.5 text-[13.5px] font-semibold underline underline-offset-4 hover:text-muted-foreground")}>
                 {all ? "−" : t("input.more", { n: examples.length - SHOWN })}
               </button>
             )}

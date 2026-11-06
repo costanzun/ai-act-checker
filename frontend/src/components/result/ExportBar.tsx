@@ -8,7 +8,7 @@ import { downloadBlob, exportMarkdown, exportPdf } from "@/lib/api";
 import type { Assessment } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
-const pill = "inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-medium transition-opacity disabled:opacity-50";
+const pill = "pill h-12 px-5 text-[14.5px]";
 
 /** One-click exports and a shareable link. The PDF and Markdown are built by the backend. */
 export function ExportBar({ assessment, className }: { assessment: Assessment; className?: string }) {
@@ -44,14 +44,14 @@ export function ExportBar({ assessment, className }: { assessment: Assessment; c
   };
 
   return (
-    <div className={cn("no-print flex flex-wrap gap-1.5", className)} role="group" aria-label={t("export.label")}>
-      <button type="button" className={cn(pill, "bg-primary text-primary-foreground hover:opacity-90")} aria-label={t("export.pdf")} onClick={() => run("pdf")} disabled={busy !== null}>
-        <Download className="size-4" aria-hidden /> PDF
+    <div className={cn("no-print grid grid-cols-2 gap-2 sm:flex sm:flex-wrap", className)} role="group" aria-label={t("export.label")}>
+      <button type="button" className={cn(pill, "pill-primary col-span-2 sm:min-w-44")} aria-label={t("export.pdf")} onClick={() => run("pdf")} disabled={busy !== null}>
+        <Download className="size-4" aria-hidden /> {t("export.pdfShort")}
       </button>
-      <button type="button" className={cn(pill, "border border-border bg-card/70 hover:bg-card")} aria-label={t("export.markdown")} onClick={() => run("md")} disabled={busy !== null}>
+      <button type="button" className={cn(pill, "pill-secondary")} aria-label={t("export.markdown")} onClick={() => run("md")} disabled={busy !== null}>
         <FileText className="size-4" aria-hidden /> Markdown
       </button>
-      <button type="button" className={cn(pill, "border border-border bg-card/70 hover:bg-card")} aria-label={t("export.link")} onClick={copy}>
+      <button type="button" className={cn(pill, "pill-secondary")} aria-label={t("export.link")} onClick={copy}>
         <Link2 className="size-4" aria-hidden /> <span>{t("export.linkShort")}</span>
       </button>
     </div>

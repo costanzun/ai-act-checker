@@ -2,7 +2,8 @@
 
 import { useSearchParams } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AlertTriangle, PencilLine, Plus } from "lucide-react";
+import { PencilLine, Plus } from "lucide-react";
+import { DogScene } from "@/components/pixel/Pixel";
 import { Documents } from "@/components/result/Documents";
 import { MustDo } from "@/components/result/MustDo";
 import { Reasoning } from "@/components/result/Reasoning";
@@ -33,6 +34,23 @@ const MAX_ROUNDS = 2;
 const EMPTY: Session = { description: "", sessionId: null, facts: null, answers: [], round: 0, asked: [] };
 const norm = (s: string) => s.replace(/\[\[[^\]]*\]\]/g, "").replace(/\s+/g, " ").trim();
 const saveKey = (id: string) => `aiact.assessment.${id}`;
+
+/** The two mascots, side by side, saying hello. */
+function Mascots() {
+  const { t } = useT();
+  return (
+    <div className="relative flex items-end gap-2.5 justify-self-start sm:justify-self-end" data-testid="mascots">
+      <span className="pixel-label absolute -top-3 left-[72px] z-10 rounded-full border-2 border-[#111] bg-white px-2.5 py-1 text-[#111] sm:left-[92px]">{t("hero.woof")}</span>
+      <div className="px-block overflow-hidden rounded-[1.4rem] px-1.5 pt-3" style={{ "--block": "var(--block-limited)", "--grid": "4px" } as React.CSSProperties}>
+        <DogScene scene="hello_schnauzer" label={t("scene.schnauzer")} className="w-[112px] sm:w-[144px]" />
+      </div>
+      <div className="px-block overflow-hidden rounded-[1.4rem] px-1.5 pt-3" style={{ "--block": "var(--block-prohibited)", "--grid": "4px" } as React.CSSProperties}>
+        <DogScene scene="hello_doberman" label={t("scene.doberman")} className="w-[112px] sm:w-[144px]" />
+      </div>
+      <p className="sr-only">{t("hero.mascots")}</p>
+    </div>
+  );
+}
 
 /** The whole product on one screen: describe → (a few inline questions) → verdict. */
 export function Checker() {
@@ -206,41 +224,44 @@ export function Checker() {
   const busy = phase === "running";
 
   return (
-    <div className="space-y-3 pb-8 pt-6 sm:pt-10">
+    <div className="space-y-3 pb-8 pt-4 sm:pt-8">
       {!showResult && (
-        <header className="px-1 pb-3 sm:pb-5">
-          <p className="text-[12px] font-medium uppercase tracking-[0.14em] text-brand">{t("hero.eyebrow")}</p>
-          <h1 className="mt-2 max-w-3xl text-balance text-[30px] font-light leading-[1.1] tracking-tight sm:text-[44px]">{t("hero.title")}</h1>
-          <p className="mt-3 max-w-2xl text-[14.5px] leading-relaxed text-muted-foreground sm:text-[15.5px]">{t("hero.lede")}</p>
+        <header className="grid items-end gap-5 px-1 pb-4 sm:grid-cols-[1fr_auto] sm:gap-8 sm:pb-6">
+          <div className="min-w-0">
+            <p className="pixel-label">{t("hero.eyebrow")}</p>
+            <h1 className="display mt-3 max-w-3xl text-balance text-[44px] sm:text-[68px] lg:text-[76px]">{t("hero.title")}</h1>
+            <p className="mt-4 max-w-2xl text-[16px] font-medium leading-snug sm:text-[17px]">{t("hero.lede")}</p>
+          </div>
+          <Mascots />
         </header>
       )}
       {showResult && <h1 className="sr-only">{t("hero.title")}</h1>}
 
       {notFound && !busy && (
-        <div data-testid="not-found" role="status" className="panel flex flex-wrap items-center justify-between gap-3 p-4">
+        <div data-testid="not-found" role="status" className="panel flex flex-wrap items-center justify-between gap-3 p-5">
           <div>
-            <p className="text-[14px] font-medium">{t("assess.notFound.title")}</p>
-            <p className="text-[13px] text-muted-foreground">{t("assess.notFound.text")}</p>
+            <p className="text-[16px] font-extrabold tracking-tight">{t("assess.notFound.title")}</p>
+            <p className="text-[14px] text-muted-foreground">{t("assess.notFound.text")}</p>
           </div>
           <button type="button" onClick={() => { setNotFound(false); window.history.replaceState(null, "", `/?lang=${lang}`); }}
-            className="rounded-full border border-border px-3 py-1.5 text-[12.5px] hover:bg-card">{t("assess.notFound.cta")}</button>
+            className="pill pill-secondary h-10 px-4 text-[13.5px]">{t("assess.notFound.cta")}</button>
         </div>
       )}
 
       {compact ? (
-        <div className="panel no-print flex flex-col gap-3 p-3.5 sm:flex-row sm:items-center sm:p-4" data-testid="input-summary">
+        <div className="panel no-print flex flex-col gap-3 p-4 sm:flex-row sm:items-center sm:p-5" data-testid="input-summary">
           <div className="min-w-0 flex-1">
-            <p className="text-[11.5px] font-medium uppercase tracking-[0.1em] text-muted-foreground">{t("input.yours")}</p>
-            <p className="mt-0.5 line-clamp-2 text-[13.5px] text-ink-2">{assessment.description}</p>
+            <p className="pixel-label text-muted-foreground">{t("input.yours")}</p>
+            <p className="mt-1 line-clamp-2 text-[14.5px] font-medium">{assessment.description}</p>
           </div>
-          <div className="flex shrink-0 gap-1.5">
+          <div className="grid shrink-0 grid-cols-2 gap-2 sm:flex">
             <button type="button" onClick={() => { setText(assessment.description); setEditing(true); }}
-              className="inline-flex h-9 items-center gap-1.5 rounded-full border border-border bg-card/70 px-3.5 text-[13px] hover:bg-card">
-              <PencilLine className="size-3.5" aria-hidden /> {t("input.edit")}
+              className="pill pill-secondary h-11 px-4 text-[14px]">
+              <PencilLine className="size-4" aria-hidden /> {t("input.edit")}
             </button>
             <button type="button" onClick={newCheck} data-testid="new-check"
-              className="inline-flex h-9 items-center gap-1.5 rounded-full bg-primary px-3.5 text-[13px] font-medium text-primary-foreground hover:opacity-90">
-              <Plus className="size-3.5" aria-hidden /> {t("input.new")}
+              className="pill pill-primary h-11 px-4 text-[14px]">
+              <Plus className="size-4" aria-hidden /> {t("input.new")}
             </button>
           </div>
         </div>
@@ -256,13 +277,16 @@ export function Checker() {
           {busy && <Progress seen={stages} onCancel={cancel} />}
           {phase === "clarify" && questions.length > 0 && <InlineQuestions key={session.round} questions={questions} onSubmit={submitAnswers} />}
           {phase === "error" && error && (
-            <div role="alert" data-testid="error-card" className="flex flex-wrap items-start gap-3 border-t border-hairline bg-destructive/5 px-4 py-4 sm:px-5">
-              <AlertTriangle className="mt-0.5 size-4 text-destructive" aria-hidden />
-              <div className="min-w-0 flex-1">
-                <p className="text-[14px] font-medium">{t("error.title")}</p>
-                <p className="text-[13px] text-muted-foreground">{error.message || t(`error.${error.code}` as const)}</p>
+            <div role="alert" data-testid="error-card"
+              className="px-block fade-up mx-2 mb-2 flex flex-col gap-2 overflow-hidden rounded-[1.4rem] px-5 pt-5 sm:mx-2.5 sm:mb-2.5 sm:flex-row sm:items-end sm:gap-6 sm:px-7"
+              style={{ "--block": "var(--block-error)", "--grid": "5px" } as React.CSSProperties}>
+              <div className="min-w-0 flex-1 pb-1 sm:pb-6">
+                <p className="pixel-label">{t("error.eyebrow")}</p>
+                <p className="display mt-2 text-[34px] sm:text-[44px]">{t("error.title")}</p>
+                <p className="mt-2 max-w-md text-[15px] font-medium leading-snug">{error.message || t(`error.${error.code}` as const)}</p>
+                <button type="button" onClick={() => void run(session)} className="pill pill-primary mt-4 h-12 w-full px-6 text-[15px] sm:w-auto">{t("error.retry")}</button>
               </div>
-              <button type="button" onClick={() => void run(session)} className="rounded-full bg-primary px-3.5 py-1.5 text-[13px] font-medium text-primary-foreground">{t("error.retry")}</button>
+              <DogScene scene="error" label={t("scene.error")} className="mx-auto w-[150px] shrink-0 sm:mx-0 sm:w-[176px]" />
             </div>
           )}
         </Composer>

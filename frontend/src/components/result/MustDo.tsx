@@ -12,17 +12,17 @@ function Item({ o, n, note }: { o: Obligation; n?: number; note?: string }) {
   const { t, l, formatDate } = useT();
   return (
     <li className="flex gap-3 py-3.5" data-testid="obligation" data-priority={o.priority}>
-      <span className={cn("num mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full text-[11.5px]",
-        n !== undefined ? "bg-primary text-primary-foreground" : "border border-border text-muted-foreground")}>
+      <span className={cn("num mt-0.5 flex size-7 shrink-0 items-center justify-center rounded-full text-[12.5px] font-bold",
+        n !== undefined ? "bg-primary text-primary-foreground" : "border-2 border-border text-muted-foreground")}>
         {n !== undefined ? n : "·"}
       </span>
       <div className="min-w-0 flex-1">
         <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5">
-          <h3 className="text-[14.5px] font-medium leading-snug">{l(o.title)}</h3>
+          <h3 className="text-[16px] font-bold leading-snug tracking-[-0.01em]">{l(o.title)}</h3>
           {o.applies_from && <span className="text-[12px] text-muted-foreground">{t("must.from", { date: formatDate(o.applies_from) })}</span>}
         </div>
-        {note && <p className="mt-0.5 text-[11.5px] font-medium uppercase tracking-wide text-muted-foreground">{note}</p>}
-        <p className="mt-1 text-[13.5px] leading-relaxed text-muted-foreground"><RichText text={l(o.summary)} /></p>
+        {note && <p className="pixel-label mt-1 text-muted-foreground">{note}</p>}
+        <p className="mt-1 text-[14.5px] leading-relaxed text-ink-2"><RichText text={l(o.summary)} /></p>
         <div className="mt-1.5"><CiteList ids={o.citations} /></div>
       </div>
     </li>
@@ -43,11 +43,11 @@ export function MustDo({ obligations, role }: { obligations: Obligation[]; role:
   };
 
   return (
-    <section aria-labelledby="obligations-heading" data-testid="must-do" className="panel p-4 sm:p-6">
+    <section aria-labelledby="obligations-heading" data-testid="must-do" className="panel p-5 sm:p-7">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="obligations-heading" className="text-[20px] font-normal tracking-tight sm:text-[22px]">{t("must.title")}</h2>
+        <h2 id="obligations-heading" className="h-section">{t("must.title")}</h2>
         {obligations.length > 0 && (
-          <span className="text-[12.5px] text-muted-foreground" data-testid="obligations-count">
+          <span className="pixel-label text-muted-foreground" data-testid="obligations-count">
             {obligations.length === 1 ? t("must.count.one") : t("must.count", { n: obligations.length })}
           </span>
         )}
@@ -65,7 +65,7 @@ export function MustDo({ obligations, role }: { obligations: Obligation[]; role:
                 aria-controls="obligations-extra"
                 onClick={() => setOpen((v) => !v)}
                 data-testid="obligations-more"
-                className="no-print mt-3 inline-flex items-center gap-1.5 rounded-full border border-border bg-card/70 px-3 py-1.5 text-[12.5px] text-ink-2 hover:text-foreground"
+                className="pill pill-secondary no-print mt-3 h-10 px-4 text-[13.5px]"
               >
                 <ChevronDown className={cn("size-3.5 transition-transform", open && "rotate-180")} aria-hidden />
                 {open ? t("must.less") : t("must.more", { n: extra.length })}

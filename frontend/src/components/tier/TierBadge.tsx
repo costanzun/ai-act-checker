@@ -13,8 +13,8 @@ export function TierBadge({ tier, className }: { tier: Tier; className?: string 
   return (
     <span
       data-tier={tier}
-      className={cn("inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[12px] font-medium whitespace-nowrap", className)}
-      style={{ color, borderColor: `color-mix(in oklab, ${color} 40%, transparent)`, background: `color-mix(in oklab, ${color} 9%, transparent)` }}
+      className={cn("inline-flex items-center gap-1 rounded-full border-2 px-2.5 py-0.5 text-[12.5px] font-bold whitespace-nowrap", className)}
+      style={{ color, borderColor: color, background: "var(--card)" }}
     >
       <Icon className="size-3.5" aria-hidden strokeWidth={2} />
       {t(TIER_KEY[tier])}

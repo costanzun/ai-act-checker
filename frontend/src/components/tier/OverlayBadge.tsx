@@ -15,7 +15,7 @@ export function OverlayBadge({ overlay, className }: { overlay: string; classNam
   const key = KEYS[overlay];
   if (!key) return null;
   return (
-    <span data-overlay={overlay} className={cn("inline-flex items-center rounded-full border border-dashed border-foreground/25 bg-card/60 px-2.5 py-0.5 text-[12px] font-medium whitespace-nowrap text-ink-2", className)}>
+    <span data-overlay={overlay} className={cn("inline-flex items-center rounded-full border-2 border-dashed border-foreground bg-card px-3 py-1 text-[13px] font-bold whitespace-nowrap", className)}>
       {t(key)}
     </span>
   );
